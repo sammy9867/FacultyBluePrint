@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">FacultyBluePrintv2</string>
+
+    <string name="room_number">Room number: </string>
+    <string name="course_name">Course Name:</string>
+    <string name="course_type">Course type:</string>
+    <string name="teacher_name">"Teacher's name:"</string>
+    <string name="teacher_website">"Teacher's website:"</string>
+    <string name="teacher_office_hours">"Teacher's hours:</string>
+</resources>
