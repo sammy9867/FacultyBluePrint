@@ -30,7 +30,7 @@
 
             <!--Demo Layout, Later on change each button which is a room to a clickable grid layout-->
             <!--We shall decide whether to create only 1 layout for each floor/ separate layouts for each floor-  EXTRA COMMENT-->
-
+            <!-- Comment 2 -->
             <include layout="@layout/layout_floor_one"></include>
 
         </com.otaliastudios.zoom.ZoomLayout>
