@@ -41,7 +41,6 @@ public class MapsActivity extends AppCompatActivity {
                     intent.putExtra("roomNumber", room.getText()) ;
 
                     // Start a new activity for the clicked room
-                    //HEY
                     startActivity(intent);
                 }
             });
