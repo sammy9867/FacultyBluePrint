@@ -28,6 +28,11 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
     private static final int ACTIVITY_NUM = 0;
     private Context mContext = MainActivity.this;
 
+    public ArrayList<Course> getCourses() {
+        return courses;
+    }
+
+
     private ArrayList<Course> courses = new ArrayList<Course>();
     private ArrayList<Teacher> teachers = new ArrayList<Teacher>();
     private ArrayList<Room> rooms = new ArrayList<Room>();

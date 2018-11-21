@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.samue.facultyblueprint">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -17,13 +18,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".Maps.MapsActivity"></activity>
-        <activity android:name=".Maps.PopupDetails"
-            android:theme="@style/AppTheme.PopMe"
-            ></activity>
-        <activity android:name=".SubjectsLists.SubjectsListsActivity"></activity>
-
+        <activity android:name=".Maps.MapsActivity" />
+        <activity
+            android:name=".Maps.PopupDetails"
+            android:theme="@style/AppTheme.PopMe" />
+        <activity android:name=".SubjectsLists.SubjectsListActivity"></activity>
     </application>
 
 </manifest>

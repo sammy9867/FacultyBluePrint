@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import com.example.samue.facultyblueprint.AddSubjects.MainActivity;
 import com.example.samue.facultyblueprint.Maps.MapsActivity;
 import com.example.samue.facultyblueprint.R;
-import com.example.samue.facultyblueprint.SubjectsLists.SubjectsListsActivity;
+import com.example.samue.facultyblueprint.SubjectsLists.SubjectsListActivity;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 public class BottomNavigationViewHelper {
@@ -43,8 +43,8 @@ public class BottomNavigationViewHelper {
                         context.startActivity(intent2);
                         break;
 
-                    case R.id.ic_subjects_list:  //ACTIVITY_NUM = 2
-                        Intent intent3 = new Intent(context, SubjectsListsActivity.class);
+                    case R.id.ic_subjects_list: //ACTIVITY_NUM = 2
+                        Intent intent3 = new Intent(context, SubjectsListActivity.class);
                         context.startActivity(intent3);
                         break;
 

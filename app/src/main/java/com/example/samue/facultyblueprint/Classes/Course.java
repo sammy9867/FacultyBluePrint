@@ -3,6 +3,8 @@ package com.example.samue.facultyblueprint.Classes;
 import java.util.ArrayList;
 
 public class Course {
+
+
     String name;
     String ID;
     String type;
@@ -29,5 +31,9 @@ public class Course {
         this.room_number=-1;
         this.teacher_ID="";
         this.classes=null;
+    }
+
+    public String getName() {
+        return name;
     }
 }
