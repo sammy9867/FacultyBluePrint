@@ -32,10 +32,15 @@ public class MapsActivity extends AppCompatActivity {
     public void buttonClick(){
         int[] arr = {R.id.room101, R.id.room102};
         for(int i : arr){
-            Button room101 = (Button) findViewById(i);
-            room101.setOnClickListener(new View.OnClickListener() {
+            final Button room = (Button) findViewById(i);
+            room.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     Intent intent = new Intent(mContext, PopupDetails.class);
+
+                    // putExtra() is required to send the room number to the new activity
+                    intent.putExtra("roomNumber", room.getText()) ;
+
+                    // Start a new activity for the clicked room
                     startActivity(intent);
                 }
             });

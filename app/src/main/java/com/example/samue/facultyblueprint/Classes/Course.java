@@ -5,12 +5,22 @@ import java.util.ArrayList;
 public class Course {
 
 
-    String name;
+    public String name;
     String ID;
-    String type;
-    int room_number;
+    public String type;
+    public int room_number;
     String teacher_ID;
     ArrayList<Lesson> classes = new ArrayList<Lesson>();
+
+    public Teacher teacher;
+
+    public Course(String name, String type, int rm, Teacher teacher){
+        this.name = name;
+        this.type = type;
+        this.room_number = rm;
+        this.teacher = teacher;
+        // time might be added later
+    }
 
     public Course(String _name, String _ID, String _type, int _room_number,
                   String _teacher_ID, ArrayList<Lesson> _classes){
@@ -36,4 +46,5 @@ public class Course {
     public String getName() {
         return name;
     }
+
 }
