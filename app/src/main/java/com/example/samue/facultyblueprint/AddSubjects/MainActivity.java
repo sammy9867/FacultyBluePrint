@@ -22,16 +22,17 @@ import java.util.ArrayList;
 
 
 
-public class MainActivity extends AppCompatActivity implements AsyncResponse {
+public class MainActivity extends AppCompatActivity  {
 
     private static final String TAG="MainActivity";
     private static final int ACTIVITY_NUM = 0;
     private Context mContext = MainActivity.this;
 
-    private ArrayList<Course> courses = new ArrayList<Course>();
-    private ArrayList<Teacher> teachers = new ArrayList<Teacher>();
-    private ArrayList<Room> rooms = new ArrayList<Room>();
-    private fetchData fetch = new fetchData();
+
+    public static ArrayList<Course> courses;
+
+    public ArrayList<Course> getCourses() { return courses; }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +40,18 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
         setContentView(R.layout.activity_main);
 
         setupBottomNavigationView();
+        courses = new ArrayList<Course>();
 
-        fetch.delegate=this;
-        fetch.execute();
+        /// TEMPORARY way to add courses  [TEST1]
+        courses.add(new Course("Java",
+                    "Lecture",
+                    101,
+                    new Teacher("Agnieszka", "Jasterszabska")));
+        courses.add(new Course("C",
+                               "Lab",
+                               102,
+                                new Teacher("Pawel", "Aszklar")));
+
     }
 
     private void setupBottomNavigationView(){
@@ -53,28 +63,6 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
         Menu menu = bottomNavigationViewEx.getMenu();
         MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
         menuItem.setChecked(true);
-
-    }
-    @Override
-    public void processFinish(ArrayList<Teacher> _teachers, ArrayList<Course> _courses, ArrayList<Room> _rooms) {
-
-        teachers.addAll(_teachers);
-        courses.addAll(_courses);
-        rooms.addAll(_rooms);
-
-        for(Course c: courses){
-            Log.i(c.toString(), "course");
-
-        }
-
-        for(int i = 0; i < teachers.size();i++){
-            Log.i(teachers.get(i).toString(),"string t");
-        }
-
-        for(int i = 0; i < courses.size();i++){
-            Log.i(rooms.get(i).toString(),"string room");
-        }
-
 
     }
 }

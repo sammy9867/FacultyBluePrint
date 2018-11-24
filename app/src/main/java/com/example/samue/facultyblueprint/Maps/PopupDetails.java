@@ -1,13 +1,20 @@
 package com.example.samue.facultyblueprint.Maps;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.WindowManager;
+import android.widget.TextView;
 
+import com.example.samue.facultyblueprint.AddSubjects.MainActivity;
+import com.example.samue.facultyblueprint.Classes.Course;
 import com.example.samue.facultyblueprint.R;
+
+import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicReferenceArray;
 
 public class PopupDetails extends Activity {
 
@@ -30,5 +37,29 @@ public class PopupDetails extends Activity {
         params.y = -20;
 
         getWindow().setAttributes(params);
+
+        initWindowData();
+    }
+
+    public void initWindowData(){
+        Intent i = getIntent();
+        String roomNumber = (String) i.getSerializableExtra("roomNumber");
+
+        TextView tv = findViewById(R.id.room_number);
+        tv.setText(tv.getText() + "  " + roomNumber );
+        int rm = Integer.parseInt(roomNumber);
+
+
+       for (Course c :  MainActivity.courses){
+           if(c.room_number  == rm){
+               ((TextView)findViewById(R.id.course_name)).setText(c.name);
+               ((TextView)findViewById(R.id.course_type)).setText(c.type);
+               ((TextView)findViewById(R.id.teacher_name)).setText(""+c.teacher);
+               break;
+           }
+       }
+
+
+
     }
 }
