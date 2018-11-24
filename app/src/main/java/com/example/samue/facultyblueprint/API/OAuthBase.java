@@ -54,7 +54,7 @@ public class OAuthBase
     /// <summary>
     /// Comparer class used to perform the sorting of the query parameters
     /// </summary>
-    protected class QueryParameterComparer : IComparer<QueryParameter>
+    protected class QueryParameterComparer extends IComparer<QueryParameter>
     {
 
             #region IComparer<QueryParameter> Members
@@ -108,12 +108,14 @@ public class OAuthBase
     {
         if (hashAlgorithm == null)
         {
-            throw new ArgumentNullException("hashAlgorithm");
+            throw new IllegalArgumentException("Null argument : hashAlgorithm");
+            //throw new ArgumentNullException("hashAlgorithm");
         }
 
-        if (String.IsNullOrEmpty(data))
+        if (data.isEmpty() || data="")
         {
-            throw new ArgumentNullException("data");
+            throw new IllegalArgumentException("Null argument : data");
+            //throw new ArgumentNullException("data");
         }
 
         byte[] dataBuffer = System.Text.Encoding.ASCII.GetBytes(data);
