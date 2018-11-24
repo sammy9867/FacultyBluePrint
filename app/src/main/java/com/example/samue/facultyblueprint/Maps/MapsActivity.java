@@ -35,7 +35,7 @@ public class MapsActivity extends AppCompatActivity implements View.OnTouchListe
 
         floor_number = 1;
         setupBottomNavigationView();
-      //  buttonClick();
+        //  buttonClick();
         int currentResource = -1 ;
         ImageView imageView = (ImageView) findViewById (R.id.floor_one);
         //Switching the floor based on the floor_number
@@ -117,12 +117,12 @@ public class MapsActivity extends AppCompatActivity implements View.OnTouchListe
 
 
 
-    //    ImageView imageView2 = (ImageView)  v.findViewById(R.id.floor_two);
+        //    ImageView imageView2 = (ImageView)  v.findViewById(R.id.floor_two);
 
 
 
 
-      //  }
+        //  }
         /*else if(getCurrentViewById() == R.layout.layout_floor_two){
             currentResource = R.drawable.floor2;
             imageView2.setImageResource (currentResource);
@@ -130,18 +130,18 @@ public class MapsActivity extends AppCompatActivity implements View.OnTouchListe
         }*/
 
         switch (action) {
-           case MotionEvent.ACTION_DOWN :
-               return true;
+            case MotionEvent.ACTION_DOWN :
+                return true;
 
             case MotionEvent.ACTION_UP :
                 //GETHOTSPOTCOLOR JUST DETECTS COLORS SO NO PROBS
                 int touchColor = -1;
                 if(floor_number == 1){
-                  //  touchColor =  getHotspotColor(BitmapFactory.decodeResource(getResources(),R.drawable.floor1_color), evX, evY);
+                    //  touchColor =  getHotspotColor(BitmapFactory.decodeResource(getResources(),R.drawable.floor1_color), evX, evY);
                     touchColor = getHotspotColor(R.id.floor_one_image_areas, evX, evY);
                     Log.i("floor one: ",String.valueOf(touchColor));
                 }else if(floor_number ==2 ){
-               //     touchColor = getHotspotColor(BitmapFactory.decodeResource(getResources(),R.drawable.floor2_color),evX,evY);
+                    //     touchColor = getHotspotColor(BitmapFactory.decodeResource(getResources(),R.drawable.floor2_color),evX,evY);
                     touchColor = getHotspotColor(R.id.floor_two_image_areas, evX, evY);
                     Log.i("floor two: ",String.valueOf(touchColor));
                 }else {
@@ -149,75 +149,75 @@ public class MapsActivity extends AppCompatActivity implements View.OnTouchListe
                 }
 
 
-               //fOR DETECTING AGAIN
+                //fOR DETECTING AGAIN
                 ColorTool ct = new ColorTool ();
                 int tolerance = 25;
 
-                   //Floor1 Colors
-                   if (ct.closeMatch(Color.parseColor("#FF006E"), touchColor, tolerance))
-                       RoomClick("101");
-                   else if (ct.closeMatch(Color.parseColor("#FF0000"), touchColor, tolerance))
-                      RoomClick("102");
-                   else if (ct.closeMatch(Color.parseColor("#FF6A00"), touchColor, tolerance))
-                       Toast.makeText(getApplicationContext(), "Room 103", Toast.LENGTH_SHORT).show();
-                   else if (ct.closeMatch(Color.parseColor("#FFD800"), touchColor, tolerance))
-                       Toast.makeText(getApplicationContext(), "Room 105", Toast.LENGTH_SHORT).show();
-                   else if (ct.closeMatch(Color.parseColor("#B6FF00"), touchColor, tolerance))
-                       Toast.makeText(getApplicationContext(), "Room 105a", Toast.LENGTH_SHORT).show();
-                   else if (ct.closeMatch(Color.parseColor("#4CFF00"), touchColor, tolerance))
-                       Toast.makeText(getApplicationContext(), "Room 113", Toast.LENGTH_SHORT).show();
+                //Floor1 Colors
+                if (ct.closeMatch(Color.parseColor("#FF006E"), touchColor, tolerance))
+                    RoomClick("101");
+                else if (ct.closeMatch(Color.parseColor("#FF0000"), touchColor, tolerance))
+                    RoomClick("102");
+                else if (ct.closeMatch(Color.parseColor("#FF6A00"), touchColor, tolerance))
+                    Toast.makeText(getApplicationContext(), "Room 103", Toast.LENGTH_SHORT).show();
+                else if (ct.closeMatch(Color.parseColor("#FFD800"), touchColor, tolerance))
+                    Toast.makeText(getApplicationContext(), "Room 105", Toast.LENGTH_SHORT).show();
+                else if (ct.closeMatch(Color.parseColor("#B6FF00"), touchColor, tolerance))
+                    Toast.makeText(getApplicationContext(), "Room 105a", Toast.LENGTH_SHORT).show();
+                else if (ct.closeMatch(Color.parseColor("#4CFF00"), touchColor, tolerance))
+                    Toast.makeText(getApplicationContext(), "Room 113", Toast.LENGTH_SHORT).show();
 
-                   //ELEVATOR UP
-                   else if (ct.closeMatch(Color.parseColor("#00FFFF"), touchColor, tolerance)) {
-                  //     Log.i(String.valueOf(currentResource),"cs before");
-                       //setCurrentViewById(R.layout.layout_floor_two);
-                       switchingFloors(1);
+                    //ELEVATOR UP
+                else if (ct.closeMatch(Color.parseColor("#00FFFF"), touchColor, tolerance)) {
+                    //     Log.i(String.valueOf(currentResource),"cs before");
+                    //setCurrentViewById(R.layout.layout_floor_two);
+                    switchingFloors(1);
 
                     //   if(imageView2 == null) return
-                   } else if (ct.closeMatch(Color.parseColor("#0094FF"), touchColor, tolerance))
-                       Toast.makeText(getApplicationContext(), "Lift DOWN", Toast.LENGTH_SHORT).show();
+                } else if (ct.closeMatch(Color.parseColor("#0094FF"), touchColor, tolerance))
+                    Toast.makeText(getApplicationContext(), "Lift DOWN", Toast.LENGTH_SHORT).show();
 
 
 
-                   //Floor2 Colors
-                  else if (ct.closeMatch(Color.parseColor("#7F0000"), touchColor, tolerance))
-                       Toast.makeText(getApplicationContext(), "Room 210", Toast.LENGTH_SHORT).show();
+                    //Floor2 Colors
+                else if (ct.closeMatch(Color.parseColor("#7F0000"), touchColor, tolerance))
+                    Toast.makeText(getApplicationContext(), "Room 210", Toast.LENGTH_SHORT).show();
 
-                   else if (ct.closeMatch(Color.parseColor("#FF0000"), touchColor, tolerance))
-                       Toast.makeText(getApplicationContext(), "Room 211", Toast.LENGTH_SHORT).show();
-                   else if (ct.closeMatch(Color.parseColor("#FF0000"), touchColor, tolerance))
-                       Toast.makeText(getApplicationContext(), "Room 212", Toast.LENGTH_SHORT).show();
-                   else if (ct.closeMatch(Color.parseColor("#FF0000"), touchColor, tolerance))
-                       Toast.makeText(getApplicationContext(), "Room 213", Toast.LENGTH_SHORT).show();
-                   else if (ct.closeMatch(Color.parseColor("#FF0000"), touchColor, tolerance))
-                       Toast.makeText(getApplicationContext(), "Room 214", Toast.LENGTH_SHORT).show();
-                   else if (ct.closeMatch(Color.parseColor("#FF0000"), touchColor, tolerance))
-                       Toast.makeText(getApplicationContext(), "Room 216", Toast.LENGTH_SHORT).show();
-                   else if (ct.closeMatch(Color.parseColor("#FF0000"), touchColor, tolerance))
-                       Toast.makeText(getApplicationContext(), "Room 217", Toast.LENGTH_SHORT).show();
-                   else if (ct.closeMatch(Color.parseColor("#FF0000"), touchColor, tolerance))
-                       Toast.makeText(getApplicationContext(), "Room 218", Toast.LENGTH_SHORT).show();
-                   else if (ct.closeMatch(Color.parseColor("#FF0000"), touchColor, tolerance))
-                       Toast.makeText(getApplicationContext(), "Room 219", Toast.LENGTH_SHORT).show();
-                   else if (ct.closeMatch(Color.parseColor("#FF0000"), touchColor, tolerance))
-                       Toast.makeText(getApplicationContext(), "Room 201", Toast.LENGTH_SHORT).show();
-                   else if (ct.closeMatch(Color.parseColor("#FF0000"), touchColor, tolerance))
-                       Toast.makeText(getApplicationContext(), "Room 202", Toast.LENGTH_SHORT).show();
-                   else if (ct.closeMatch(Color.parseColor("#FF0000"), touchColor, tolerance))
-                       Toast.makeText(getApplicationContext(), "Room 203", Toast.LENGTH_SHORT).show();
-                   else if (ct.closeMatch(Color.parseColor("#FF0000"), touchColor, tolerance))
-                       Toast.makeText(getApplicationContext(), "Room 222", Toast.LENGTH_SHORT).show();
-                   else if (ct.closeMatch(Color.parseColor("#FF0000"), touchColor, tolerance))
-                       Toast.makeText(getApplicationContext(), "Room 227", Toast.LENGTH_SHORT).show();
-                   else if (ct.closeMatch(Color.parseColor("#FF0000"), touchColor, tolerance))
-                       Toast.makeText(getApplicationContext(), "2nd Floor Lift up", Toast.LENGTH_SHORT).show();
+                else if (ct.closeMatch(Color.parseColor("#FF0000"), touchColor, tolerance))
+                    Toast.makeText(getApplicationContext(), "Room 211", Toast.LENGTH_SHORT).show();
+                else if (ct.closeMatch(Color.parseColor("#FF0000"), touchColor, tolerance))
+                    Toast.makeText(getApplicationContext(), "Room 212", Toast.LENGTH_SHORT).show();
+                else if (ct.closeMatch(Color.parseColor("#FF0000"), touchColor, tolerance))
+                    Toast.makeText(getApplicationContext(), "Room 213", Toast.LENGTH_SHORT).show();
+                else if (ct.closeMatch(Color.parseColor("#FF0000"), touchColor, tolerance))
+                    Toast.makeText(getApplicationContext(), "Room 214", Toast.LENGTH_SHORT).show();
+                else if (ct.closeMatch(Color.parseColor("#FF0000"), touchColor, tolerance))
+                    Toast.makeText(getApplicationContext(), "Room 216", Toast.LENGTH_SHORT).show();
+                else if (ct.closeMatch(Color.parseColor("#FF0000"), touchColor, tolerance))
+                    Toast.makeText(getApplicationContext(), "Room 217", Toast.LENGTH_SHORT).show();
+                else if (ct.closeMatch(Color.parseColor("#FF0000"), touchColor, tolerance))
+                    Toast.makeText(getApplicationContext(), "Room 218", Toast.LENGTH_SHORT).show();
+                else if (ct.closeMatch(Color.parseColor("#FF0000"), touchColor, tolerance))
+                    Toast.makeText(getApplicationContext(), "Room 219", Toast.LENGTH_SHORT).show();
+                else if (ct.closeMatch(Color.parseColor("#FF0000"), touchColor, tolerance))
+                    Toast.makeText(getApplicationContext(), "Room 201", Toast.LENGTH_SHORT).show();
+                else if (ct.closeMatch(Color.parseColor("#FF0000"), touchColor, tolerance))
+                    Toast.makeText(getApplicationContext(), "Room 202", Toast.LENGTH_SHORT).show();
+                else if (ct.closeMatch(Color.parseColor("#FF0000"), touchColor, tolerance))
+                    Toast.makeText(getApplicationContext(), "Room 203", Toast.LENGTH_SHORT).show();
+                else if (ct.closeMatch(Color.parseColor("#FF0000"), touchColor, tolerance))
+                    Toast.makeText(getApplicationContext(), "Room 222", Toast.LENGTH_SHORT).show();
+                else if (ct.closeMatch(Color.parseColor("#FF0000"), touchColor, tolerance))
+                    Toast.makeText(getApplicationContext(), "Room 227", Toast.LENGTH_SHORT).show();
+                else if (ct.closeMatch(Color.parseColor("#FF0000"), touchColor, tolerance))
+                    Toast.makeText(getApplicationContext(), "2nd Floor Lift up", Toast.LENGTH_SHORT).show();
 
-                       //2nd floor lift down
-                   else if (ct.closeMatch(Color.parseColor("#7F3300"), touchColor, tolerance)) {
-                       Log.i("floorno",String.valueOf(floor_number));
-                       switchingFloors(0);
-                       Log.i("floorno",String.valueOf(floor_number));
-                   }
+                    //2nd floor lift down
+                else if (ct.closeMatch(Color.parseColor("#7F3300"), touchColor, tolerance)) {
+                    Log.i("floorno",String.valueOf(floor_number));
+                    switchingFloors(0);
+                    Log.i("floorno",String.valueOf(floor_number));
+                }
 
 
 
@@ -225,7 +225,7 @@ public class MapsActivity extends AppCompatActivity implements View.OnTouchListe
                 break;
 
             default:
-               return  false;
+                return  false;
         }
 
         int currentResource = -1 ;
@@ -302,6 +302,6 @@ public class MapsActivity extends AppCompatActivity implements View.OnTouchListe
             //img.setDrawingCacheEnabled(true);
             Log.i("(x,y))", String.valueOf(x)+" "+ String.valueOf(y));
             return hotspots.getPixel(x, y);
-            }
+        }
     }
 }
