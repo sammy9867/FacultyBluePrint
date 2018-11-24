@@ -16,13 +16,22 @@
             />
 
         <ImageView
-            android:id="@+id/floor_one"
+            android:id="@+id/floor_two_image_areas"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:scaleType="fitCenter"
-            android:src="@drawable/floor1"
+            android:visibility="invisible"
+            android:src="@drawable/floor2_color"
             />
 
+        <ImageView
+            android:id="@+id/floor_shown"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scaleType="fitCenter"
+            />
+<!--       android:src="@drawable/floor1"
+-->
 
 
     </FrameLayout>
