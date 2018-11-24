@@ -1,25 +1,30 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/floor"
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/my_frame"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+
         >
-
-        <Button
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:id="@+id/room101"
-            android:text="101"
+        <ImageView
+            android:id="@+id/floor_one_image_areas"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scaleType="fitCenter"
+            android:visibility="invisible"
+            android:src="@drawable/floor1_color"
             />
 
-        <Button
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:id="@+id/room102"
-            android:text="102"
+        <ImageView
+            android:id="@+id/floor_one"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/floor1"
             />
-    </GridLayout>
 
+
+
+    </FrameLayout>
 
 </merge>
