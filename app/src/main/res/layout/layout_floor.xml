@@ -25,6 +25,15 @@
             />
 
         <ImageView
+            android:id="@+id/floor_three_image_areas"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:visibility="invisible"
+            android:scaleType="fitCenter"
+            android:src="@drawable/floor3_color"
+            />
+
+        <ImageView
             android:id="@+id/floor_shown"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
