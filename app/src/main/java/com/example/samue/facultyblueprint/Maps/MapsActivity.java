@@ -18,13 +18,14 @@ import com.example.samue.facultyblueprint.R;
 import com.example.samue.facultyblueprint.Utils.BottomNavigationViewHelper;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
+/**This is the activity based at the center which displays the map**/
 public class MapsActivity extends AppCompatActivity implements View.OnTouchListener {
 
     private static final int MIN_FLOOR_NUM = 0;
     private static final int MAX_FLOOR_NUM = 3;
 
     private static final String TAG="MapsActivity";
-    private static final int ACTIVITY_NUM = 1;
+    private static final int ACTIVITY_NUM = 1; //Since it's in the center.
     private Context mContext = MapsActivity.this;
     private int currentViewId = -1;
     private int floor_number;

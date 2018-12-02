@@ -1,32 +1,26 @@
-package com.example.samue.facultyblueprint.AddSubjects;
+package com.example.samue.facultyblueprint.Settings;
 
 import android.content.Context;
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.samue.facultyblueprint.Classes.AsyncResponse;
 import com.example.samue.facultyblueprint.Classes.Course;
-import com.example.samue.facultyblueprint.Classes.Room;
 import com.example.samue.facultyblueprint.Classes.Teacher;
-import com.example.samue.facultyblueprint.Classes.fetchData;
 import com.example.samue.facultyblueprint.R;
 import com.example.samue.facultyblueprint.Utils.BottomNavigationViewHelper;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 
+/**This is the rightmost activity displaying settings: User profile pic and ability to log out **/
+public class SettingsActivity extends AppCompatActivity  {
 
-public class MainActivity extends AppCompatActivity  {
-
-    private static final String TAG="MainActivity";
-    private static final int ACTIVITY_NUM = 0;
-    private Context mContext = MainActivity.this;
+    private static final String TAG="SettingsActivity";
+    private static final int ACTIVITY_NUM = 2;
+    private Context mContext = SettingsActivity.this;
 
 
     public static ArrayList<Course> courses;
@@ -37,7 +31,7 @@ public class MainActivity extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_settings);
 
         setupBottomNavigationView();
         courses = new ArrayList<Course>();

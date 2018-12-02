@@ -6,10 +6,10 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.view.MenuItem;
 
-import com.example.samue.facultyblueprint.AddSubjects.MainActivity;
-import com.example.samue.facultyblueprint.Maps.MapsActivity;
-import com.example.samue.facultyblueprint.R;
 import com.example.samue.facultyblueprint.SubjectsLists.SubjectsListActivity;
+import com.example.samue.facultyblueprint.Maps.MapsActivity;
+import com.example.samue.facultyblueprint.Settings.SettingsActivity;
+import com.example.samue.facultyblueprint.R;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 public class BottomNavigationViewHelper {
@@ -32,19 +32,18 @@ public class BottomNavigationViewHelper {
 
                 //Retrieves the images from the drawable folder and assigning an activity to each image in the bottom navigation bar
                 switch(item.getItemId()){
-                    case R.id.ic_add_subjects:  //ACTIVITY_NUM = 0
-                        Intent intent1 = new Intent(context, MainActivity.class);
+                    case R.id.ic_subjects_list:  //ACTIVITY_NUM = 0
+                        Intent intent1 = new Intent(context, SubjectsListActivity.class);
                         context.startActivity(intent1);
                         break;
-
 
                     case R.id.ic_maps:  //ACTIVITY_NUM = 1
                         Intent intent2 = new Intent(context, MapsActivity.class);
                         context.startActivity(intent2);
                         break;
 
-                    case R.id.ic_subjects_list: //ACTIVITY_NUM = 2
-                        Intent intent3 = new Intent(context, SubjectsListActivity.class);
+                    case R.id.ic_settings: //ACTIVITY_NUM = 2
+                        Intent intent3 = new Intent(context, SettingsActivity.class);
                         context.startActivity(intent3);
                         break;
 

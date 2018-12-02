@@ -4,22 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddSubjects.MainActivity">
+    tools:context=".Settings.SettingsActivity">
 
-    <!-- Mike comment -->
+    <!-- This is the resource file to display the settings-->
     
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!--Center Viewpager-->
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/relLayout_home_viewpager"
             >
+            <!-- Place Activity Items Here -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="S E T T I N G S "/>
 
-            <include layout="@layout/layout_center_viewpager"></include>
         </RelativeLayout>
 
         <!--Bottom navigation-->

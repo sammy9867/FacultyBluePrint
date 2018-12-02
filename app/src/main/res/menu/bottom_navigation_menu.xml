@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/ic_add_subjects"
-        android:icon="@drawable/ic_add_subjects"
+        android:id="@+id/ic_subjects_list"
+        android:icon="@drawable/ic_subjects_list"
         android:title="">
     </item>
 
@@ -15,9 +15,11 @@
     </item>
 
     <item
-        android:id="@+id/ic_subjects_list"
-        android:icon="@drawable/ic_subjects_list"
+        android:id="@+id/ic_settings"
+        android:icon="@drawable/ic_settings"
         android:title="">
     </item>
+
+
 
 </menu>

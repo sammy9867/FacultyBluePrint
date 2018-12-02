@@ -9,12 +9,9 @@ import android.view.Gravity;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import com.example.samue.facultyblueprint.AddSubjects.MainActivity;
+import com.example.samue.facultyblueprint.Settings.SettingsActivity;
 import com.example.samue.facultyblueprint.Classes.Course;
 import com.example.samue.facultyblueprint.R;
-
-import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicReferenceArray;
 
 public class PopupDetails extends Activity {
 
@@ -50,7 +47,7 @@ public class PopupDetails extends Activity {
         int rm = Integer.parseInt(roomNumber);
 
 
-       for (Course c :  MainActivity.courses){
+       for (Course c :  SettingsActivity.courses){
            if(c.room_number  == rm){
                ((TextView)findViewById(R.id.course_name)).setText(c.name);
                ((TextView)findViewById(R.id.course_type)).setText(c.type);

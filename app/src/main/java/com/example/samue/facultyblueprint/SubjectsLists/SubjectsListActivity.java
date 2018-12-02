@@ -3,15 +3,11 @@ package com.example.samue.facultyblueprint.SubjectsLists;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.view.menu.ListMenuItemView;
-import android.support.v7.view.menu.MenuView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.example.samue.facultyblueprint.AddSubjects.MainActivity;
 import com.example.samue.facultyblueprint.Classes.AsyncResponse;
 import com.example.samue.facultyblueprint.Classes.Course;
 import com.example.samue.facultyblueprint.Classes.Room;
@@ -21,15 +17,14 @@ import com.example.samue.facultyblueprint.R;
 import com.example.samue.facultyblueprint.Utils.BottomNavigationViewHelper;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
+/**This is the leftmost activity where list of subject of the user are added from USOS.**/
 public class SubjectsListActivity extends AppCompatActivity implements AsyncResponse {
 
     private static final String TAG="SubjectsListsActivity";
-    private static final int ACTIVITY_NUM = 2;
+    private static final int ACTIVITY_NUM = 0;  //leftmost activities index
     private Context mContext = SubjectsListActivity.this;
 
 
