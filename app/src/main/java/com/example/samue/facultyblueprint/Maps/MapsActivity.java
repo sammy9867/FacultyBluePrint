@@ -18,7 +18,7 @@ import com.example.samue.facultyblueprint.R;
 import com.example.samue.facultyblueprint.Utils.BottomNavigationViewHelper;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
-/**This is the activity based at the center which displays the map**/
+/**This is the main activity based at the center which displays the map**/
 public class MapsActivity extends AppCompatActivity implements View.OnTouchListener {
 
     private static final int MIN_FLOOR_NUM = 0;

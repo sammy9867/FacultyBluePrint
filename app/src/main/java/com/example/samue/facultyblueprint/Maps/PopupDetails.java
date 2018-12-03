@@ -4,36 +4,47 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.DisplayMetrics;
-import android.view.Gravity;
-import android.view.WindowManager;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.samue.facultyblueprint.Settings.SettingsActivity;
+import com.example.samue.facultyblueprint.Classes.Teacher;
 import com.example.samue.facultyblueprint.Classes.Course;
 import com.example.samue.facultyblueprint.R;
 
+import java.util.ArrayList;
+
 public class PopupDetails extends Activity {
+
+    public static ArrayList<Course> courses;
+    public ArrayList<Course> getCourses() { return courses; }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_popup);
 
-        DisplayMetrics dm = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        /// TEMPORARY way to add courses  [TEST1]
+        courses = new ArrayList<Course>();
+        courses.add(new Course("Java",
+                "Lecture",
+                101,
+                new Teacher("Agnieszka", "Jasterszabska")));
+        courses.add(new Course("C",
+                "Lab",
+                102,
+                new Teacher("Pawel", "Aszklar")));
 
-        int width = dm.widthPixels;
-        int height = dm.heightPixels;
 
-        getWindow().setLayout((int)(width*.8),(int)(height*.6));
 
-        WindowManager.LayoutParams params = getWindow().getAttributes();
-        params.gravity = Gravity.CENTER;
-        params.x = 0;
-        params.y = -20;
-
-        getWindow().setAttributes(params);
+        //ImageView of the backarrow to leave popup details
+        ImageView profileMenu = (ImageView) findViewById(R.id.backArrow);
+        profileMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               finish();
+            }
+        });
 
         initWindowData();
     }
@@ -47,7 +58,7 @@ public class PopupDetails extends Activity {
         int rm = Integer.parseInt(roomNumber);
 
 
-       for (Course c :  SettingsActivity.courses){
+       for (Course c :  courses){
            if(c.room_number  == rm){
                ((TextView)findViewById(R.id.course_name)).setText(c.name);
                ((TextView)findViewById(R.id.course_type)).setText(c.type);
@@ -56,7 +67,7 @@ public class PopupDetails extends Activity {
            }
        }
 
-
-
     }
+
+
 }

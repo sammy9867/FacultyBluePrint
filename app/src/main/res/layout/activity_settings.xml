@@ -15,16 +15,48 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/relLayout_home_viewpager"
+            android:layout_height="wrap_content"
+            android:id="@+id/relativeLayoutOne"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:padding="15dp"
             >
-            <!-- Place Activity Items Here -->
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:id="@+id/UsosUserProfileImage"
+                android:src="@drawable/default_profile_image"
+
+                />
+
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="S E T T I N G S "/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="User name"
+                android:id="@+id/UsosUserProfileName"
+                android:layout_toRightOf="@id/UsosUserProfileImage"
+                android:textColor="@color/black"
+                android:layout_marginLeft="30dp"
+                android:layout_centerVertical="true"
+                android:textSize="17sp"
+                />
+
+
 
         </RelativeLayout>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/relativeLayoutOne"
+            android:id="@+id/ListViewSettings">
+
+
+        </ListView>
+
+
 
         <!--Bottom navigation-->
         <include layout="@layout/layout_bottom_navigation_view"></include>

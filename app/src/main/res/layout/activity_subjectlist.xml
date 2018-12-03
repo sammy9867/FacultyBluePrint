@@ -11,10 +11,6 @@ tools:context=".SubjectsLists.SubjectsListActivity">
     android:layout_height="match_parent">
 
 
-
-
-
-
     <ListView
         android:id="@+id/sujectlist_listview"
         android:layout_width="match_parent"

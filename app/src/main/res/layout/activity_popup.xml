@@ -1,65 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/grey"
-    >
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/room_number"
-        android:text="@string/room_number"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/relLayout1">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/course_name"
-        android:text="@string/course_name"
-        android:layout_below="@+id/room_number"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/relLayout2">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/course_type"
-        android:text="@string/course_type"
-        android:layout_below="@id/course_name"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"/>
+            <android.support.design.widget.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/white_grey_border_bottom"
+                >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/teacher_name"
-        android:text="@string/teacher_name"
-        android:layout_below="@+id/course_type"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"/>
+                <android.support.v7.widget.Toolbar
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/PopupDetailsToolBar">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/teacher_website"
-        android:text="@string/teacher_website"
-        android:layout_below="@+id/teacher_name"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/teacher_office_hours"
-        android:text="@string/teacher_office_hours"
-        android:layout_below="@id/teacher_website"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"/>
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_centerVertical="true"
+                            android:id="@+id/backArrow"
+                            android:src="@drawable/ic_back_arrow"/>
+
+                        <TextView
+                            android:layout_toRightOf="@+id/backArrow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="Details"
+                            android:textSize="20sp"
+                            android:textColor="@color/black"
+                            android:layout_marginStart="5dp"
+                            android:id="@+id/DetailsHeader"/>
+
+                    </RelativeLayout>
+                </android.support.v7.widget.Toolbar>
+            </android.support.design.widget.AppBarLayout>
+        </RelativeLayout>
 
 
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/relLayout3"
+            android:layout_below="@+id/relLayout2"
+            android:layout_marginBottom="50dp">
+
+            <RelativeLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="@color/white">
 
 
-</RelativeLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/room_number"
+                    android:text="@string/room_number"
+                    android:fontFamily="sans-serif-medium"
+                    android:textSize="17sp"
+                    android:padding="20dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/course_name"
+                    android:text="@string/course_name"
+                    android:layout_below="@+id/room_number"
+                    android:fontFamily="sans-serif-medium"
+                    android:textSize="17sp"
+                    android:padding="20dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/course_type"
+                    android:text="@string/course_type"
+                    android:layout_below="@id/course_name"
+                    android:fontFamily="sans-serif-medium"
+                    android:textSize="17sp"
+                    android:padding="20dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/teacher_name"
+                    android:text="@string/teacher_name"
+                    android:layout_below="@+id/course_type"
+                    android:fontFamily="sans-serif-medium"
+                    android:textSize="17sp"
+                    android:padding="20dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/teacher_website"
+                    android:text="@string/teacher_website"
+                    android:layout_below="@+id/teacher_name"
+                    android:fontFamily="sans-serif-medium"
+                    android:textSize="17sp"
+                    android:padding="20dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/teacher_office_hours"
+                    android:text="@string/teacher_office_hours"
+                    android:layout_below="@id/teacher_website"
+                    android:fontFamily="sans-serif-medium"
+                    android:textSize="17sp"
+                    android:padding="20dp"
+                    />
+
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

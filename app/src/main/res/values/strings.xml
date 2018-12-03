@@ -7,4 +7,11 @@
     <string name="teacher_name">"Teacher's name:"</string>
     <string name="teacher_website">"Teacher's website:"</string>
     <string name="teacher_office_hours">"Teacher's hours:</string>
+
+    <string name="student_id_number">"Student id number"</string>
+    <string name="student_email_id">"Student email id"</string>
+    <string name="log_out">"Log Out</string>
+
+
+
 </resources>
