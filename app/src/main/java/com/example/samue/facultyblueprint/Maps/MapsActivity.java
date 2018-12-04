@@ -14,11 +14,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.samue.facultyblueprint.Login.LoginActivity;
 import com.example.samue.facultyblueprint.R;
 import com.example.samue.facultyblueprint.Utils.BottomNavigationViewHelper;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
-/**This is the main activity based at the center which displays the map**/
+/**This is the MAIN activity based at the center which displays the map**/
 public class MapsActivity extends AppCompatActivity implements View.OnTouchListener {
 
     private static final int MIN_FLOOR_NUM = 0;
@@ -34,6 +35,13 @@ public class MapsActivity extends AppCompatActivity implements View.OnTouchListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setCurrentViewById(R.layout.activity_maps);
+
+        Log.i(">>>>", "Before Login");
+        if(!alreadyLoggedIn()) {
+            Intent intent = new Intent(mContext, LoginActivity.class);
+            startActivity(intent);
+        }
+        Log.i(">>>>", "After Login");
 
         floor_number = 1;
         setupBottomNavigationView();
@@ -54,6 +62,14 @@ public class MapsActivity extends AppCompatActivity implements View.OnTouchListe
         imageView.setTag (currentResource);
         imageView.setOnTouchListener(this);
 
+    }
+
+    /**
+     * Checks if the user is already logged in
+     * @return FALSE  // to be implemented later
+     */
+    private boolean alreadyLoggedIn() {
+        return false;
     }
 
     public void setCurrentViewById(int id)
