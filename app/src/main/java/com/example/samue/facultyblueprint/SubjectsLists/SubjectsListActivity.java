@@ -37,7 +37,7 @@ public class SubjectsListActivity extends AppCompatActivity implements AsyncResp
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_subjectlist);
+        setContentView(R.layout.activity_subject_list);
         setupBottomNavigationView();
 
         // //
