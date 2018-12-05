@@ -5,6 +5,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".Login.LoginActivity">
 
-    <!--Resource file for Login Activity-->
+    <!-- Resource file for Login Activity -->
+<GridLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:text="Put your PIN below"/>
+
+    <EditText
+        android:id="@+id/pinEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLength="6"
+        android:digits="0123456789"/>
+
+    <Button
+        android:id="@+id/getPinButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get PIN"
+        android:onClick="getPinButton_Click"/>
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:onClick="loginButton_Click"/>
+
+    <TextView
+        android:id="@+id/textView"
+        android:textSize="20sp"
+        android:text="refresh"
+        android:onClick="Refresh_Click"/>
+    
+
+</GridLayout>
 
 </android.support.constraint.ConstraintLayout>
