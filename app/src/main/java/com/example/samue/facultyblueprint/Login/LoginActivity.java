@@ -12,9 +12,13 @@ import org.w3c.dom.Text;
 
 public class LoginActivity extends AppCompatActivity {
 
-    public static final String APPLICATION_NAME  = "FacultyStuff11";
-    public static final String CONSUMER_KEY      = "Lds4czKt8zVVAEp98EjG";
-    public static final String CONSUMER_SECRET   = "ZDVtrxrkaNbjaN958d5bGPBx2WjE87br6gm7ZF8h";
+    public static final String APPLICATION_NAME  = "FacultyStaff12";
+    public static final String CONSUMER_KEY      = "fXbK9PNe7wBVgbbwQ8Fr";
+    public static final String CONSUMER_SECRET   = "2JU4Ka27ryAdQeqFfCUAReRN5U8aqvMsm8F5URBt";
+
+    public static String TOKEN = "";
+    public static String TOKEN_SECRET = "";
+
 
     public static String response;
     //Call Activity Login
