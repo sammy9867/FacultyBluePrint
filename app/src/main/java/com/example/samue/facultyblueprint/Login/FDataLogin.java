@@ -35,7 +35,7 @@ public class FDataLogin extends AsyncTask<Void, Void, Void> {
     protected Void doInBackground(Void... voids ){
         nonce = GenerateNonce();
         timestamp =  GenerateTimeStamp();
-        String request_token = "https://usosapps.chat.edu.pl/services/oauth/request_token" +
+        String request_token = "https://apps.usos.pw.edu.pl/services/oauth/request_token" +
                 "?oauth_callback=oob" +
                 "&oauth_consumer_key=" +LoginActivity.CONSUMER_KEY+
                 "&oauth_nonce=" + nonce +
@@ -48,28 +48,33 @@ public class FDataLogin extends AsyncTask<Void, Void, Void> {
             Log.i("url>", request_token);
             requestTokenURL = new URL(request_token);
             HttpURLConnection connection = (HttpURLConnection) requestTokenURL.openConnection();
-            InputStream is = connection.getInputStream();
-            BufferedReader iBR = new BufferedReader(new InputStreamReader(is));
-            String input = "";
+            int responseCode = connection.getResponseCode();
+            if (responseCode >= 400 && responseCode <= 499) {
+                Log.i("Bad auth", Integer.toString(responseCode)); //provide a more meaningful exception message
+            } else {
+                InputStream is = connection.getInputStream();
+                BufferedReader iBR = new BufferedReader(new InputStreamReader(is));
+                String input = "";
 
 
-            while (true){
-                input = iBR.readLine();
-                if(input != null)
-                    response+= input;
-                if(input == null)
-                    break;
+                while (true) {
+                    input = iBR.readLine();
+                    if (input != null)
+                        response += input;
+                    if (input == null)
+                        break;
+                }
             }
 
+            } catch(MalformedURLException e){
+                e.printStackTrace();
+            } catch(IOException e){
+                e.printStackTrace();
+                // TODO: Handle exception
+                // possible error 400 and higher */
+                Log.i("IOException> ", "Possible error 400 and higher");
+            }
 
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-            // TODO: Handle exception
-            // possible error 400 and higher */
-            Log.i("IOException> ", "Possible error 400 and higher");
-        }
         Log.i("response", response);
         return null;
     }

@@ -18,7 +18,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Login.LoginActivity" />
+
+        <activity android:name=".Login.LoginActivity"
+                  android:configChanges="keyboard|orientation|screenSize">
+            <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data
+                android:host="https://apps.usos.pw.edu.pl"
+                android:scheme="your"
+                 />
+            </intent-filter>
+        </activity>
 
         <activity android:name=".Settings.SettingsActivity" />
         <activity

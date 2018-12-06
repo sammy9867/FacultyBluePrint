@@ -12,7 +12,7 @@ import org.w3c.dom.Text;
 
 public class LoginActivity extends AppCompatActivity {
 
-    public static final String APPLICATION_NAME  = "FacultyStuff11";
+    public static final String APPLICATION_NAME  = "Faculty";
     public static final String CONSUMER_KEY      = "Lds4czKt8zVVAEp98EjG";
     public static final String CONSUMER_SECRET   = "ZDVtrxrkaNbjaN958d5bGPBx2WjE87br6gm7ZF8h";
 
