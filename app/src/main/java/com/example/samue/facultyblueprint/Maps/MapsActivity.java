@@ -47,7 +47,7 @@ public class MapsActivity extends AppCompatActivity implements View.OnTouchListe
         setupBottomNavigationView();
 
         int currentResource = -1 ;
-        ImageView imageView = (ImageView) findViewById (R.id.floor_shown);
+        TouchImageView imageView = (TouchImageView) findViewById (R.id.floor_shown);
 
         //Switching the floor based on the floor_number
         if(floor_number == 1){
@@ -91,10 +91,8 @@ public class MapsActivity extends AppCompatActivity implements View.OnTouchListe
             room.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     Intent intent = new Intent(mContext, PopupDetails.class);
-
                     // putExtra() is required to send the room number to the new activity
                     intent.putExtra("roomNumber", room.getText()) ;
-
                     // Start a new activity for the clicked room
                     startActivity(intent);
                 }
@@ -126,8 +124,8 @@ public class MapsActivity extends AppCompatActivity implements View.OnTouchListe
 
 
         switch (action) {
-           case MotionEvent.ACTION_DOWN :
-               return true;
+            case MotionEvent.ACTION_DOWN :
+                return true;
 
             case MotionEvent.ACTION_UP :
                 //GETHOTSPOTCOLOR JUST DETECTS COLORS SO NO PROBS
@@ -136,7 +134,7 @@ public class MapsActivity extends AppCompatActivity implements View.OnTouchListe
                     touchColor = getHotspotColor(R.id.floor_one_image_areas, evX, evY);
                     Log.i("floor one: ",String.valueOf(touchColor));
                 }else if(floor_number == 2 ){
-               //   touchColor = getHotspotColor(BitmapFactory.decodeResource(getResources(),R.drawable.floor2_color),evX,evY);
+                    //   touchColor = getHotspotColor(BitmapFactory.decodeResource(getResources(),R.drawable.floor2_color),evX,evY);
                     touchColor = getHotspotColor(R.id.floor_two_image_areas, evX, evY);
                     Log.i("floor two: ",String.valueOf(touchColor));
                 }else if(floor_number == 3){
@@ -149,7 +147,7 @@ public class MapsActivity extends AppCompatActivity implements View.OnTouchListe
                 }
 
 
-               //FOR DETECTING AGAIN
+                //FOR DETECTING AGAIN
                 ColorTool ct = new ColorTool ();
                 int tolerance = 1;
 
@@ -224,7 +222,7 @@ public class MapsActivity extends AppCompatActivity implements View.OnTouchListe
                     else if (ct.closeMatch(Color.parseColor("#D67FFF"), touchColor, tolerance))
                         Toast.makeText(getApplicationContext(), "Room 227", Toast.LENGTH_SHORT).show();
 
-                    //Floor up
+                        //Floor up
                     else if (ct.closeMatch(Color.parseColor("#FF00DC"), touchColor, tolerance))
                         switchingFloors(1);
 
@@ -234,12 +232,12 @@ public class MapsActivity extends AppCompatActivity implements View.OnTouchListe
                     }
                 }
 
-               else if(floor_number == 3) {
+                else if(floor_number == 3) {
                     //Floor 3 colors
-                //    if (ct.closeMatch(Color.parseColor("#77F3F3F"), touchColor, tolerance))
-                   //     Toast.makeText(getApplicationContext(), "Room 310", Toast.LENGTH_SHORT).show();
+                    //    if (ct.closeMatch(Color.parseColor("#77F3F3F"), touchColor, tolerance))
+                    //     Toast.makeText(getApplicationContext(), "Room 310", Toast.LENGTH_SHORT).show();
 
-                     if (ct.closeMatch(Color.parseColor("#7F593F"), touchColor, tolerance))
+                    if (ct.closeMatch(Color.parseColor("#7F593F"), touchColor, tolerance))
                         Toast.makeText(getApplicationContext(), "Room 311", Toast.LENGTH_SHORT).show();
 
                     else if (ct.closeMatch(Color.parseColor("#7F743F"), touchColor, tolerance))
@@ -298,7 +296,7 @@ public class MapsActivity extends AppCompatActivity implements View.OnTouchListe
                 break;
 
             default:
-               return  false;
+                return  false;
         }
 
         /* DO NOT CHANGE */
@@ -387,6 +385,6 @@ public class MapsActivity extends AppCompatActivity implements View.OnTouchListe
             //img.setDrawingCacheEnabled(true);
             Log.i("(x,y))", String.valueOf(x)+" "+ String.valueOf(y));
             return hotspots.getPixel(x, y);
-            }
+        }
     }
 }

@@ -1,12 +1,13 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!--ImageView changed to TouchImageView-->
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/my_frame"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
 
         >
-        <ImageView
+        <com.example.samue.facultyblueprint.Maps.TouchImageView
             android:id="@+id/floor_one_image_areas"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
@@ -15,7 +16,7 @@
             android:src="@drawable/floor1_color"
             />
 
-        <ImageView
+        <com.example.samue.facultyblueprint.Maps.TouchImageView
             android:id="@+id/floor_two_image_areas"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
@@ -24,7 +25,7 @@
             android:src="@drawable/floor2_color"
             />
 
-        <ImageView
+        <com.example.samue.facultyblueprint.Maps.TouchImageView
             android:id="@+id/floor_three_image_areas"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
@@ -33,14 +34,14 @@
             android:src="@drawable/floor3_color"
             />
 
-        <ImageView
+        <com.example.samue.facultyblueprint.Maps.TouchImageView
             android:id="@+id/floor_shown"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:scaleType="fitCenter"
             />
-<!--       android:src="@drawable/floor1"
--->
+        <!--       android:src="@drawable/floor1"
+        -->
 
 
     </FrameLayout>
