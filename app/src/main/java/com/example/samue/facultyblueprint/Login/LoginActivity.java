@@ -29,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     public static Button getPinBtn;
     public static Button loginBtn;
     public static TextView refreshTextView;
-
+    public static TextView noteTextView;
     public String result;
 
     @Override
@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         getPinBtn       = (Button)   findViewById(R.id.getPinButton);
         loginBtn        = (Button)   findViewById(R.id.loginButton);
         refreshTextView = (TextView) findViewById(R.id.refreshTextView);
-
+        noteTextView    = (TextView) findViewById(R.id._noteTextView);
         result = "";
     }
 

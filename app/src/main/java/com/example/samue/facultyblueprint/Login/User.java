@@ -24,8 +24,8 @@ public final class User {
     public static final String CALLBACK   = "oob";
     public static final String requestUrl = "https://apps.usos.pw.edu.pl/";
 
-    public static Token requestToken;
-    public static Token accessToken;
+    public static Token requestToken = null;
+    public static Token accessToken  = null;
     public static String authorizationUrl;
 
     public static String Name;
