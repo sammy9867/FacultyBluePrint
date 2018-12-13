@@ -55,7 +55,10 @@ public class LoginActivity extends AppCompatActivity {
 //            fDataLogin.execute();
     }
 
-    /** Method to be called on click Login*/
+    /**
+     * Method to be called on click Login
+     * Gets Access Token
+     * */
     public void loginButton_Click(View view) {
         AccessTokenLogin accessTokenLogin = new AccessTokenLogin();
         accessTokenLogin.execute();
@@ -65,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
 
         VolleyOAuthRequest volleyOAuthRequest = new VolleyOAuthRequest(0,User.requestUrl+"services/users/user",
                 null);
-        volleyOAuthRequest.addParameter("user_id", "1117649");
+
         String volleyURL = volleyOAuthRequest.getUrl();
         Log.i("VOLLEY URL >>> ", volleyURL);
 
