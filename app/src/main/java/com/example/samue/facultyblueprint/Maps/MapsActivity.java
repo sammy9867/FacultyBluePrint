@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.samue.facultyblueprint.Login.LoginActivity;
+import com.example.samue.facultyblueprint.Login.User;
 import com.example.samue.facultyblueprint.R;
 import com.example.samue.facultyblueprint.Utils.BottomNavigationViewHelper;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
@@ -75,7 +76,9 @@ public class MapsActivity extends AppCompatActivity implements View.OnTouchListe
      * @return FALSE  // to be implemented later
      */
     private boolean alreadyLoggedIn() {
-        return false;
+        if(User.accessToken == null)
+            return false;
+        return true;
     }
 
     public void setCurrentViewById(int id)
