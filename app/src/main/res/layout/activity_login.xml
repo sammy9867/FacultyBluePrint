@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
@@ -15,13 +16,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="30sp"
+        android:textColor="@color/black"
         android:text="Put your PIN below"/>
 
     <EditText
         android:id="@+id/pinEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:maxLength="6"
         android:digits="0123456789"/>
 
     <Button
@@ -34,14 +35,14 @@
     <Button
         android:id="@+id/loginButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="Login"
+        android:layout_height="wrap_content"
         android:onClick="loginButton_Click"/>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/refreshTextView"
         android:textSize="20sp"
-        android:text="refresh"
+        android:text="Refresh"
         android:onClick="Refresh_Click"/>
     
 
