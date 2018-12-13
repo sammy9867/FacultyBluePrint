@@ -51,6 +51,10 @@ public class TouchImageView extends android.support.v7.widget.AppCompatImageView
     //
     private Matrix matrix, prevMatrix;
 
+    public float getScale() {
+        return this.delayedZoomVariables.scale;
+    }
+
     private static enum State { NONE, DRAG, ZOOM, FLING, ANIMATE_ZOOM };
     private State state;
 
@@ -68,7 +72,7 @@ public class TouchImageView extends android.support.v7.widget.AppCompatImageView
     private boolean imageRenderedAtLeastOnce;
     private boolean onDrawReady;
 
-    private ZoomVariables delayedZoomVariables;
+    public ZoomVariables delayedZoomVariables;
 
     //
     // Size of view and previous view size (ie before rotation)
@@ -122,6 +126,7 @@ public class TouchImageView extends android.support.v7.widget.AppCompatImageView
         setState(State.NONE);
         onDrawReady = false;
         super.setOnTouchListener(new PrivateOnTouchListener());
+        //delayedZoomVariables = new ZoomVariables(1, 1, 1, ScaleType.CENTER);
     }
 
     @Override

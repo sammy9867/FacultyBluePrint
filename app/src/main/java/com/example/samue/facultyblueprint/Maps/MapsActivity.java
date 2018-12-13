@@ -4,9 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Matrix;
+import android.graphics.PointF;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.util.Size;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -131,15 +137,15 @@ public class MapsActivity extends AppCompatActivity implements View.OnTouchListe
                 //GETHOTSPOTCOLOR JUST DETECTS COLORS SO NO PROBS
                 int touchColor = -1;
                 if(floor_number == 1){
-                    touchColor = getHotspotColor(R.id.floor_one_image_areas, evX, evY);
+                    touchColor = getHotspotColor(v, R.id.floor_one_image_areas, evX, evY);
                     Log.i("floor one: ",String.valueOf(touchColor));
                 }else if(floor_number == 2 ){
                     //   touchColor = getHotspotColor(BitmapFactory.decodeResource(getResources(),R.drawable.floor2_color),evX,evY);
-                    touchColor = getHotspotColor(R.id.floor_two_image_areas, evX, evY);
+                    touchColor = getHotspotColor(v, R.id.floor_two_image_areas, evX, evY);
                     Log.i("floor two: ",String.valueOf(touchColor));
                 }else if(floor_number == 3){
                     //   touchColor = getHotspotColor(BitmapFactory.decodeResource(getResources(),R.drawable.floor2_color),evX,evY);
-                    touchColor = getHotspotColor(R.id.floor_three_image_areas, evX, evY);
+                    touchColor = getHotspotColor(v, R.id.floor_three_image_areas, evX, evY);
                     Log.i("floor two: ",String.valueOf(touchColor));
                 }
                 else {
@@ -349,25 +355,43 @@ public class MapsActivity extends AppCompatActivity implements View.OnTouchListe
 
     /**
      * Get the coordinates of the invisible map image
+     * @param v current view
      * @param hotspotId id of the colored map image of the floor
      * @param x position x of the colored map image
      * @param y position y of the colored map image
      * @return Pixel of the particular color at the given (x,y) coordinates.
      */
-    public int getHotspotColor (int hotspotId, int x, int y) {
-        ImageView img = (ImageView) findViewById (hotspotId);
-        if (img == null) {
+    public int getHotspotColor (View v, int hotspotId, int x, int y) {
+
+        TouchImageView hotspot_img = (TouchImageView) findViewById (hotspotId);
+        TouchImageView map_img = (TouchImageView) v;
+
+        //Get rectangle which is visible on the screen at the moment
+        RectF rectf = map_img.getZoomedRect();
+
+        //Scale this rectangle to the whole TouchImageView
+        rectf.left*=map_img.getWidth();
+        rectf.right*=map_img.getWidth();
+        rectf.bottom*=map_img.getHeight();
+        rectf.top*=map_img.getHeight();
+
+        //Calculate event location with respect to the whole TouchImageView
+        int xx =(int) ( rectf.left + (float)((float)x/(float)map_img.getWidth())*(rectf.right-rectf.left));
+        int yy =(int) (rectf.top + (float)((float)y/(float)map_img.getHeight())*(rectf.bottom-rectf.top));
+
+        if (hotspot_img == null) {
             Log.d ("ImageAreasActivity", "Hot spot image not found");
             return 0;
         } else {
-            img.setDrawingCacheEnabled(true);
-            Bitmap hotspots = Bitmap.createBitmap(img.getDrawingCache());
+            hotspot_img.setDrawingCacheEnabled(true);
+            Bitmap hotspots = Bitmap.createBitmap(hotspot_img.getDrawingCache());
+
             if (hotspots == null) {
                 Log.d ("ImageAreasActivity", "Hot spot bitmap was not created");
                 return 0;
             } else {
-                img.setDrawingCacheEnabled(false);
-                return hotspots.getPixel(x, y);
+                hotspot_img.setDrawingCacheEnabled(false);
+                return hotspots.getPixel(xx, yy);
             }
         }
     }
@@ -387,4 +411,45 @@ public class MapsActivity extends AppCompatActivity implements View.OnTouchListe
             return hotspots.getPixel(x, y);
         }
     }
+
+//  public static int[] getBitmapPositionInsideImageView(ImageView imageView) {
+//        int[] ret = new int[4];
+//
+//        if (imageView == null || imageView.getDrawable() == null)
+//            return ret;
+//
+//        // Get image dimensions
+//        // Get image matrix values and place them in an array
+//        float[] f = new float[9];
+//        imageView.getImageMatrix().getValues(f);
+//
+//        // Extract the scale values using the constants (if aspect ratio maintained, scaleX == scaleY)
+//        final float scaleX = f[Matrix.MSCALE_X];
+//        final float scaleY = f[Matrix.MSCALE_Y];
+//
+//        // Get the drawable (could also get the bitmap behind the drawable and getWidth/getHeight)
+//        final Drawable d = imageView.getDrawable();
+//        final int origW = d.getIntrinsicWidth();
+//        final int origH = d.getIntrinsicHeight();
+//
+//        // Calculate the actual dimensions
+//        final int actW = Math.round(origW * scaleX);
+//        final int actH = Math.round(origH * scaleY);
+//
+//        ret[2] = actW;
+//        ret[3] = actH;
+//
+//        // Get image position
+//        // We assume that the image is centered into ImageView
+//        int imgViewW = imageView.getWidth();
+//        int imgViewH = imageView.getHeight();
+//
+//        int top = (int) (imgViewH - actH)/2;
+//        int left = (int) (imgViewW - actW)/2;
+//
+//        ret[0] = left;
+//        ret[1] = top;
+//
+//        return ret;
+//    }
 }

@@ -3,14 +3,14 @@
     <!--ImageView changed to TouchImageView-->
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/my_frame"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
 
         >
         <com.example.samue.facultyblueprint.Maps.TouchImageView
             android:id="@+id/floor_one_image_areas"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:scaleType="fitCenter"
             android:visibility="invisible"
             android:src="@drawable/floor1_color"
@@ -18,8 +18,8 @@
 
         <com.example.samue.facultyblueprint.Maps.TouchImageView
             android:id="@+id/floor_two_image_areas"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:scaleType="fitCenter"
             android:visibility="invisible"
             android:src="@drawable/floor2_color"
@@ -27,8 +27,8 @@
 
         <com.example.samue.facultyblueprint.Maps.TouchImageView
             android:id="@+id/floor_three_image_areas"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:visibility="invisible"
             android:scaleType="fitCenter"
             android:src="@drawable/floor3_color"
@@ -36,8 +36,8 @@
 
         <com.example.samue.facultyblueprint.Maps.TouchImageView
             android:id="@+id/floor_shown"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:scaleType="fitCenter"
             />
         <!--       android:src="@drawable/floor1"
