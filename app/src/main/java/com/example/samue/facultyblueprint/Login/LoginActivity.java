@@ -68,6 +68,12 @@ public class LoginActivity extends AppCompatActivity {
         accessTokenLogin.execute();
     }
 
+    /**
+     * Click on this label will download data from USOS
+     * User's Name, Surname, and ID is downloaded first
+     * Then the list of the courses is downloaded
+     * @param view
+     */
     public void Refresh_Click(View view) {
 
         GetUserID();
@@ -79,6 +85,9 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Downloads Courses, which the User is involved, from USOS
+     */
     private void GetUserCourses() {
         VolleyOAuthRequest volleyOAuthRequest =
                 new VolleyOAuthRequest(0,User.requestUrl+"services/courses/user",
@@ -120,6 +129,10 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Downloads Personal data of the User from USOS
+     * Name, Surname, Usos_ID
+     */
     private void GetUserID() {
         VolleyOAuthRequest volleyOAuthRequest = new VolleyOAuthRequest(0,User.requestUrl+"services/users/user",
                 null);
