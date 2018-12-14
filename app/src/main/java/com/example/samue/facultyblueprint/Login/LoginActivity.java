@@ -57,7 +57,10 @@ public class LoginActivity extends AppCompatActivity {
 //            fDataLogin.execute();
     }
 
-    /** Method to be called on click Login*/
+    /**
+     * Method to be called on click Login
+     * Gets Access Token
+     * */
     public void loginButton_Click(View view) {
         AccessTokenLogin accessTokenLogin = new AccessTokenLogin();
         accessTokenLogin.execute();
