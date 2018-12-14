@@ -71,6 +71,7 @@ public class FDataLogin extends AsyncTask<Void, Void, Void> {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        Log.i("FData Call >>>", url);
         Log.i("FData Response", response);
 
         return null;
