@@ -30,7 +30,8 @@ public final class User {
 
     public static String Name;
     public static String Surname;
-    public static String Id;
+    public static String Usos_Id;
+    public static String Email_Id;
 
 
 

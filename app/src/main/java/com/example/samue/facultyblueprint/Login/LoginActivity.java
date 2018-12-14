@@ -32,10 +32,12 @@ public class LoginActivity extends AppCompatActivity {
     public static TextView noteTextView;
     public String result;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
 
         etPIN           = (EditText) findViewById(R.id.pinEditText);
         getPinBtn       = (Button)   findViewById(R.id.getPinButton);
@@ -65,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
 
         VolleyOAuthRequest volleyOAuthRequest = new VolleyOAuthRequest(0,User.requestUrl+"services/users/user",
                 null);
-        volleyOAuthRequest.addParameter("user_id", "1117649");
+
         String volleyURL = volleyOAuthRequest.getUrl();
         Log.i("VOLLEY URL >>> ", volleyURL);
 
@@ -91,8 +93,9 @@ public class LoginActivity extends AppCompatActivity {
             }
             User.Name    = object.getString("first_name");
             User.Surname = object.getString("last_name");
-            User.Id      = object.getString("id");
-            Log.i("SUCCESS >> ", User.Name+" "+User.Surname+"\n"+ User.Id);
+            User.Usos_Id      = object.getString("id");
+            Log.i("SUCCESS >> ", User.Name+" "+User.Surname+"\n"+ User.Usos_Id);
+
 
         } catch (JSONException e) {
             e.printStackTrace();

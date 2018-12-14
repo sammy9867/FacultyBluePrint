@@ -7,9 +7,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.samue.facultyblueprint.Classes.Course;
-import com.example.samue.facultyblueprint.Classes.Teacher;
+import com.example.samue.facultyblueprint.Login.User;
 import com.example.samue.facultyblueprint.R;
 import com.example.samue.facultyblueprint.Utils.BottomNavigationViewHelper;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
@@ -45,9 +46,12 @@ public class SettingsActivity extends AppCompatActivity  {
     private void setupSettingsList(){
         ListView listView = (ListView) findViewById(R.id.ListViewSettings);
 
+        TextView textView = (TextView) findViewById(R.id.UsosUserProfileName);
+        textView.setText(User.Name + " " + User.Surname);
+
         ArrayList<String> options = new ArrayList<>();
-        options.add(getString(R.string.student_id_number));
-        options.add(getString(R.string.student_email_id));
+        options.add(getString(R.string.student_id_number) + ": " + User.Usos_Id);
+        options.add(getString(R.string.student_email_id)+ ": " +User.Email_Id);
         options.add(getString(R.string.log_out));
 
         ArrayAdapter adapter = new ArrayAdapter(mContext, android.R.layout.simple_list_item_1, options);
