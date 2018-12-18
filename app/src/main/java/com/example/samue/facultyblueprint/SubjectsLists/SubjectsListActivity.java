@@ -13,6 +13,7 @@ import com.example.samue.facultyblueprint.Classes.Course;
 import com.example.samue.facultyblueprint.Classes.Room;
 import com.example.samue.facultyblueprint.Classes.Teacher;
 import com.example.samue.facultyblueprint.Classes.fetchData;
+import com.example.samue.facultyblueprint.Login.User;
 import com.example.samue.facultyblueprint.R;
 import com.example.samue.facultyblueprint.Utils.BottomNavigationViewHelper;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
@@ -21,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**This is the leftmost activity where list of subject of the user are added from USOS.**/
-public class SubjectsListActivity extends AppCompatActivity implements AsyncResponse {
+public class SubjectsListActivity extends AppCompatActivity { //implements AsyncResponse {
 
     private static final String TAG="SubjectsListsActivity";
     private static final int ACTIVITY_NUM = 0;  //leftmost activities index
@@ -29,10 +30,10 @@ public class SubjectsListActivity extends AppCompatActivity implements AsyncResp
 
 
     ////
-    private fetchData fetch = new fetchData();
-    private ArrayList<Course> courses = new ArrayList<Course>();
-    private ArrayList<Room> rooms = new ArrayList<Room>();
-    private ArrayList<Teacher> teachers = new ArrayList<Teacher>();
+//    private fetchData fetch = new fetchData();
+//    private ArrayList<Course> courses = new ArrayList<Course>();
+//    private ArrayList<Room> rooms = new ArrayList<Room>();
+//    private ArrayList<Teacher> teachers = new ArrayList<Teacher>();
     ////
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,16 +42,17 @@ public class SubjectsListActivity extends AppCompatActivity implements AsyncResp
         setupBottomNavigationView();
 
         // //
-        fetch.delegate=this;
-        fetch.execute();
+//        fetch.delegate=this;
+//        fetch.execute();
 
         ListView listView = findViewById(R.id.sujectlist_listview);
         List<String> subjects = new ArrayList<String>();
-        for(Course c : courses){
+        for(Course c : User.Courses){
             subjects.add(c.getName());
         }
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, subjects);
+        ArrayAdapter<String> arrayAdapter =
+                new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, subjects);
         listView.setAdapter(arrayAdapter);
         arrayAdapter.notifyDataSetChanged();
 
@@ -68,6 +70,7 @@ public class SubjectsListActivity extends AppCompatActivity implements AsyncResp
         menuItem.setChecked(true);
     }
 
+/* *
     public void processFinish(ArrayList<Teacher> _teachers, ArrayList<Course> _courses, ArrayList<Room> _rooms) {
 
         teachers.addAll(_teachers);
@@ -85,6 +88,8 @@ public class SubjectsListActivity extends AppCompatActivity implements AsyncResp
         listView.setAdapter(arrayAdapter);
         arrayAdapter.notifyDataSetChanged();
     }
+* */
+
 }
 
 

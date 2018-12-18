@@ -8,8 +8,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.samue.facultyblueprint.Classes.Course;
 import com.example.samue.facultyblueprint.R;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -66,8 +68,72 @@ public class LoginActivity extends AppCompatActivity {
         accessTokenLogin.execute();
     }
 
+    /**
+     * Click on this label will download data from USOS
+     * User's Name, Surname, and ID is downloaded first
+     * Then the list of the courses is downloaded
+     * @param view
+     */
     public void Refresh_Click(View view) {
 
+        GetUserID();
+
+        GetUserCourses();
+
+        ((TextView) view).setText("Hello "+ User.Name+" !");
+        super.onBackPressed();
+
+    }
+
+    /**
+     * Downloads Courses, which the User is involved, from USOS
+     */
+    private void GetUserCourses() {
+        VolleyOAuthRequest volleyOAuthRequest =
+                new VolleyOAuthRequest(0,User.requestUrl+"services/courses/user",
+                null);
+
+        String volleyURL = volleyOAuthRequest.getUrl();
+        Log.i("GetUserCourses URL >>> ", volleyURL);
+
+        FDataLogin fDataLogin = new FDataLogin(volleyURL.toString());
+
+        try {
+            fDataLogin.execute().get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        String response = fDataLogin.getResponse();
+
+
+        try {
+            JSONObject global_object = new JSONObject(response);
+            JSONObject course_editions = global_object.getJSONObject("course_editions");
+
+            // TODO: Set up semester argument dynamically
+            JSONArray semester_json_array = course_editions.getJSONArray("2018Z");
+            for(int i=0; i<semester_json_array.length(); i++){
+                JSONObject semester = (JSONObject) semester_json_array.get(i);
+                JSONObject course_name = semester.getJSONObject("course_name");
+                String en_course_name = course_name.getString("en");
+                Course course = new Course(en_course_name);
+                User.Courses.add(course);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
+     * Downloads Personal data of the User from USOS
+     * Name, Surname, Usos_ID
+     */
+    private void GetUserID() {
         VolleyOAuthRequest volleyOAuthRequest = new VolleyOAuthRequest(0,User.requestUrl+"services/users/user",
                 null);
 
@@ -110,8 +176,8 @@ public class LoginActivity extends AppCompatActivity {
         }
 
 
-        ((TextView) view).setText("Hello "+ User.Name+" !");
-        super.onBackPressed();
 
     }
+
+
 }
