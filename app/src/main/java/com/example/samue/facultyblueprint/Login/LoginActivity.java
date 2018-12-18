@@ -74,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
         String volleyURL = volleyOAuthRequest.getUrl();
         Log.i("VOLLEY URL >>> ", volleyURL);
 
-        FDataLogin fDataLogin = new FDataLogin(volleyURL. toString());
+        FDataLogin fDataLogin = new FDataLogin(volleyURL);
 
         try {
             fDataLogin.execute().get();
@@ -97,6 +97,11 @@ public class LoginActivity extends AppCompatActivity {
             User.Name    = object.getString("first_name");
             User.Surname = object.getString("last_name");
             User.Usos_Id      = object.getString("id");
+
+            User.has_profile_pic = true;
+
+
+
             Log.i("SUCCESS >> ", User.Name+" "+User.Surname+" "+ User.Usos_Id);
 
 

@@ -33,6 +33,9 @@ public final class User {
     public static String Usos_Id;
     public static String Email_Id;
 
+    public static String Profile_Pic;
+    public static boolean has_profile_pic;
+
 
 
 }

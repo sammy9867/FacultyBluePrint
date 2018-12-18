@@ -1,6 +1,7 @@
 package com.example.samue.facultyblueprint.Settings;
 
 import android.content.Context;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,8 +15,11 @@ import com.example.samue.facultyblueprint.Login.User;
 import com.example.samue.facultyblueprint.R;
 import com.example.samue.facultyblueprint.Utils.BottomNavigationViewHelper;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 /**This is the rightmost activity displaying settings: User profile pic and ability to log out **/
@@ -48,6 +52,14 @@ public class SettingsActivity extends AppCompatActivity  {
 
         TextView textView = (TextView) findViewById(R.id.UsosUserProfileName);
         textView.setText(User.Name + " " + User.Surname);
+
+
+
+        if(User.has_profile_pic){
+        Picasso.with(getBaseContext()).load(User.Profile_Pic)
+                .resize(80,80)
+                .into((CircleImageView)findViewById(R.id.UsosUserProfileImage));}
+
 
         ArrayList<String> options = new ArrayList<>();
         options.add(getString(R.string.student_id_number) + ": " + User.Usos_Id);
