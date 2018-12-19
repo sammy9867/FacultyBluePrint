@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -18,7 +19,7 @@ import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import java.util.ArrayList;
 
 
-/**This is the rightmost activity displaying settings: User profile pic and ability to log out **/
+/** This is the rightmost activity displaying settings: User profile pic and ability to log out **/
 public class SettingsActivity extends AppCompatActivity  {
 
     private static final String TAG="SettingsActivity";
@@ -50,14 +51,18 @@ public class SettingsActivity extends AppCompatActivity  {
         textView.setText(User.Name + " " + User.Surname);
 
         ArrayList<String> options = new ArrayList<>();
-        options.add(getString(R.string.student_id_number) + ": " + User.Usos_Id);
-        options.add(getString(R.string.student_email_id)+ ": " +User.Email_Id);
-        options.add(getString(R.string.log_out));
+        options.add(getString(R.string.student_id_number) + ": " + (User.Usos_Id == null ? "" : User.Usos_Id));
+        options.add(getString(R.string.student_email_id)+ ": " +(User.Email_Id == null ? "" : User.Email_Id));
+//        options.add(getString(R.string.log_out));
 
-        ArrayAdapter adapter = new ArrayAdapter(mContext, android.R.layout.simple_list_item_1, options);
+        ArrayAdapter adapter =
+                new ArrayAdapter(mContext, android.R.layout.simple_list_item_1, options);
         listView.setAdapter(adapter);
     }
 
+    /**
+     * Setting bottom navigation buttons
+     */
     private void setupBottomNavigationView(){
 
         BottomNavigationViewEx bottomNavigationViewEx = (BottomNavigationViewEx) findViewById(R.id.bottomNavViewBar);
@@ -68,5 +73,16 @@ public class SettingsActivity extends AppCompatActivity  {
         MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
         menuItem.setChecked(true);
 
+    }
+
+    /**
+     * By clicking on log out all User elements are reset,
+     * Course list is cleared up.
+     * Result: user is logout
+     * @param view
+     */
+    public void Logout_Click(View view) {
+        User.Logout();
+        setupSettingsList();
     }
 }

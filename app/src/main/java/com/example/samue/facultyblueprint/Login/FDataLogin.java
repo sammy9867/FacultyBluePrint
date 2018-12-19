@@ -43,14 +43,17 @@ public class FDataLogin extends AsyncTask<Void, Void, Void> {
         Log.i("url >>>", this.url);
 
         URL requestTokenURL;
+        HttpURLConnection connection;
         try {
 
             requestTokenURL = new URL(this.url);
-            HttpURLConnection connection = (HttpURLConnection) requestTokenURL.openConnection();
+            connection = (HttpURLConnection) requestTokenURL.openConnection();
 
-            Log.i("Responce code >> ", ""+connection.getResponseCode());
-            Log.i("Responce msge >> ", ""+connection.getResponseMessage());
-            Log.i("Request  msge >> ", ""+connection.getRequestMethod());
+            int response_code = connection.getResponseCode();
+            Log.i("Responce code >> ", "" + response_code);
+            Log.i("Responce msge >> ", "" + connection.getResponseMessage());
+            Log.i("Request  msge >> ", "" + connection.getRequestMethod());
+
 
             InputStream is = connection.getInputStream();
             BufferedReader iBR = new BufferedReader(new InputStreamReader(is));

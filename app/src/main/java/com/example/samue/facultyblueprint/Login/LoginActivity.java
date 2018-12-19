@@ -134,7 +134,8 @@ public class LoginActivity extends AppCompatActivity {
      * Name, Surname, Usos_ID
      */
     private void GetUserID() {
-        VolleyOAuthRequest volleyOAuthRequest = new VolleyOAuthRequest(0,User.requestUrl+"services/users/user",
+        VolleyOAuthRequest volleyOAuthRequest =
+                new VolleyOAuthRequest(0,User.requestUrl+"services/users/user",
                 null);
 
         String volleyURL = volleyOAuthRequest.getUrl();
