@@ -1,17 +1,21 @@
 package com.example.samue.facultyblueprint.Settings;
 
 import android.content.Context;
+import android.content.Intent;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.samue.facultyblueprint.Classes.Course;
+import com.example.samue.facultyblueprint.Login.LoginActivity;
 import com.example.samue.facultyblueprint.Login.User;
 import com.example.samue.facultyblueprint.R;
 import com.example.samue.facultyblueprint.Utils.BottomNavigationViewHelper;
@@ -65,11 +69,21 @@ public class SettingsActivity extends AppCompatActivity  {
         ArrayList<String> options = new ArrayList<>();
         options.add(getString(R.string.student_id_number) + ": " + (User.Usos_Id == null ? "" : User.Usos_Id));
         options.add(getString(R.string.student_email_id)+ ": " +(User.Email_Id == null ? "" : User.Email_Id));
-//        options.add(getString(R.string.log_out));
+        options.add(getString(R.string.log_out));
 
         ArrayAdapter adapter =
                 new ArrayAdapter(mContext, android.R.layout.simple_list_item_1, options);
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d(TAG, "onItemClick: navigating to fragment#: " + position);
+                if(position == 2){  // Position 2 of the list in the settings activity belongs to logout.
+                    Logout_Click();
+                }
+            }
+        });
     }
 
     /**
@@ -89,12 +103,14 @@ public class SettingsActivity extends AppCompatActivity  {
 
     /**
      * By clicking on log out all User elements are reset,
-     * Course list is cleared up.
+     * Course list is cleared up and user is redirected to login page.
      * Result: user is logout
-     * @param view
      */
-    public void Logout_Click(View view) {
+    public void Logout_Click() {
         User.Logout();
-        setupSettingsList();
+        Intent intent = new Intent(mContext, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+
     }
 }

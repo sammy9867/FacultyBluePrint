@@ -1,5 +1,6 @@
 package com.example.samue.facultyblueprint.Login;
 
+import android.content.Intent;
 import android.widget.EditText;
 
 import com.example.samue.facultyblueprint.Classes.Course;
@@ -50,10 +51,10 @@ public final class User {
         accessToken      = null;
         authorizationUrl = null;
 
-        Name             = "";
+     /*   Name             = "";
         Surname          = "";
         Usos_Id          = "";
-        Email_Id         = "";
+        Email_Id         = "";*/
 
         Courses.clear();
     }
