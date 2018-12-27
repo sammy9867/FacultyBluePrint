@@ -9,6 +9,7 @@ import android.graphics.PointF;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -131,6 +132,7 @@ public class MapsActivity extends AppCompatActivity implements View.OnTouchListe
         final int evX = (int) ev.getX();
         final int evY = (int) ev.getY();
 
+        TouchImageView touchImageView = (TouchImageView) v.findViewById (R.id.floor_shown);
 
         switch (action) {
             case MotionEvent.ACTION_DOWN :
@@ -177,6 +179,7 @@ public class MapsActivity extends AppCompatActivity implements View.OnTouchListe
 
                         //ELEVATOR UP
                     else if (ct.closeMatch(Color.parseColor("#00FFFF"), touchColor, tolerance)) {
+                        touchImageView.resetZoom();
                         switchingFloors(1);
 
                         //   if(imageView2 == null) return
@@ -232,11 +235,14 @@ public class MapsActivity extends AppCompatActivity implements View.OnTouchListe
                         Toast.makeText(getApplicationContext(), "Room 227", Toast.LENGTH_SHORT).show();
 
                         //Floor up
-                    else if (ct.closeMatch(Color.parseColor("#FF00DC"), touchColor, tolerance))
+                    else if (ct.closeMatch(Color.parseColor("#FF00DC"), touchColor, tolerance)) {
+                        touchImageView.resetZoom();
                         switchingFloors(1);
+                    }
 
                         //2nd floor lift down
                     else if (ct.closeMatch(Color.parseColor("#7F3300"), touchColor, tolerance)) {
+                        touchImageView.resetZoom();
                         switchingFloors(0);
                     }
                 }
@@ -297,8 +303,10 @@ public class MapsActivity extends AppCompatActivity implements View.OnTouchListe
                     else if (ct.closeMatch(Color.parseColor("#FFD800"), touchColor, tolerance))
                         Toast.makeText(getApplicationContext(), "Elevator up", Toast.LENGTH_SHORT).show();
 
-                    else if (ct.closeMatch(Color.parseColor("#FF7F7F"), touchColor, tolerance))
+                    else if (ct.closeMatch(Color.parseColor("#FF7F7F"), touchColor, tolerance)){
+                        touchImageView.resetZoom();
                         switchingFloors(0);
+                    }
 
                 }
 
@@ -310,7 +318,7 @@ public class MapsActivity extends AppCompatActivity implements View.OnTouchListe
 
         /* DO NOT CHANGE */
         int currentResource = -1 ;
-        ImageView imageView = (ImageView) v.findViewById (R.id.floor_shown);
+//        TouchImageView touchImageView = (TouchImageView) v.findViewById (R.id.floor_shown);
         //Switching the floor based on the floor_number
         if(floor_number == 1){
             currentResource = R.drawable.floor1;
@@ -320,8 +328,8 @@ public class MapsActivity extends AppCompatActivity implements View.OnTouchListe
             currentResource = R.drawable.floor3;
         }
 
-        imageView.setImageResource (currentResource);
-        imageView.setTag (currentResource);
+        touchImageView.setImageResource (currentResource);
+        touchImageView.setTag (currentResource);
 
         return false;
     }
