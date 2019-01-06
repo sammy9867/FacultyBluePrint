@@ -1,13 +1,8 @@
 package com.example.samue.facultyblueprint.Login;
 
-import android.content.Intent;
-import android.widget.EditText;
-
 import com.example.samue.facultyblueprint.Classes.Course;
-
 import org.scribe.model.Token;
 import org.scribe.oauth.OAuthService;
-
 import java.util.ArrayList;
 
 
@@ -39,8 +34,6 @@ public final class User {
     public static String Email_Id = "";
 
     public static String Profile_Pic;
-    public static boolean has_profile_pic;
-
 
     public static ArrayList<Course> Courses =
                                 new ArrayList<Course>();
@@ -50,11 +43,6 @@ public final class User {
         requestToken     = null;
         accessToken      = null;
         authorizationUrl = null;
-
-     /*   Name             = "";
-        Surname          = "";
-        Usos_Id          = "";
-        Email_Id         = "";*/
 
         Courses.clear();
     }

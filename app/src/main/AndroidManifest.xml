@@ -36,7 +36,12 @@
         <activity
             android:name=".Maps.PopupDetails"
             android:theme="@style/AppTheme.PopMe" />
-        <activity android:name=".SubjectsLists.SubjectsListActivity"></activity>
+        <activity android:name=".SubjectsLists.SubjectsListActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

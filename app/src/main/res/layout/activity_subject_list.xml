@@ -10,53 +10,44 @@ tools:context=".SubjectsLists.SubjectsListActivity">
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+   <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/relLayout1">
 
-        <android.support.design.widget.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/white_grey_border_bottom"
-            >
+       <android.support.design.widget.AppBarLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="50dp"
+                  android:background="@drawable/white_grey_border_bottom"
+                  >
 
-            <android.support.v7.widget.Toolbar
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/SubjectListToolBar">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp">
+                  <android.support.v7.widget.Toolbar
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/SubjectListToolBar"
+                     >
 
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:text="List of Subjects"
-                        android:textSize="20sp"
-                        android:textColor="@color/black"
-                        android:layout_marginStart="5dp"
-                        android:id="@+id/SubjectListHeader"/>
+                         <RelativeLayout
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:padding="10dp">
 
 
-                    <ImageView
-                        android:layout_alignParentRight="true"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_centerVertical="true"
-                        android:id="@+id/subjectSearch"
-                        android:src="@drawable/ic_search"/>
+                             <TextView
+                                 android:layout_width="wrap_content"
+                                 android:layout_height="wrap_content"
+                                 android:layout_centerVertical="true"
+                                 android:text="List of Subjects"
+                                 android:textSize="20sp"
+                                 android:textColor="@color/black"
+                                 android:layout_marginStart="5dp"
+                                 android:id="@+id/SubjectListHeader"/>
 
-                </RelativeLayout>
-            </android.support.v7.widget.Toolbar>
-        </android.support.design.widget.AppBarLayout>
-    </RelativeLayout>
+                         </RelativeLayout>
+                  </android.support.v7.widget.Toolbar>
+              </android.support.design.widget.AppBarLayout>
+          </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -69,6 +60,7 @@ tools:context=".SubjectsLists.SubjectsListActivity">
             android:layout_height="match_parent"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
+            android:padding="10dp"
             android:layout_marginBottom="50dp" />
 
 

@@ -165,7 +165,6 @@ public class LoginActivity extends AppCompatActivity {
             User.Surname = object.getString("last_name");
             User.Usos_Id      = object.getString("id");
 
-            User.has_profile_pic = true;
 
 
 
