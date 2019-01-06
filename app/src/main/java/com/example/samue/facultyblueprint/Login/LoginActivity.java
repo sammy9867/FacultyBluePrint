@@ -15,6 +15,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
 public class LoginActivity extends AppCompatActivity {
@@ -26,6 +30,8 @@ public class LoginActivity extends AppCompatActivity {
      *  3. Enter USOS's PIN in the Edit Text view
      *  4. Click Login
      * */
+
+    public static final String ICAL_FILE_NAME = "ical.ics";
 
     public static EditText etPIN;
     public static Button getPinBtn;
@@ -79,6 +85,8 @@ public class LoginActivity extends AppCompatActivity {
         GetUserID();
 
         GetUserCourses();
+
+        GetUserICal();
 
         ((TextView) view).setText("Hello "+ User.Name+" !");
         super.onBackPressed();
@@ -164,13 +172,9 @@ public class LoginActivity extends AppCompatActivity {
             User.Name    = object.getString("first_name");
             User.Surname = object.getString("last_name");
             User.Usos_Id      = object.getString("id");
-
             User.has_profile_pic = true;
 
-
-
             Log.i("SUCCESS >> ", User.Name+" "+User.Surname+" "+ User.Usos_Id);
-
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -181,4 +185,72 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Download ICalendar
+     * Gets schedule for a few weeks
+     * Saves data in the file ICAL_FILE_NAME
+     */
+    private void GetUserICal(){
+        VolleyOAuthRequest volleyOAuthRequest =
+                new VolleyOAuthRequest(0,User.requestUrl+"services/tt/upcoming_ical",
+                        null);
+
+        volleyOAuthRequest.addParameter("user_id", User.Usos_Id);
+        volleyOAuthRequest.addParameter("lang", "en");
+
+        String volleyURL = volleyOAuthRequest.getUrl();
+        Log.i("VOLLEY URL [ICal]>>> ", volleyURL);
+
+        FDataLogin fDataLogin = new FDataLogin(volleyURL);
+
+        try {
+            fDataLogin.execute().get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        String response = fDataLogin.getResponse();
+
+        /* Catch Error Message*/
+        if(response.startsWith("{") ) {
+            try {
+                JSONObject object = new JSONObject(response);
+                boolean isMessage = object.has("message");
+                if (isMessage == true) {
+                    // Something wrong [90%]
+                    Log.i("MESSAGE ", object.getString("message"));
+                    return;
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return ;
+        }
+        /* Create ICalendar file */
+        File ical = new File(ICAL_FILE_NAME);
+        /* Delete the old one, if exists */
+        if(ical.exists()) ical.delete();
+        /* Create new file */
+        try {
+            ical.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.i("GetUSerICal >>", "Cannot create a new file");
+            return;
+        }
+        Log.i("ICAL >> ", response);
+        try {
+            BufferedWriter bufferedWriter =
+                    new BufferedWriter(new FileWriter(ical));
+            bufferedWriter.write(response);
+            bufferedWriter.flush();
+            bufferedWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 }
+
