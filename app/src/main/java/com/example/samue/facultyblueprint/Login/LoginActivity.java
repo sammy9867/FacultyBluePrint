@@ -172,7 +172,7 @@ public class LoginActivity extends AppCompatActivity {
             User.Name    = object.getString("first_name");
             User.Surname = object.getString("last_name");
             User.Usos_Id      = object.getString("id");
-            User.has_profile_pic = true;
+    //        User.has_profile_pic = true;
 
             Log.i("SUCCESS >> ", User.Name+" "+User.Surname+" "+ User.Usos_Id);
 
