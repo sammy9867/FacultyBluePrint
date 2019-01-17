@@ -2,7 +2,6 @@ package com.example.samue.facultyblueprint.Settings;
 
 import android.content.Context;
 import android.content.Intent;
-import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
 
 import com.example.samue.facultyblueprint.Classes.Course;
 import com.example.samue.facultyblueprint.Login.LoginActivity;
@@ -34,16 +34,15 @@ public class SettingsActivity extends AppCompatActivity  {
     private static final int ACTIVITY_NUM = 2;
     private Context mContext = SettingsActivity.this;
 
-
     public static ArrayList<Course> courses;
 
     public ArrayList<Course> getCourses() { return courses; }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
 
         setupSettingsList();
         setupBottomNavigationView();
@@ -60,19 +59,20 @@ public class SettingsActivity extends AppCompatActivity  {
 
 
 
-        if(User.has_profile_pic){
-        Picasso.with(getBaseContext()).load(User.Profile_Pic)
+        Picasso.with(getBaseContext()).load(R.drawable.default_profile_image)
                 .resize(80,80)
-                .into((CircleImageView)findViewById(R.id.UsosUserProfileImage));}
+                .into((CircleImageView)findViewById(R.id.UsosUserProfileImage));
 
 
         ArrayList<String> options = new ArrayList<>();
-        options.add(getString(R.string.student_id_number) + ": " + (User.Usos_Id == null ? "" : User.Usos_Id));
-        options.add(getString(R.string.student_email_id)+ ": " +(User.Email_Id == null ? "" : User.Email_Id));
+        options.add(getString(R.string.student_id_number) + "   " + (User.Usos_Id == null ? "" : User.Usos_Id));
+        options.add(getString(R.string.student_email_id)+ "   " +(User.Email_Id == null ? "" : User.Email_Id));
         options.add(getString(R.string.log_out));
+
 
         ArrayAdapter adapter =
                 new ArrayAdapter(mContext, android.R.layout.simple_list_item_1, options);
+
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -111,6 +111,6 @@ public class SettingsActivity extends AppCompatActivity  {
         Intent intent = new Intent(mContext, LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-
+      //  finish();
     }
 }
