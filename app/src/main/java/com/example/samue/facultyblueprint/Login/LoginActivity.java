@@ -22,6 +22,9 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class LoginActivity extends AppCompatActivity {
@@ -49,12 +52,10 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_pin);
 
-
         etPIN           = (EditText) findViewById(R.id.pinEditText);
         getPinBtn       = (Button)   findViewById(R.id.getPinButton);
         loginBtn        = (Button)   findViewById(R.id.loginButton);
         refreshTextView = (TextView) findViewById(R.id.refreshTextView);
-     //   noteTextView    = (TextView) findViewById(R.id._noteTextView);
         result = "";
     }
 
@@ -103,7 +104,7 @@ public class LoginActivity extends AppCompatActivity {
 
             GetUserICal();
 
-            ((TextView) view).setText("Hello " + User.Name + " !");
+        ((TextView) view).setText("Hello " + User.Name + " !");
 
             super.onBackPressed();
 
@@ -139,6 +140,8 @@ public class LoginActivity extends AppCompatActivity {
         String response = fDataLogin.getResponse();
 
 
+
+
         try {
             JSONObject global_object = new JSONObject(response);
             JSONObject course_editions = global_object.getJSONObject("course_editions");
@@ -148,6 +151,7 @@ public class LoginActivity extends AppCompatActivity {
             for(int i=0; i<semester_json_array.length(); i++){
                 JSONObject semester = (JSONObject) semester_json_array.get(i);
                 JSONObject course_name = semester.getJSONObject("course_name");
+
                 String en_course_name = course_name.getString("en");
                 Course course = new Course(en_course_name);
                 User.Courses.add(course);
@@ -205,6 +209,8 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
+
+
 
 
     /**
