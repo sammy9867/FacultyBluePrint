@@ -26,6 +26,7 @@ import com.example.samue.facultyblueprint.Login.User;
 import com.example.samue.facultyblueprint.R;
 import com.example.samue.facultyblueprint.Utils.BottomNavigationViewHelper;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
+import com.shashank.sony.fancytoastlib.FancyToast;
 
 /**This is the MAIN activity based at the center which displays the map**/
 public class MapsActivity extends AppCompatActivity implements View.OnTouchListener {
@@ -342,6 +343,7 @@ public class MapsActivity extends AppCompatActivity implements View.OnTouchListe
         Intent intent = new Intent(mContext, PopupDetails.class);
         intent.putExtra("roomNumber", room_number);
         startActivity(intent);
+        overridePendingTransition( R.anim.slide_in_up, R.anim.slide_out_up );
     }
 
     /**

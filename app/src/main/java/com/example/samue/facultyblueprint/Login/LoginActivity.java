@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.samue.facultyblueprint.Classes.Course;
 import com.example.samue.facultyblueprint.R;
+import com.shashank.sony.fancytoastlib.FancyToast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -63,8 +64,6 @@ public class LoginActivity extends AppCompatActivity {
         RequestTokenLogin requestTokenLogin = new RequestTokenLogin();
         requestTokenLogin.execute();
 
-
-
      //  if(User.authorizationUrl != null){
     //    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(User.authorizationUrl));
     //    startActivity(browserIntent);
@@ -105,7 +104,11 @@ public class LoginActivity extends AppCompatActivity {
             GetUserICal();
 
             ((TextView) view).setText("Hello " + User.Name + " !");
+
             super.onBackPressed();
+
+            FancyToast.makeText(this,"Success!", FancyToast.LENGTH_SHORT,FancyToast.SUCCESS,false).show();
+
         }catch (InterruptedException e){
             e.printStackTrace();
         }
