@@ -1,5 +1,6 @@
 package com.example.samue.facultyblueprint.Login;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -17,8 +18,10 @@ import org.json.JSONObject;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.concurrent.ExecutionException;
 
 public class LoginActivity extends AppCompatActivity {
@@ -30,8 +33,6 @@ public class LoginActivity extends AppCompatActivity {
      *  3. Enter USOS's PIN in the Edit Text view
      *  4. Click Login
      * */
-
-    public static final String ICAL_FILE_NAME = "ical.ics";
 
     public static EditText etPIN;
     public static Button getPinBtn;
@@ -201,7 +202,7 @@ public class LoginActivity extends AppCompatActivity {
         String volleyURL = volleyOAuthRequest.getUrl();
         Log.i("VOLLEY URL [ICal]>>> ", volleyURL);
 
-        FDataLogin fDataLogin = new FDataLogin(volleyURL);
+        FDataLogin fDataLogin = new FDataLogin(volleyURL, true);
 
         try {
             fDataLogin.execute().get();
@@ -214,7 +215,7 @@ public class LoginActivity extends AppCompatActivity {
         String response = fDataLogin.getResponse();
 
         /* Catch Error Message*/
-        if(response.startsWith("{") ) {
+        if(!response.startsWith("BEGIN") ) {
             try {
                 JSONObject object = new JSONObject(response);
                 boolean isMessage = object.has("message");
@@ -226,31 +227,17 @@ public class LoginActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+            Log.i("ICAL_ERR >> ", response);
             return ;
         }
-        /* Create ICalendar file */
-        File ical = new File(ICAL_FILE_NAME);
-        /* Delete the old one, if exists */
-        if(ical.exists()) ical.delete();
-        /* Create new file */
-        try {
-            ical.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-            Log.i("GetUSerICal >>", "Cannot create a new file");
-            return;
-        }
-        Log.i("ICAL >> ", response);
-        try {
-            BufferedWriter bufferedWriter =
-                    new BufferedWriter(new FileWriter(ical));
-            bufferedWriter.write(response);
-            bufferedWriter.flush();
-            bufferedWriter.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
+        ParseICal(response);
+    }
+
+    private void ParseICal(String ical) {
+        String[] icals = ical.split("!NL");
+        for(int i=0; i<icals.length; i++)
+            Log.i("Parsing >> " , icals[i]);
     }
 }
 

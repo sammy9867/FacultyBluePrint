@@ -29,9 +29,14 @@ public class FDataLogin extends AsyncTask<Void, Void, Void> {
 
     private String response = "";
     private String url;
+    private boolean newLineLabel = true;
 
     public FDataLogin(String url){
         this.url = url;
+    }
+    public FDataLogin(String url, boolean newLineLabel){
+        this.url = url;
+        this.newLineLabel = newLineLabel;
     }
 
     public String getResponse(){
@@ -63,7 +68,7 @@ public class FDataLogin extends AsyncTask<Void, Void, Void> {
             while (true){
                 input = iBR.readLine();
                 if(input != null)
-                    response+= input;
+                    response +=  (newLineLabel ? input+"!NL" : input);
                 if(input == null)
                     break;
             }
