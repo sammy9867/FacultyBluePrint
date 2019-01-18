@@ -1,5 +1,7 @@
 package com.example.samue.facultyblueprint.Login;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -44,14 +46,14 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_get_pin);
 
 
         etPIN           = (EditText) findViewById(R.id.pinEditText);
         getPinBtn       = (Button)   findViewById(R.id.getPinButton);
         loginBtn        = (Button)   findViewById(R.id.loginButton);
         refreshTextView = (TextView) findViewById(R.id.refreshTextView);
-        noteTextView    = (TextView) findViewById(R.id._noteTextView);
+     //   noteTextView    = (TextView) findViewById(R.id._noteTextView);
         result = "";
     }
 
@@ -61,17 +63,29 @@ public class LoginActivity extends AppCompatActivity {
         RequestTokenLogin requestTokenLogin = new RequestTokenLogin();
         requestTokenLogin.execute();
 
-//            FDataLogin fDataLogin = new FDataLogin();
-//            fDataLogin.execute();
+
+
+     //  if(User.authorizationUrl != null){
+    //    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(User.authorizationUrl));
+    //    startActivity(browserIntent);
+
+   //    }
+
     }
+
+
 
     /**
      * Method to be called on click Login
      * Gets Access Token
      * */
     public void loginButton_Click(View view) {
+
+
         AccessTokenLogin accessTokenLogin = new AccessTokenLogin();
         accessTokenLogin.execute();
+
+
     }
 
     /**
@@ -82,14 +96,19 @@ public class LoginActivity extends AppCompatActivity {
      */
     public void Refresh_Click(View view) {
 
-        GetUserID();
+        try {
+            Thread.sleep(1000);
+            GetUserID();
 
-        GetUserCourses();
+            GetUserCourses();
 
-        GetUserICal();
+            GetUserICal();
 
-        ((TextView) view).setText("Hello "+ User.Name+" !");
-        super.onBackPressed();
+            ((TextView) view).setText("Hello " + User.Name + " !");
+            super.onBackPressed();
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
 
     }
 
