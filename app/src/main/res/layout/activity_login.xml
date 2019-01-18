@@ -1,52 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".Login.LoginActivity">
-
-    <!-- Resource file for Login Activity -->
-<GridLayout
-    android:layout_width="match_parent"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/_noteTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:textColor="@color/black"
-        android:text="Put your PIN below" />
-
-    <EditText
-        android:id="@+id/pinEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:digits="0123456789" />
-
-    <Button
-        android:id="@+id/getPinButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Get PIN"
-        android:onClick="getPinButton_Click" />
-
-    <Button
-        android:id="@+id/loginButton"
-        android:layout_width="wrap_content"
-        android:text="Login"
-        android:layout_height="wrap_content"
-        android:onClick="loginButton_Click" />
-
-    <TextView
-        android:id="@+id/refreshTextView"
-        android:textSize="20sp"
-        android:text="Refresh"
-        android:onClick="Refresh_Click"/>
 
 
-</GridLayout>
+    <WebView
+    android:layout_width="fill_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1" />
 
-</android.support.constraint.ConstraintLayout>
+    <Space
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+
+</LinearLayout>

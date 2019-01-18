@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -38,11 +40,14 @@ public class PopupDetails extends Activity {
 
 
         //ImageView of the backarrow to leave popup details
-        ImageView profileMenu = (ImageView) findViewById(R.id.backArrow);
+        final ImageView profileMenu = (ImageView) findViewById(R.id.backArrow);
         profileMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                finish();
+                Animation animRotateAclk = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_arrow_anticlockwise);
+                profileMenu.startAnimation(animRotateAclk);
+                overridePendingTransition( R.anim.slide_in_down, R.anim.slide_out_down );
             }
         });
 
