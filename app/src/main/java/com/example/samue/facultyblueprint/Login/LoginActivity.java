@@ -45,14 +45,14 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_get_pin);
 
 
         etPIN           = (EditText) findViewById(R.id.pinEditText);
         getPinBtn       = (Button)   findViewById(R.id.getPinButton);
         loginBtn        = (Button)   findViewById(R.id.loginButton);
         refreshTextView = (TextView) findViewById(R.id.refreshTextView);
-        noteTextView    = (TextView) findViewById(R.id._noteTextView);
+//        noteTextView    = (TextView) findViewById(R.id._noteTextView);
         result = "";
     }
 
@@ -235,9 +235,60 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void ParseICal(String ical) {
-        String[] icals = ical.split("!NL");
-        for(int i=0; i<icals.length; i++)
-            Log.i("Parsing >> " , icals[i]);
+        String[] lines = ical.split("!NL");
+        for(int i=0; i<lines.length; i++) {
+            Log.i("Parsing >> ", lines[i]);
+            if(lines[i].equalsIgnoreCase("BEGIN:VEVENT"))
+                createSubject(lines, i);
+        }
+    }
+
+    private void createSubject(String[] lines, int index) {
+        int i=index+1;
+        Course course = new Course();
+
+        while(! lines[i].equalsIgnoreCase("END:VEVENT") && i<lines.length){
+            String line = lines[i];
+            line = line.replace("\\n","");
+            line = line.replace("\\","");
+
+            if(line.startsWith("SUMMARY:")){
+                String s = line.substring("SUMMARY:".length());
+                course.name = s;
+            }
+
+            if(line.startsWith("DESCRIPTION:")) {
+                String s = line.substring("DESCRIPTION:".length());
+
+                if(s.startsWith("Room: ")) {
+                    String[] room = s.split(" ");
+                    course.room_number = Integer.parseInt(room[1]);
+                    Log.i(course.name+" > ", ""+course.room_number);
+                }
+                course.description = s;
+            }
+
+            if(line.startsWith("DTSTART;VALUE=DATE-TIME:")) {
+            //    json += ("\"dt_start\":" + '"' + line.substring("DTSTART;VALUE=DATE-TIME:".length()) + '"' + ',');
+                course.date = null;  // TODO: make date time from YYYYMMDDThhmmss
+            }
+
+//            if(line.startsWith("DTEND;VALUE=DATE-TIME:"))
+//                json += ("\"dt_end\":"+'"'+ line.substring("DTEND;VALUE=DATE-TIME:".length()) + '"' + ',');
+
+//            if(line.startsWith("DTSTAMP;VALUE=DATE-TIME:"))
+//                json += ("\"dt_stamp\":"+'"'+ line.substring("DTSTAMP;VALUE=DATE-TIME:".length()) + '"' + ',');
+
+
+            if(line.startsWith("LOCATION:")) {
+            //    json += ("\"location\":" + '"' + line.substring("LOCATION:".length()) + '"');
+                course.description += "\n"+line.substring("LOCATION:".length());
+            }
+
+            i++;
+        }
+
+        User.Courses.add(course);
     }
 }
 

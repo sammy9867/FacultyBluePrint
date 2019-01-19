@@ -1,18 +1,23 @@
 package com.example.samue.facultyblueprint.Classes;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Course {
 
 
     public String name         = "";
-    String ID                  = "";
+    public String ID           = "";
     public String type         = "";
     public int room_number     = -1;
-    String teacher_ID          = "";
-    ArrayList<Lesson> classes  = null;
-
+    public String teacher_ID   = "";
+    public String description  = "";
     public Teacher teacher;
+
+    public Date date = null;
+
+    public ArrayList<Lesson> classes  = null;
+
 
     public Course(String name){ this.name = name; }
 
@@ -44,6 +49,8 @@ public class Course {
         this.teacher_ID="";
         this.classes=null;
     }
+
+    public Course(){}
 
     public String getName() {
         return name;
