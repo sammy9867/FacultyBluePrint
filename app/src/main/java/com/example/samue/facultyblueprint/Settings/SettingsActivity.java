@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -19,6 +20,7 @@ import com.example.samue.facultyblueprint.Login.LoginActivity;
 import com.example.samue.facultyblueprint.Login.User;
 import com.example.samue.facultyblueprint.R;
 import com.example.samue.facultyblueprint.Utils.BottomNavigationViewHelper;
+import com.example.samue.facultyblueprint.Utils.SettingsListAdapter;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.squareup.picasso.Picasso;
 
@@ -34,9 +36,18 @@ public class SettingsActivity extends AppCompatActivity  {
     private static final int ACTIVITY_NUM = 2;
     private Context mContext = SettingsActivity.this;
 
-    public static ArrayList<Course> courses;
+    ListView list;
+    String[] itemname ={
+            "Stats",
+            "Grades",
+            "Log Out"
+    };
 
-    public ArrayList<Course> getCourses() { return courses; }
+    Integer[] imgid={
+            R.drawable.ic_maps,
+            R.drawable.ic_maps,
+            R.drawable.ic_maps
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +61,7 @@ public class SettingsActivity extends AppCompatActivity  {
 
     }
 
-    /** Sets up the list view in the Settings Activity consisting of student id no, email id and log out.**/
     private void setupSettingsList(){
-        ListView listView = (ListView) findViewById(R.id.ListViewSettings);
 
         TextView textView = (TextView) findViewById(R.id.UsosUserProfileName);
         textView.setText(User.Name + " " + User.Surname);
@@ -62,6 +71,31 @@ public class SettingsActivity extends AppCompatActivity  {
         Picasso.with(getBaseContext()).load(R.drawable.default_profile_image)
                 .resize(80,80)
                 .into((CircleImageView)findViewById(R.id.UsosUserProfileImage));
+
+        SettingsListAdapter adapter=new SettingsListAdapter(this, itemname, imgid);
+        list=(ListView)findViewById(R.id.ListViewSettings);
+        list.setAdapter(adapter);
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                // TODO Auto-generated method stub
+                String Slecteditem= itemname[+position];
+             //   Toast.makeText(getApplicationContext(), Slecteditem, Toast.LENGTH_SHORT).show();
+
+                if(position == 2){
+                    Logout_Click();
+                }
+            }
+        });
+    }
+    /** Sets up the list view in the Settings Activity consisting of student id no, email id and log out.**/
+  /*  private void setupSettingsList(){
+        ListView listView = (ListView) findViewById(R.id.ListViewSettings);
+
+
 
 
         ArrayList<String> options = new ArrayList<>();
@@ -85,7 +119,7 @@ public class SettingsActivity extends AppCompatActivity  {
             }
         });
     }
-
+*/
     /**
      * Setting bottom navigation buttons
      */

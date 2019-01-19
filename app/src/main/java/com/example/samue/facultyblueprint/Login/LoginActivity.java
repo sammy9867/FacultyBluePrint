@@ -8,9 +8,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.samue.facultyblueprint.Classes.Course;
 import com.example.samue.facultyblueprint.R;
+import com.shashank.sony.fancytoastlib.FancyToast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -45,14 +47,13 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_get_pin);
 
 
         etPIN           = (EditText) findViewById(R.id.pinEditText);
         getPinBtn       = (Button)   findViewById(R.id.getPinButton);
         loginBtn        = (Button)   findViewById(R.id.loginButton);
         refreshTextView = (TextView) findViewById(R.id.refreshTextView);
-        noteTextView    = (TextView) findViewById(R.id._noteTextView);
         result = "";
     }
 
@@ -61,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
     public void getPinButton_Click(View view) {
         RequestTokenLogin requestTokenLogin = new RequestTokenLogin();
         requestTokenLogin.execute();
-
+        FancyToast.makeText(this, "Success!", FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false);
 //            FDataLogin fDataLogin = new FDataLogin();
 //            fDataLogin.execute();
     }
@@ -73,6 +74,7 @@ public class LoginActivity extends AppCompatActivity {
     public void loginButton_Click(View view) {
         AccessTokenLogin accessTokenLogin = new AccessTokenLogin();
         accessTokenLogin.execute();
+
     }
 
     /**
@@ -83,14 +85,21 @@ public class LoginActivity extends AppCompatActivity {
      */
     public void Refresh_Click(View view) {
 
-        GetUserID();
 
-        GetUserCourses();
 
-        GetUserICal();
+            GetUserID();
 
-        ((TextView) view).setText("Hello "+ User.Name+" !");
-        super.onBackPressed();
+            GetUserCourses();
+
+            GetUserICal();
+
+            ((TextView) view).setText("Hello " + User.Name + " !");
+            super.onBackPressed();
+
+            //Fancy Success Toast to be displayed on login
+            FancyToast.makeText(this, "Success!", FancyToast.LENGTH_SHORT, FancyToast.SUCCESS, false).show();
+
+
 
     }
 
