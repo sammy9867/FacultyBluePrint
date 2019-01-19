@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
+<!--THIS IS NOT BEING USED AT THE MOMENT, DON'T REMOVE IT THOUGH, FOR NOW THE LOGIN ACTIVITY IS activity_get_pin-->
 
     <WebView
     android:layout_width="fill_parent"
@@ -15,6 +15,5 @@
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
-
 
 </LinearLayout>
