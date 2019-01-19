@@ -1,7 +1,6 @@
 package com.example.samue.facultyblueprint.Login;
 
-import android.content.Intent;
-import android.net.Uri;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -12,7 +11,6 @@ import android.widget.TextView;
 
 import com.example.samue.facultyblueprint.Classes.Course;
 import com.example.samue.facultyblueprint.R;
-import com.shashank.sony.fancytoastlib.FancyToast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,11 +18,10 @@ import org.json.JSONObject;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.io.InputStream;
 import java.util.concurrent.ExecutionException;
 
 public class LoginActivity extends AppCompatActivity {
@@ -37,8 +34,6 @@ public class LoginActivity extends AppCompatActivity {
      *  4. Click Login
      * */
 
-    public static final String ICAL_FILE_NAME = "ical.ics";
-
     public static EditText etPIN;
     public static Button getPinBtn;
     public static Button loginBtn;
@@ -50,12 +45,14 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_get_pin);
+        setContentView(R.layout.activity_login);
+
 
         etPIN           = (EditText) findViewById(R.id.pinEditText);
         getPinBtn       = (Button)   findViewById(R.id.getPinButton);
         loginBtn        = (Button)   findViewById(R.id.loginButton);
         refreshTextView = (TextView) findViewById(R.id.refreshTextView);
+        noteTextView    = (TextView) findViewById(R.id._noteTextView);
         result = "";
     }
 
@@ -65,27 +62,17 @@ public class LoginActivity extends AppCompatActivity {
         RequestTokenLogin requestTokenLogin = new RequestTokenLogin();
         requestTokenLogin.execute();
 
-     //  if(User.authorizationUrl != null){
-    //    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(User.authorizationUrl));
-    //    startActivity(browserIntent);
-
-   //    }
-
+//            FDataLogin fDataLogin = new FDataLogin();
+//            fDataLogin.execute();
     }
-
-
 
     /**
      * Method to be called on click Login
      * Gets Access Token
      * */
     public void loginButton_Click(View view) {
-
-
         AccessTokenLogin accessTokenLogin = new AccessTokenLogin();
         accessTokenLogin.execute();
-
-
     }
 
     /**
@@ -96,23 +83,14 @@ public class LoginActivity extends AppCompatActivity {
      */
     public void Refresh_Click(View view) {
 
-        try {
-            Thread.sleep(1000);
-            GetUserID();
+        GetUserID();
 
-            GetUserCourses();
+        GetUserCourses();
 
-            GetUserICal();
+        GetUserICal();
 
-        ((TextView) view).setText("Hello " + User.Name + " !");
-
-            super.onBackPressed();
-
-            FancyToast.makeText(this,"Success!", FancyToast.LENGTH_SHORT,FancyToast.SUCCESS,false).show();
-
-        }catch (InterruptedException e){
-            e.printStackTrace();
-        }
+        ((TextView) view).setText("Hello "+ User.Name+" !");
+        super.onBackPressed();
 
     }
 
@@ -140,8 +118,6 @@ public class LoginActivity extends AppCompatActivity {
         String response = fDataLogin.getResponse();
 
 
-
-
         try {
             JSONObject global_object = new JSONObject(response);
             JSONObject course_editions = global_object.getJSONObject("course_editions");
@@ -151,7 +127,6 @@ public class LoginActivity extends AppCompatActivity {
             for(int i=0; i<semester_json_array.length(); i++){
                 JSONObject semester = (JSONObject) semester_json_array.get(i);
                 JSONObject course_name = semester.getJSONObject("course_name");
-
                 String en_course_name = course_name.getString("en");
                 Course course = new Course(en_course_name);
                 User.Courses.add(course);
@@ -211,8 +186,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-
-
     /**
      * Download ICalendar
      * Gets schedule for a few weeks
@@ -229,7 +202,7 @@ public class LoginActivity extends AppCompatActivity {
         String volleyURL = volleyOAuthRequest.getUrl();
         Log.i("VOLLEY URL [ICal]>>> ", volleyURL);
 
-        FDataLogin fDataLogin = new FDataLogin(volleyURL);
+        FDataLogin fDataLogin = new FDataLogin(volleyURL, true);
 
         try {
             fDataLogin.execute().get();
@@ -242,7 +215,7 @@ public class LoginActivity extends AppCompatActivity {
         String response = fDataLogin.getResponse();
 
         /* Catch Error Message*/
-        if(response.startsWith("{") ) {
+        if(!response.startsWith("BEGIN") ) {
             try {
                 JSONObject object = new JSONObject(response);
                 boolean isMessage = object.has("message");
@@ -254,31 +227,17 @@ public class LoginActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+            Log.i("ICAL_ERR >> ", response);
             return ;
         }
-        /* Create ICalendar file */
-        File ical = new File(ICAL_FILE_NAME);
-        /* Delete the old one, if exists */
-        if(ical.exists()) ical.delete();
-        /* Create new file */
-        try {
-            ical.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-            Log.i("GetUSerICal >>", "Cannot create a new file");
-            return;
-        }
-        Log.i("ICAL >> ", response);
-        try {
-            BufferedWriter bufferedWriter =
-                    new BufferedWriter(new FileWriter(ical));
-            bufferedWriter.write(response);
-            bufferedWriter.flush();
-            bufferedWriter.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
+        ParseICal(response);
+    }
+
+    private void ParseICal(String ical) {
+        String[] icals = ical.split("!NL");
+        for(int i=0; i<icals.length; i++)
+            Log.i("Parsing >> " , icals[i]);
     }
 }
 
