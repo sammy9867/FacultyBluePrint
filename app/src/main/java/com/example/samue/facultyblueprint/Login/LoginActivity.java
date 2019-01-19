@@ -197,6 +197,7 @@ public class LoginActivity extends AppCompatActivity {
                         null);
 
         volleyOAuthRequest.addParameter("user_id", User.Usos_Id);
+        Log.i("\n\nUSER_ID >>>>>", User.Usos_Id+"\n\n\n");
         volleyOAuthRequest.addParameter("lang", "en");
 
         String volleyURL = volleyOAuthRequest.getUrl();
@@ -261,8 +262,17 @@ public class LoginActivity extends AppCompatActivity {
                 String s = line.substring("DESCRIPTION:".length());
 
                 if(s.startsWith("Room: ")) {
-                    String[] room = s.split(" ");
-                    course.room_number = Integer.parseInt(room[1]);
+//                    String[] room = s.split(" ");
+                    String room = s.substring("Room: ".length(), "Room: ".length()+3);
+                    try {
+                        course.room_number = Integer.parseInt(room);
+                        Log.i("\n\n\n Room  >> ", course.room_number+"\n\n\n");
+
+                    }
+                    catch (Exception e){
+                        course.room_number = -1;
+                        Log.i("\n\n\n Room unparsable >> ", room+"\n\n\n");
+                    }
                     Log.i(course.name+" > ", ""+course.room_number);
                 }
                 course.description = s;
