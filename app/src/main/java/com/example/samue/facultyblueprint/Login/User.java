@@ -42,29 +42,11 @@ public final class User {
                                 new ArrayList<Course>();
 
     /**For getting grades from different semester**/
-    public static List<Map<String, String>> ListOfGrades2016Z = new ArrayList<>();
-    public static Map<String, String> grades2016Z = new HashMap<>();
-
-    public static List<Map<String, String>> ListOfGrades2016L = new ArrayList<>();
-    public static Map<String, String> grades2016L = new HashMap<>();
-
-    public static List<Map<String, String>> ListOfGrades2017Z = new ArrayList<>();
-    public static Map<String, String> grades2017Z = new HashMap<>();
-
-    public static List<Map<String, String>> ListOfGrades2017L = new ArrayList<>();
-    public static Map<String, String> grades2017L = new HashMap<>();
-
-    public static List<Map<String, String>> ListOfGrades2018Z = new ArrayList<>();
-    public static Map<String, String> grades2018Z = new HashMap<>();
-
-    public static List<Map<String, String>> ListOfGrades2018L = new ArrayList<>();
-    public static Map<String, String> grades2018L = new HashMap<>();
+    public static List<Map<String, String>> ListOfGrades = new ArrayList<>();
+    public static Map<String, String> Grades = new HashMap<>();
 
 
-
-
-
-
+    public static ArrayList<String> Semesters = new ArrayList<>();
 
 
 
@@ -74,7 +56,7 @@ public final class User {
         requestToken     = null;
         accessToken      = null;
         authorizationUrl = null;
-
+        Semesters.clear();
         Courses.clear();
     }
 

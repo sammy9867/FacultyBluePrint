@@ -1,6 +1,5 @@
 package com.example.samue.facultyblueprint.Login;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -16,17 +15,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 public class LoginActivity extends AppCompatActivity {
@@ -106,18 +95,25 @@ public class LoginActivity extends AppCompatActivity {
 
         GetUserCourses();
 
-        getGrades2016Z();
+        GetAllGrades();
 
         ((TextView) view).setText("Hello "+ User.Name+" !");
         super.onBackPressed();
 
     }
 
-    private void getGrades2016Z(){
+    private void GetAllGrades() {
+
+        for(String semester : User.Semesters)
+            if(!semester.isEmpty())
+                GetSemesterGrades(semester);
+    }
+
+    private void GetSemesterGrades(String semester){
         VolleyOAuthRequest volleyOAuthRequest =
                 new VolleyOAuthRequest(0,User.requestUrl+"services/grades/terms2",
                         null);
-        volleyOAuthRequest.addParameter("term_ids", "2016Z");
+        volleyOAuthRequest.addParameter("term_ids", semester);
         String volleyURL = volleyOAuthRequest.getUrl();
         Log.i("VOLLEY URL >>> ", volleyURL);
 
@@ -136,7 +132,7 @@ public class LoginActivity extends AppCompatActivity {
 
         try {
             JSONObject global_object = new JSONObject(response);
-            JSONObject semester_json_object = global_object.getJSONObject("2016Z");
+            JSONObject semester_json_object = global_object.getJSONObject(semester);
 
             //1
             Iterator<String> keys = (Iterator<String>) semester_json_object.keys();
@@ -159,10 +155,10 @@ public class LoginActivity extends AppCompatActivity {
                         continue;
                     }
                     String grade_value = course_grades_1.getString("value_symbol");
-                    User.grades2016Z.put(key,grade_value);
-                    User.ListOfGrades2016Z.add(User.grades2016Z);
+                    User.Grades.put(key,grade_value);
+                    User.ListOfGrades.add(User.Grades);
                     k=1;
-                    Log.i("2016Z" +key,grade_value);
+                    Log.i(semester +"" +key,grade_value);
                 }
             }
 
@@ -202,6 +198,13 @@ public class LoginActivity extends AppCompatActivity {
         try {
             JSONObject global_object = new JSONObject(response);
             JSONObject course_editions = global_object.getJSONObject("course_editions");
+
+            Iterator<String> keys = (Iterator<String>) course_editions.keys();
+            while (keys.hasNext()) {
+                String key = keys.next();
+                Log.i("SEM:",key);
+                User.Semesters.add(key);
+            }
 
             // TODO: Set up semester argument dynamically
             JSONArray semester_json_array = course_editions.getJSONArray("2018Z");
