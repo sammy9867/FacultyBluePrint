@@ -208,7 +208,7 @@ public class LoginActivity extends AppCompatActivity {
 
         /**Response in binary**/
 
-             User.Profile_Pic = response;
+       //      User.Profile_Pic = response;
 
 
     }
