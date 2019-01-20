@@ -1,5 +1,7 @@
 package com.example.samue.facultyblueprint.Login;
 
+import android.graphics.Bitmap;
+
 import com.example.samue.facultyblueprint.Classes.Course;
 import com.example.samue.facultyblueprint.Classes.Grade;
 
@@ -44,7 +46,7 @@ public final class User {
     public static String Usos_Id  = "";
     public static String Email_Id = "";
 
-    public static File Profile_Pic;
+    public static Bitmap Profile_Pic;
 
     public static ArrayList<Course> Courses =
                                 new ArrayList<Course>();

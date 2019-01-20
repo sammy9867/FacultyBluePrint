@@ -91,9 +91,9 @@ public class LoginActivity extends AppCompatActivity {
         GetUserCourses();
         User.SortSemesters();
 
-       // GetUserPhoto();
-
         GetAllGrades();
+
+    //    GetUserPhoto();
 
         ((TextView) view).setText("Hello "+ User.Name+" !");
         super.onBackPressed();
@@ -194,22 +194,24 @@ public class LoginActivity extends AppCompatActivity {
         String volleyURL = volleyOAuthRequest.getUrl();
         Log.i("VOLLEY URL >>> ", volleyURL);
 
-        FDataLogin fDataLogin = new FDataLogin(volleyURL);
-
+        DownloadImageTask dit = new DownloadImageTask(User.Profile_Pic);
         try {
-            fDataLogin.execute().get();
+            dit.execute(volleyURL).get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
 
-        String response = fDataLogin.getResponse();
-
-        /**Response in binary**/
-
-             User.Profile_Pic = response;
-
+//        FDataLogin fDataLogin = new FDataLogin(volleyURL);
+//        try {
+//            fDataLogin.execute().get();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        } catch (ExecutionException e) {
+//            e.printStackTrace();
+//        }
+//        String response = fDataLogin.getResponse();
 
     }
 
