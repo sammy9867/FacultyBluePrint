@@ -12,32 +12,18 @@ import android.widget.TextView;
 
 import com.example.samue.facultyblueprint.Classes.Teacher;
 import com.example.samue.facultyblueprint.Classes.Course;
+import com.example.samue.facultyblueprint.Login.User;
 import com.example.samue.facultyblueprint.R;
 
 import java.util.ArrayList;
 
 public class PopupDetails extends Activity {
 
-    public static ArrayList<Course> courses;
-    public ArrayList<Course> getCourses() { return courses; }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_popup);
-
-        /// TEMPORARY way to add courses  [TEST1]
-        courses = new ArrayList<Course>();
-        courses.add(new Course("Java",
-                "Lecture",
-                101,
-                new Teacher("Agnieszka", "Jasterszabska")));
-        courses.add(new Course("C",
-                "Lab",
-                102,
-                new Teacher("Pawel", "Aszklar")));
-
-
 
         //ImageView of the backarrow to leave popup details
         final ImageView profileMenu = (ImageView) findViewById(R.id.backArrow);
@@ -63,7 +49,7 @@ public class PopupDetails extends Activity {
         int rm = Integer.parseInt(roomNumber);
 
 
-       for (Course c :  courses){
+       for (Course c : User.Courses){
            if(c.room_number  == rm){
                ((TextView)findViewById(R.id.course_name)).setText(c.name);
                ((TextView)findViewById(R.id.course_type)).setText(c.type);

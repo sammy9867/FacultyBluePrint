@@ -45,7 +45,7 @@ public class FDataLogin extends AsyncTask<Void, Void, Void> {
 
     @Override
     protected Void doInBackground(Void... voids ){
-        Log.i("url >>>", this.url);
+//        Log.i("url >>>", this.url);
 
         URL requestTokenURL;
         HttpURLConnection connection;

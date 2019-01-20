@@ -79,15 +79,27 @@ public class LoginActivity extends AppCompatActivity {
      * Click on this label will download data from USOS
      * User's Name, Surname, and ID is downloaded first
      * Then the list of the courses is downloaded
-     * @param view
+     * @param view ERR unauthorized
      */
     public void Refresh_Click(View view) {
 
         GetUserID();
 
-        GetUserCourses();
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         GetUserICal();
+
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        GetUserCourses();
 
         ((TextView) view).setText("Hello "+ User.Name+" !");
         super.onBackPressed();
@@ -200,7 +212,8 @@ public class LoginActivity extends AppCompatActivity {
         Log.i("\n\nUSER_ID >>>>>", User.Usos_Id+"\n\n\n");
         volleyOAuthRequest.addParameter("lang", "en");
 
-        String volleyURL = volleyOAuthRequest.getUrl();
+        String volleyURL = volleyOAuthRequest.getUrl()+"&user_id="+User.Usos_Id+"&lang=en";
+//        String volleyURL = volleyOAuthRequest.getUrl();
         Log.i("VOLLEY URL [ICal]>>> ", volleyURL);
 
         FDataLogin fDataLogin = new FDataLogin(volleyURL, true);
@@ -217,17 +230,6 @@ public class LoginActivity extends AppCompatActivity {
 
         /* Catch Error Message*/
         if(!response.startsWith("BEGIN") ) {
-            try {
-                JSONObject object = new JSONObject(response);
-                boolean isMessage = object.has("message");
-                if (isMessage == true) {
-                    // Something wrong [90%]
-                    Log.i("MESSAGE ", object.getString("message"));
-                    return;
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
             Log.i("ICAL_ERR >> ", response);
             return ;
         }
@@ -266,12 +268,12 @@ public class LoginActivity extends AppCompatActivity {
                     String room = s.substring("Room: ".length(), "Room: ".length()+3);
                     try {
                         course.room_number = Integer.parseInt(room);
-                        Log.i("\n\n\n Room  >> ", course.room_number+"\n\n\n");
+                        Log.i("\n\n\n Room  >> ", course.room_number+"");
 
                     }
                     catch (Exception e){
                         course.room_number = -1;
-                        Log.i("\n\n\n Room unparsable >> ", room+"\n\n\n");
+                        Log.i("\n\n\n Room unparsable >> ", room);
                     }
                     Log.i(course.name+" > ", ""+course.room_number);
                 }

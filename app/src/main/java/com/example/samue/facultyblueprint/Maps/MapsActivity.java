@@ -170,13 +170,13 @@ public class MapsActivity extends AppCompatActivity implements View.OnTouchListe
                     else if (ct.closeMatch(Color.parseColor("#FF0000"), touchColor, tolerance))
                         RoomClick("102");
                     else if (ct.closeMatch(Color.parseColor("#FF6A00"), touchColor, tolerance))
-                        Toast.makeText(getApplicationContext(), "Room 103", Toast.LENGTH_SHORT).show();
+                        RoomClick("103");
                     else if (ct.closeMatch(Color.parseColor("#FFD800"), touchColor, tolerance))
-                        Toast.makeText(getApplicationContext(), "Room 105", Toast.LENGTH_SHORT).show();
+                        RoomClick("105");
                     else if (ct.closeMatch(Color.parseColor("#B6FF00"), touchColor, tolerance))
-                        Toast.makeText(getApplicationContext(), "Room 105a", Toast.LENGTH_SHORT).show();
+                        RoomClick("105a");
                     else if (ct.closeMatch(Color.parseColor("#4CFF00"), touchColor, tolerance))
-                        Toast.makeText(getApplicationContext(), "Room 113", Toast.LENGTH_SHORT).show();
+                        RoomClick("113");
 
                         //ELEVATOR UP
                     else if (ct.closeMatch(Color.parseColor("#00FFFF"), touchColor, tolerance)) {
@@ -192,48 +192,49 @@ public class MapsActivity extends AppCompatActivity implements View.OnTouchListe
                 else if(floor_number == 2) {
                     //Floor2 Colors
                     if (ct.closeMatch(Color.parseColor("#7F0000"), touchColor, tolerance))
-                        Toast.makeText(getApplicationContext(), "Room 210", Toast.LENGTH_SHORT).show();
+                        RoomClick("210");
 
                     else if (ct.closeMatch(Color.parseColor("#7F6A00"), touchColor, tolerance))
-                        Toast.makeText(getApplicationContext(), "Room 211", Toast.LENGTH_SHORT).show();
+                        RoomClick("211");
 
                     else if (ct.closeMatch(Color.parseColor("#5B7F00"), touchColor, tolerance))
-                        Toast.makeText(getApplicationContext(), "Room 212", Toast.LENGTH_SHORT).show();
+                        RoomClick("212");
 
                     else if (ct.closeMatch(Color.parseColor("#007F46"), touchColor, tolerance))
-                        Toast.makeText(getApplicationContext(), "Room 213", Toast.LENGTH_SHORT).show();
+                        RoomClick("213");
 
                     else if (ct.closeMatch(Color.parseColor("#007F7F"), touchColor, tolerance))
-                        Toast.makeText(getApplicationContext(), "Room 214", Toast.LENGTH_SHORT).show();
+                        RoomClick("214");
 
                     else if (ct.closeMatch(Color.parseColor("#21007F"), touchColor, tolerance))
-                        Toast.makeText(getApplicationContext(), "Room 216", Toast.LENGTH_SHORT).show();
+                        RoomClick("216");
 
                     else if (ct.closeMatch(Color.parseColor("#57007F"), touchColor, tolerance))
-                        Toast.makeText(getApplicationContext(), "Room 217", Toast.LENGTH_SHORT).show();
+                        RoomClick("217");
 
                     else if (ct.closeMatch(Color.parseColor("#7F006E"), touchColor, tolerance))
-                        Toast.makeText(getApplicationContext(), "Room 218", Toast.LENGTH_SHORT).show();
+                        RoomClick("218");
 
 
                     else if (ct.closeMatch(Color.parseColor("#FF7F7F"), touchColor, tolerance))
-                        Toast.makeText(getApplicationContext(), "Room 219", Toast.LENGTH_SHORT).show();
+                        RoomClick("219");
 
 
                     else if (ct.closeMatch(Color.parseColor("#FFB27F"), touchColor, tolerance))
-                        Toast.makeText(getApplicationContext(), "Room 201", Toast.LENGTH_SHORT).show();
+                        RoomClick("201");
+
 
                     else if (ct.closeMatch(Color.parseColor("#DAFF7F"), touchColor, tolerance))
-                        Toast.makeText(getApplicationContext(), "Room 202", Toast.LENGTH_SHORT).show();
+                        RoomClick("202");
 
                     else if (ct.closeMatch(Color.parseColor("#A17FFF"), touchColor, tolerance))
-                        Toast.makeText(getApplicationContext(), "Room 203", Toast.LENGTH_SHORT).show();
+                        RoomClick("203");
 
                     else if (ct.closeMatch(Color.parseColor("#FF7FB6"), touchColor, tolerance))
-                        Toast.makeText(getApplicationContext(), "Room 222", Toast.LENGTH_SHORT).show();
+                        RoomClick("222");
 
                     else if (ct.closeMatch(Color.parseColor("#D67FFF"), touchColor, tolerance))
-                        Toast.makeText(getApplicationContext(), "Room 227", Toast.LENGTH_SHORT).show();
+                        RoomClick("227");
 
                         //Floor up
                     else if (ct.closeMatch(Color.parseColor("#FF00DC"), touchColor, tolerance)) {
@@ -254,52 +255,52 @@ public class MapsActivity extends AppCompatActivity implements View.OnTouchListe
                     //     Toast.makeText(getApplicationContext(), "Room 310", Toast.LENGTH_SHORT).show();
 
                     if (ct.closeMatch(Color.parseColor("#7F593F"), touchColor, tolerance))
-                        Toast.makeText(getApplicationContext(), "Room 311", Toast.LENGTH_SHORT).show();
+                        RoomClick("311");
 
                     else if (ct.closeMatch(Color.parseColor("#7F743F"), touchColor, tolerance))
-                        Toast.makeText(getApplicationContext(), "Room 312", Toast.LENGTH_SHORT).show();
+                        RoomClick("312");
 
                     else if (ct.closeMatch(Color.parseColor("#6D7F3F"), touchColor, tolerance))
-                        Toast.makeText(getApplicationContext(), "Room 313", Toast.LENGTH_SHORT).show();
+                        RoomClick("313");
 
                     else if (ct.closeMatch(Color.parseColor("#527F3F"), touchColor, tolerance))
-                        Toast.makeText(getApplicationContext(), "Room 314", Toast.LENGTH_SHORT).show();
+                        RoomClick("314");
 
                     else if (ct.closeMatch(Color.parseColor("#3F7F62"), touchColor, tolerance))
-                        Toast.makeText(getApplicationContext(), "Room 316", Toast.LENGTH_SHORT).show();
+                        RoomClick("316");
 
                     else if (ct.closeMatch(Color.parseColor("#0094FF"), touchColor, tolerance))
-                        Toast.makeText(getApplicationContext(), "Room 317", Toast.LENGTH_SHORT).show();
+                        RoomClick("317");
 
                     else if (ct.closeMatch(Color.parseColor("#FF006E"), touchColor, tolerance))
-                        Toast.makeText(getApplicationContext(), "Room 318", Toast.LENGTH_SHORT).show();
+                        RoomClick("318");
 
                     else if (ct.closeMatch(Color.parseColor("#00137F"), touchColor, tolerance))
-                        Toast.makeText(getApplicationContext(), "Room 319", Toast.LENGTH_SHORT).show();
+                        RoomClick("319");
 
                     else if (ct.closeMatch(Color.parseColor("#00FF21"), touchColor, tolerance))
-                        Toast.makeText(getApplicationContext(), "Room 320", Toast.LENGTH_SHORT).show();
+                        RoomClick("320");
 
                     else if (ct.closeMatch(Color.parseColor("#FF0000"), touchColor, tolerance))
-                        Toast.makeText(getApplicationContext(), "Room 301", Toast.LENGTH_SHORT).show();
+                        RoomClick("301");
 
                     else if (ct.closeMatch(Color.parseColor("#FF6A00"), touchColor, tolerance))
-                        Toast.makeText(getApplicationContext(), "Room 302", Toast.LENGTH_SHORT).show();
+                        RoomClick("302");
 
                     else if (ct.closeMatch(Color.parseColor("#B6FF00"), touchColor, tolerance))
-                        Toast.makeText(getApplicationContext(), "Room 303", Toast.LENGTH_SHORT).show();
+                        RoomClick("303");
 
                     else if (ct.closeMatch(Color.parseColor("#00FF90"), touchColor, tolerance))
-                        Toast.makeText(getApplicationContext(), "Room 304", Toast.LENGTH_SHORT).show();
+                        RoomClick("304");
 
                     else if (ct.closeMatch(Color.parseColor("#0026FF"), touchColor, tolerance))
-                        Toast.makeText(getApplicationContext(), "Room 323", Toast.LENGTH_SHORT).show();
+                        RoomClick("323");
 
                     else if (ct.closeMatch(Color.parseColor("#B200FF"), touchColor, tolerance))
-                        Toast.makeText(getApplicationContext(), "Room 328", Toast.LENGTH_SHORT).show();
+                        RoomClick("328");
 
                     else if (ct.closeMatch(Color.parseColor("#FF00DC"), touchColor, tolerance))
-                        Toast.makeText(getApplicationContext(), "Room 329", Toast.LENGTH_SHORT).show();
+                        RoomClick("329");
 
                     else if (ct.closeMatch(Color.parseColor("#FFD800"), touchColor, tolerance))
                         Toast.makeText(getApplicationContext(), "Elevator up", Toast.LENGTH_SHORT).show();
