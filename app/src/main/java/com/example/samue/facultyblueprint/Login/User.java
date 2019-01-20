@@ -3,7 +3,10 @@ package com.example.samue.facultyblueprint.Login;
 import com.example.samue.facultyblueprint.Classes.Course;
 import org.scribe.model.Token;
 import org.scribe.oauth.OAuthService;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,7 +52,36 @@ public final class User {
     public static ArrayList<String> Semesters = new ArrayList<>();
 
 
-
+    public static String GetCurrentSemester(){
+        String ZL = "";
+        String Year;
+        SimpleDateFormat sdf =  new SimpleDateFormat("yyyy/MM/dd");
+        String s = sdf.format(new Date());
+        String[] split = s.split("/");
+        switch (split[1])
+        {
+            case "01": ZL += "Z"; break;
+            case "02": ZL += "L"; break;
+            case "03": ZL += "L"; break;
+            case "04": ZL += "L"; break;
+            case "05": ZL += "L"; break;
+            case "06": ZL += "L"; break;
+            case "07": ZL += "L"; break;
+            case "08": ZL += "L"; break;
+            case "09": ZL += "L"; break;
+            case "10": ZL += "Z"; break;
+            case "11": ZL += "Z"; break;
+            case "12": ZL += "Z"; break;
+        }
+        if(split[1].equalsIgnoreCase("01")){
+            int year = Integer.parseInt(split[0]);
+            year = year-1;
+            Year = ""+year;
+        }
+        else
+            Year = split[0];
+        return Year+""+ZL;
+    }
 
     public static void Logout(){
         service          = null;
