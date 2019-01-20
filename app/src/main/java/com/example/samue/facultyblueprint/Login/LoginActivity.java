@@ -106,18 +106,18 @@ public class LoginActivity extends AppCompatActivity {
 
         GetUserCourses();
 
-        getGrades2017Z();
+        getGrades2016Z();
 
         ((TextView) view).setText("Hello "+ User.Name+" !");
         super.onBackPressed();
 
     }
 
-    private void getGrades2017Z(){
+    private void getGrades2016Z(){
         VolleyOAuthRequest volleyOAuthRequest =
                 new VolleyOAuthRequest(0,User.requestUrl+"services/grades/terms2",
                         null);
-        volleyOAuthRequest.addParameter("term_ids", "2017Z");
+        volleyOAuthRequest.addParameter("term_ids", "2016Z");
         String volleyURL = volleyOAuthRequest.getUrl();
         Log.i("VOLLEY URL >>> ", volleyURL);
 
@@ -136,7 +136,7 @@ public class LoginActivity extends AppCompatActivity {
 
         try {
             JSONObject global_object = new JSONObject(response);
-            JSONObject semester_json_object = global_object.getJSONObject("2017Z");
+            JSONObject semester_json_object = global_object.getJSONObject("2016Z");
 
             //1
             Iterator<String> keys = (Iterator<String>) semester_json_object.keys();
@@ -148,6 +148,9 @@ public class LoginActivity extends AppCompatActivity {
                 for(int i = 0; i < grades_json_array.length();i++){
                     JSONObject grades, course_grades_1=null;
                     grades = (JSONObject) grades_json_array.get(i);
+                    if(k == 3){
+                        k=1; continue;
+                    }
                     try {
                         course_grades_1 = grades.getJSONObject("" + k++);
                     }catch(Exception e){
@@ -156,10 +159,10 @@ public class LoginActivity extends AppCompatActivity {
                         continue;
                     }
                     String grade_value = course_grades_1.getString("value_symbol");
-                    User.grades2017Z.put(key,grade_value);
-                    User.ListOfGrades2017Z.add(User.grades2017Z);
+                    User.grades2016Z.put(key,grade_value);
+                    User.ListOfGrades2016Z.add(User.grades2016Z);
                     k=1;
-                    Log.i(key,grade_value);
+                    Log.i("2016Z" +key,grade_value);
                 }
             }
 
@@ -169,6 +172,8 @@ public class LoginActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+
 
     /**
      * Downloads Courses, which the User is involved, from USOS
@@ -274,12 +279,12 @@ public class LoginActivity extends AppCompatActivity {
                 new VolleyOAuthRequest(0,User.requestUrl+"services/tt/upcoming_ical",
                         null);
 
-        volleyOAuthRequest.addParameter("user_id", User.Usos_Id);
-        Log.i("\n\nUSER_ID >>>>>", User.Usos_Id+"\n\n\n");
-        volleyOAuthRequest.addParameter("lang", "en");
+     //   volleyOAuthRequest.addParameter("user_id", User.Usos_Id);
+     //   Log.i("\n\nUSER_ID >>>>>", User.Usos_Id+"\n\n\n");
+    //    volleyOAuthRequest.addParameter("lang", "en");
 
         String volleyURL = volleyOAuthRequest.getUrl()+"&user_id="+User.Usos_Id+"&lang=en";
-//        String volleyURL = volleyOAuthRequest.getUrl();
+     //   String volleyURL = volleyOAuthRequest.getUrl();
         Log.i("VOLLEY URL [ICal]>>> ", volleyURL);
 
         FDataLogin fDataLogin = new FDataLogin(volleyURL, true);
