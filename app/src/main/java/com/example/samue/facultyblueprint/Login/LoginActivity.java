@@ -104,9 +104,15 @@ public class LoginActivity extends AppCompatActivity {
 
     private void GetAllGrades() {
 
-        for(String semester : User.Semesters)
+        GetSemesterGrades("2016Z");
+        GetSemesterGrades("2017L");
+        GetSemesterGrades("2017Z");
+        GetSemesterGrades("2018L");
+        GetSemesterGrades("2018Z");
+
+        /*for(String semester : User.Semesters)
             if(!semester.isEmpty())
-                GetSemesterGrades(semester);
+                GetSemesterGrades(semester);*/
     }
 
     private void GetSemesterGrades(String semester){
