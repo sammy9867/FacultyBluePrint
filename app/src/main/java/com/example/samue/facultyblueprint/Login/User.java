@@ -6,6 +6,7 @@ import com.example.samue.facultyblueprint.Classes.Grade;
 import org.scribe.model.Token;
 import org.scribe.oauth.OAuthService;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -43,7 +44,7 @@ public final class User {
     public static String Usos_Id  = "";
     public static String Email_Id = "";
 
-    public static String Profile_Pic;
+    public static File Profile_Pic;
 
     public static ArrayList<Course> Courses =
                                 new ArrayList<Course>();
