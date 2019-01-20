@@ -38,7 +38,10 @@
         <activity
             android:name=".Maps.PopupDetails"
             android:theme="@style/AppTheme.PopMe" />
-        <activity android:name=".SubjectsLists.SubjectsListActivity">
+        <activity android:name=".SubjectsLists.SubjectsListActivity"/>
+
+        <activity android:name=".Settings.GradesActivity">
+
 
         </activity>
     </application>

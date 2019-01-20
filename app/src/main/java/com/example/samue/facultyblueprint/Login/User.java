@@ -4,6 +4,9 @@ import com.example.samue.facultyblueprint.Classes.Course;
 import org.scribe.model.Token;
 import org.scribe.oauth.OAuthService;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -37,6 +40,34 @@ public final class User {
 
     public static ArrayList<Course> Courses =
                                 new ArrayList<Course>();
+
+    /**For getting grades from different semester**/
+    public static List<Map<String, String>> ListOfGrades2016Z = new ArrayList<>();
+    public static Map<String, String> grades2016Z = new HashMap<>();
+
+    public static List<Map<String, String>> ListOfGrades2016L = new ArrayList<>();
+    public static Map<String, String> grades2016L = new HashMap<>();
+
+    public static List<Map<String, String>> ListOfGrades2017Z = new ArrayList<>();
+    public static Map<String, String> grades2017Z = new HashMap<>();
+
+    public static List<Map<String, String>> ListOfGrades2017L = new ArrayList<>();
+    public static Map<String, String> grades2017L = new HashMap<>();
+
+    public static List<Map<String, String>> ListOfGrades2018Z = new ArrayList<>();
+    public static Map<String, String> grades2018Z = new HashMap<>();
+
+    public static List<Map<String, String>> ListOfGrades2018L = new ArrayList<>();
+    public static Map<String, String> grades2018L = new HashMap<>();
+
+
+
+
+
+
+
+
+
 
     public static void Logout(){
         service          = null;

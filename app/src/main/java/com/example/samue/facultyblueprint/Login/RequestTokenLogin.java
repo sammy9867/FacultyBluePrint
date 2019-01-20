@@ -20,6 +20,7 @@ public class RequestTokenLogin extends AsyncTask<String, String, String> {
                     .apiKey(User.CONSUMER_KEY)
                     .apiSecret(User.CONSUMER_SECRET)
                     .callback(User.CALLBACK)
+                    .scope("cards,grades,email,offline_access,personal,photo")
                     .build();
 
             //REQUEST TOKEN

@@ -84,42 +84,17 @@ public class SettingsActivity extends AppCompatActivity  {
                 // TODO Auto-generated method stub
                 String Slecteditem= itemname[+position];
              //   Toast.makeText(getApplicationContext(), Slecteditem, Toast.LENGTH_SHORT).show();
-
-                if(position == 2){
+                if(position == 1){
+                    checkGrades();
+                }
+                else if(position == 2){
                     Logout_Click();
                 }
             }
         });
     }
-    /** Sets up the list view in the Settings Activity consisting of student id no, email id and log out.**/
-  /*  private void setupSettingsList(){
-        ListView listView = (ListView) findViewById(R.id.ListViewSettings);
 
 
-
-
-        ArrayList<String> options = new ArrayList<>();
-        options.add(getString(R.string.student_id_number) + "   " + (User.Usos_Id == null ? "" : User.Usos_Id));
-        options.add(getString(R.string.student_email_id)+ "   " +(User.Email_Id == null ? "" : User.Email_Id));
-        options.add(getString(R.string.log_out));
-
-
-        ArrayAdapter adapter =
-                new ArrayAdapter(mContext, android.R.layout.simple_list_item_1, options);
-
-        listView.setAdapter(adapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d(TAG, "onItemClick: navigating to fragment#: " + position);
-                if(position == 2){  // Position 2 of the list in the settings activity belongs to logout.
-                    Logout_Click();
-                }
-            }
-        });
-    }
-*/
     /**
      * Setting bottom navigation buttons
      */
@@ -146,5 +121,10 @@ public class SettingsActivity extends AppCompatActivity  {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
       //  finish();
+    }
+
+    private void checkGrades(){
+        Intent intent = new Intent(mContext, GradesActivity.class);
+        startActivity(intent);
     }
 }

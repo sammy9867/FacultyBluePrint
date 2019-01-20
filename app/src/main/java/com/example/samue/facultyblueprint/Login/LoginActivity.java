@@ -22,6 +22,11 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 public class LoginActivity extends AppCompatActivity {
@@ -101,9 +106,68 @@ public class LoginActivity extends AppCompatActivity {
 
         GetUserCourses();
 
+        getGrades2017Z();
+
         ((TextView) view).setText("Hello "+ User.Name+" !");
         super.onBackPressed();
 
+    }
+
+    private void getGrades2017Z(){
+        VolleyOAuthRequest volleyOAuthRequest =
+                new VolleyOAuthRequest(0,User.requestUrl+"services/grades/terms2",
+                        null);
+        volleyOAuthRequest.addParameter("term_ids", "2017Z");
+        String volleyURL = volleyOAuthRequest.getUrl();
+        Log.i("VOLLEY URL >>> ", volleyURL);
+
+        FDataLogin fDataLogin = new FDataLogin(volleyURL);
+
+        try {
+            fDataLogin.execute().get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        String response = fDataLogin.getResponse();
+
+
+        try {
+            JSONObject global_object = new JSONObject(response);
+            JSONObject semester_json_object = global_object.getJSONObject("2017Z");
+
+            //1
+            Iterator<String> keys = (Iterator<String>) semester_json_object.keys();
+            while (keys.hasNext()) {
+                String key = keys.next();
+                JSONObject value = semester_json_object.getJSONObject(key);
+                JSONArray grades_json_array = value.getJSONArray("course_grades");
+                int k=1;
+                for(int i = 0; i < grades_json_array.length();i++){
+                    JSONObject grades, course_grades_1=null;
+                    grades = (JSONObject) grades_json_array.get(i);
+                    try {
+                        course_grades_1 = grades.getJSONObject("" + k++);
+                    }catch(Exception e){
+                        Log.i("debug >> ", "i = "+i+" | k = " + k);
+                        i--;
+                        continue;
+                    }
+                    String grade_value = course_grades_1.getString("value_symbol");
+                    User.grades2017Z.put(key,grade_value);
+                    User.ListOfGrades2017Z.add(User.grades2017Z);
+                    k=1;
+                    Log.i(key,grade_value);
+                }
+            }
+
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -196,6 +260,8 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
+
+
 
 
     /**

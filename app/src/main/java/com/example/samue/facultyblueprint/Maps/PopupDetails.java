@@ -46,7 +46,14 @@ public class PopupDetails extends Activity {
 
         TextView tv = findViewById(R.id.room_number);
         tv.setText(tv.getText() + "  " + roomNumber );
-        int rm = Integer.parseInt(roomNumber);
+        int rm;
+
+        if(roomNumber.equals("105a")){
+            rm = 1051;
+        }else {
+            rm = Integer.parseInt(roomNumber);
+        }
+
 
 
        for (Course c : User.Courses){
