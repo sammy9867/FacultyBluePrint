@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -54,6 +55,8 @@ public class SettingsActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
+        ((ImageView)findViewById(R.id.UsosUserProfileImage))
+                .setImageBitmap(User.Profile_Pic);
 
         setupSettingsList();
         setupBottomNavigationView();
@@ -68,9 +71,10 @@ public class SettingsActivity extends AppCompatActivity  {
 
 
 
-        Picasso.with(getBaseContext()).load(User.Profile_Pic)
-                .resize(80,80)
-                .into((CircleImageView)findViewById(R.id.UsosUserProfileImage));
+//        Picasso.with(getBaseContext()).load(User.Profile_Pic)
+//                .resize(80,80)
+//                .into((CircleImageView)findViewById(R.id.UsosUserProfileImage));
+
 
         SettingsListAdapter adapter=new SettingsListAdapter(this, itemname, imgid);
         list=(ListView)findViewById(R.id.ListViewSettings);
