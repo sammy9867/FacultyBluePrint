@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.samue.facultyblueprint.Classes.Course;
+import com.example.samue.facultyblueprint.Classes.Grade;
 import com.example.samue.facultyblueprint.R;
 
 import org.json.JSONArray;
@@ -85,17 +86,12 @@ public class LoginActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        GetUserICal();
-
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        GetUserICal();
 
         GetUserCourses();
+        User.SortSemesters();
 
-        GetUserPhoto();
+       // GetUserPhoto();
 
         GetAllGrades();
 
@@ -108,6 +104,22 @@ public class LoginActivity extends AppCompatActivity {
         for(String semester : User.Semesters)
             if(!semester.isEmpty())
                 GetSemesterGrades(semester);
+
+        parseGrades();
+    }
+
+    private void parseGrades() {
+        for(Grade grade : User.Grades){
+            grade.grade = grade.grade.replace(",", ".");
+
+            for(Course course : User.Courses)
+                if(grade.course_id.equalsIgnoreCase(course.ID)){
+                    grade.course_name = course.name;
+                    grade.term_id = course.Term_ID;
+                    break;
+                }
+        }
+
     }
 
     private void GetSemesterGrades(String semester){
@@ -156,8 +168,10 @@ public class LoginActivity extends AppCompatActivity {
                         continue;
                     }
                     String grade_value = course_grades_1.getString("value_symbol");
-                    User.Grades.put(key,grade_value);
-                    User.ListOfGrades.add(User.Grades);
+                    Grade grade = new Grade(key, grade_value);
+                    User.Grades.add(grade);
+//                    User.Grades.put(key,grade_value);
+
                     k=1;
                     Log.i(semester +"" +key,grade_value);
                 }
@@ -222,10 +236,6 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         String response = fDataLogin.getResponse();
-        if(response.length()==3 && (response.toCharArray()[0]=='4' || response.toCharArray()[0]=='4')){
-            GetUserCourses();
-            return;
-        }
 
         try {
             JSONObject global_object = new JSONObject(response);

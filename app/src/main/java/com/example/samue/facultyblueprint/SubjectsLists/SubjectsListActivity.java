@@ -33,8 +33,11 @@ public class SubjectsListActivity extends AppCompatActivity { //implements Async
 
         ListView listView = findViewById(R.id.sujectlist_listview);
         List<String> subjects = new ArrayList<String>();
+        String currentSemester = User.GetCurrentSemester();
         for(Course c : User.Courses){
-            subjects.add(c.getName());
+            // List subjects only from Current Semester
+            if(c.Term_ID.equalsIgnoreCase(currentSemester))
+                subjects.add(c.getName());
         }
 
         arrayAdapter =

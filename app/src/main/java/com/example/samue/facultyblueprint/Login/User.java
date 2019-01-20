@@ -1,11 +1,15 @@
 package com.example.samue.facultyblueprint.Login;
 
 import com.example.samue.facultyblueprint.Classes.Course;
+import com.example.samue.facultyblueprint.Classes.Grade;
+
 import org.scribe.model.Token;
 import org.scribe.oauth.OAuthService;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -45,9 +49,9 @@ public final class User {
                                 new ArrayList<Course>();
 
     /**For getting grades from different semester**/
-    public static List<Map<String, String>> ListOfGrades = new ArrayList<>();
-    public static Map<String, String> Grades = new HashMap<>();
-
+//    public static List<Map<String, String>> ListOfGrades = new ArrayList<>();
+//    public static Map<String, String> Grades = new HashMap<>();
+    public static ArrayList<Grade> Grades = new ArrayList<>();
 
     public static ArrayList<String> Semesters = new ArrayList<>();
 
@@ -90,6 +94,11 @@ public final class User {
         authorizationUrl = null;
         Semesters.clear();
         Courses.clear();
+    }
+
+    public static void SortSemesters() {
+
+        Collections.sort(Semesters);
     }
 
 }

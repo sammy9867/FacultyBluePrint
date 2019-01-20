@@ -49,6 +49,48 @@
         </android.support.design.widget.AppBarLayout>
     </RelativeLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/relLayout2"
+        android:id="@+id/linlayout1">
+
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/prevSemButton"
+            android:text="PREV"
+            android:onClick="PrevSemester_Click"
+            />
+
+        <Space
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/currentSemLabel"
+            android:text="CURR"/>
+
+        <Space
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/nextSemButton"
+            android:text="NEXT"
+            android:onClick="NextSemester_Click"
+            />
+
+    </LinearLayout>
     <com.razerdp.widget.animatedpieview.AnimatedPieView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
