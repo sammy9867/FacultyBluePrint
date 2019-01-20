@@ -216,13 +216,17 @@ public class LoginActivity extends AppCompatActivity {
 
                 JSONArray semester_json_array = course_editions.getJSONArray(key);
                 for(int i=0; i<semester_json_array.length(); i++){
-                    JSONObject semester = (JSONObject) semester_json_array.get(i);
+                    JSONObject subject = (JSONObject) semester_json_array.get(i);
 
-                    JSONObject course_name = semester.getJSONObject("course_name");
+                    JSONObject course_name = subject.getJSONObject("course_name");
                     String en_course_name = course_name.getString("en");
 
                     Course course = new Course(en_course_name);
+                    course.ID = subject.getString("course_id");
+                    course.Term_ID = subject.getString("term_id");
+
                     User.Courses.add(course);
+
                 }
             }
         } catch (JSONException e) {

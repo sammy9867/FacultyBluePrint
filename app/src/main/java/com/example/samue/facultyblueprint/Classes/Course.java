@@ -8,6 +8,7 @@ public class Course {
 
     public String name         = "";
     public String ID           = "";
+    public String Term_ID      = "";
     public String type         = "";
     public int room_number     = -1;
     public String teacher_ID   = "";
