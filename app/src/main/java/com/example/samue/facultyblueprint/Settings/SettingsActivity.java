@@ -68,7 +68,7 @@ public class SettingsActivity extends AppCompatActivity  {
 
 
 
-        Picasso.with(getBaseContext()).load(R.drawable.default_profile_image)
+        Picasso.with(getBaseContext()).load(User.Profile_Pic)
                 .resize(80,80)
                 .into((CircleImageView)findViewById(R.id.UsosUserProfileImage));
 

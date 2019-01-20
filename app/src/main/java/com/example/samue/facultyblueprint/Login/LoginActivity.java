@@ -95,6 +95,8 @@ public class LoginActivity extends AppCompatActivity {
 
         GetUserCourses();
 
+        GetUserPhoto();
+
         GetAllGrades();
 
         ((TextView) view).setText("Hello "+ User.Name+" !");
@@ -103,16 +105,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void GetAllGrades() {
-
-        GetSemesterGrades("2016Z");
-        GetSemesterGrades("2017L");
-        GetSemesterGrades("2017Z");
-        GetSemesterGrades("2018L");
-        GetSemesterGrades("2018Z");
-
-        /*for(String semester : User.Semesters)
+        for(String semester : User.Semesters)
             if(!semester.isEmpty())
-                GetSemesterGrades(semester);*/
+                GetSemesterGrades(semester);
     }
 
     private void GetSemesterGrades(String semester){
@@ -175,6 +170,34 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+
+    private void GetUserPhoto(){
+
+        VolleyOAuthRequest volleyOAuthRequest =
+                new VolleyOAuthRequest(0,User.requestUrl+"services/users/photo",
+                        null);
+
+        String volleyURL = volleyOAuthRequest.getUrl();
+        Log.i("VOLLEY URL >>> ", volleyURL);
+
+        FDataLogin fDataLogin = new FDataLogin(volleyURL);
+
+        try {
+            fDataLogin.execute().get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        String response = fDataLogin.getResponse();
+
+        /**Response in binary**/
+
+             User.Profile_Pic = response;
+
+
+    }
 
 
     /**
