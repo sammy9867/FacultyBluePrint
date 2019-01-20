@@ -193,7 +193,10 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         String response = fDataLogin.getResponse();
-
+        if(response.length()==3 && (response.toCharArray()[0]=='4' || response.toCharArray()[0]=='4')){
+            GetUserCourses();
+            return;
+        }
 
         try {
             JSONObject global_object = new JSONObject(response);
@@ -204,18 +207,18 @@ public class LoginActivity extends AppCompatActivity {
                 String key = keys.next();
                 Log.i("SEM:",key);
                 User.Semesters.add(key);
-            }
 
-            // TODO: Set up semester argument dynamically
-            JSONArray semester_json_array = course_editions.getJSONArray("2018Z");
-            for(int i=0; i<semester_json_array.length(); i++){
-                JSONObject semester = (JSONObject) semester_json_array.get(i);
-                JSONObject course_name = semester.getJSONObject("course_name");
-                String en_course_name = course_name.getString("en");
-                Course course = new Course(en_course_name);
-                User.Courses.add(course);
-            }
+                JSONArray semester_json_array = course_editions.getJSONArray(key);
+                for(int i=0; i<semester_json_array.length(); i++){
+                    JSONObject semester = (JSONObject) semester_json_array.get(i);
 
+                    JSONObject course_name = semester.getJSONObject("course_name");
+                    String en_course_name = course_name.getString("en");
+
+                    Course course = new Course(en_course_name);
+                    User.Courses.add(course);
+                }
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
