@@ -91,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
         GetUserCourses();
         User.SortSemesters();
 
-       // GetUserPhoto();
+        GetUserPhoto();
 
         GetAllGrades();
 

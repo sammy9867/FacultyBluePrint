@@ -49,4 +49,7 @@ dependencies {
 
     //Pie Chart Library
     implementation 'com.github.razerdp:AnimatedPieView:1.2.4'
+
+    //MP android chart
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0-alpha'
 }
