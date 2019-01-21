@@ -1,47 +1,54 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".Login.LoginActivity">
+    android:fitsSystemWindows="true"
+    android:background="@color/grey">
 
-    <!-- Resource file for Login Activity -->
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/pinEditText"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:digits="0123456789" />
+        android:paddingTop="56dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:id="@+id/lin1">
+
+        <ImageView android:src="@drawable/usos"
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:layout_marginBottom="24dp"
+            android:layout_gravity="center_horizontal" />
+
+    </LinearLayout>
 
 
-    <Button
-        android:id="@+id/getPinButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Get PIN"
-        android:onClick="getPinButton_Click" />
-    <Button
-        android:id="@+id/loginButton"
-        android:layout_width="wrap_content"
-        android:text="Login"
-        android:layout_height="wrap_content"
-        android:onClick="loginButton_Click" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lin1"
+            android:layout_alignParentBottom="true">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/refreshTextView"
-        android:textSize="20sp"
-        android:text="Refresh"
-        android:onClick="Refresh_Click"/>
-
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/getPinButton"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="24dp"
+                android:padding="12dp"
+                android:text="Get Pin"
+                android:textColor="@color/white"
+                android:onClick="getPinButton_Click"
+                android:background="@drawable/login_button_shape"/>
 
 
-</LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+        </RelativeLayout>
+
+
+
+
+
+</RelativeLayout>

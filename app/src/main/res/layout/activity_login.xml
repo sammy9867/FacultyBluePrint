@@ -6,14 +6,29 @@
 
 <!--THIS IS NOT BEING USED AT THE MOMENT, DON'T REMOVE IT THOUGH, FOR NOW THE LOGIN ACTIVITY IS activity_get_pin-->
 
-    <WebView
-    android:layout_width="fill_parent"
-    android:layout_height="0dp"
-    android:layout_weight="1" />
+    <EditText
+        android:id="@+id/pinEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:digits="0123456789" />
 
-    <Space
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="wrap_content"
+        android:text="Login"
+        android:layout_height="wrap_content"
+        android:onClick="loginButton_Click" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/refreshTextView"
+        android:textSize="20sp"
+        android:text="Refresh"
+        android:onClick="Refresh_Click"/>
+
+
 
 </LinearLayout>

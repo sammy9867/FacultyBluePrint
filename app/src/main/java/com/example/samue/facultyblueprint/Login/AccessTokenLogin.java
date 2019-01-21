@@ -21,7 +21,7 @@ public class AccessTokenLogin extends AsyncTask<String, String, String> {
                 return null;
 
             String PIN = "";
-            PIN = LoginActivity.etPIN.getText().toString();
+            PIN = EnterPINActivity.etPIN.getText().toString();
             Verifier verifier = new Verifier(PIN);
             Log.i("PIN:=", PIN);
 
