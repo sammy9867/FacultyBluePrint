@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -65,6 +66,28 @@ public class SubjectDetailsActivity extends Activity {
 
         tvName.setText(selected_course.toString());
         tvDesc.setText(selected_course.Term_ID);
+    }
+
+    public void Apply_Click(View view) {
+        if(null == selected_course)
+            return;
+        EditText et = findViewById(R.id.etRoom);
+        String sRoom = et.getText().toString();
+        int room;
+        if(sRoom.equalsIgnoreCase("105A"))
+            selected_course.room_number = 1051;
+        else{
+            try{
+                room = Integer.parseInt(sRoom);
+                if(room >= 400) throw new Exception();
+                if(room <= 0 )  throw new Exception();
+                selected_course.room_number = room;
+            }catch (Exception e){
+                //TODO: Toast to notify anout wrong input
+            }
+        }
+
+
     }
 }
 
