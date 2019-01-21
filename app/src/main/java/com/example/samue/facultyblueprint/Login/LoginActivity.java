@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.samue.facultyblueprint.Classes.Course;
 import com.example.samue.facultyblueprint.Classes.Grade;
+import com.example.samue.facultyblueprint.Classes.Schedule;
 import com.example.samue.facultyblueprint.Classes.Teacher;
 import com.example.samue.facultyblueprint.R;
 
@@ -89,10 +90,13 @@ public class LoginActivity extends AppCompatActivity {
 
 //        GetUserICal();
 
+
         GetUserCourses();
         User.SortSemesters();
 
         GetAllGrades();
+
+        GetWeeksSchedule();
 
 //        GetUserPhoto();
 
@@ -186,6 +190,51 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+
+    private void GetWeeksSchedule(){
+        VolleyOAuthRequest volleyOAuthRequest =
+                new VolleyOAuthRequest(0,User.requestUrl+"services/tt/user",
+                        null);
+
+        String volleyURL = volleyOAuthRequest.getUrl();
+        Log.i("VOLLEY URL >>> ", volleyURL);
+
+        FDataLogin fDataLogin = new FDataLogin(volleyURL);
+
+        try {
+            fDataLogin.execute().get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        String response = fDataLogin.getResponse();
+
+        try {
+            JSONArray jsonArray = new JSONArray(response);
+
+            for(int i = 0;i < jsonArray.length();i++){
+                JSONObject dates = (JSONObject) jsonArray.get(i);
+                String start_time = dates.getString("start_time");
+                String end_time = dates.getString("end_time");
+
+                JSONObject name = (JSONObject) dates.getJSONObject("name");
+                String subject_name = name.getString("en");
+
+                Schedule schedule = new Schedule(start_time,end_time,subject_name);
+                User.Schedule.add(schedule);
+
+
+
+                Log.i("START" +start_time +" END"+ end_time," " + subject_name);
+            }
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 
     private void GetUserPhoto(){
 
