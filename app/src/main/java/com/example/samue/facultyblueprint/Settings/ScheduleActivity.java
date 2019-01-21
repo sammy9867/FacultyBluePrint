@@ -24,4 +24,8 @@ public class ScheduleActivity extends AppCompatActivity {
         });
     }
 
+    private void setSchedule(){
+
+    }
+
 }

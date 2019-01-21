@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 
 import com.example.samue.facultyblueprint.Classes.Course;
 import com.example.samue.facultyblueprint.Classes.Grade;
+import com.example.samue.facultyblueprint.Classes.Schedule;
 
 import org.scribe.model.Token;
 import org.scribe.oauth.OAuthService;
@@ -59,6 +60,7 @@ public final class User {
 
     public static ArrayList<String> Semesters = new ArrayList<>();
 
+    public static ArrayList<Schedule> Schedule = new ArrayList<>();
 
     public static String GetCurrentSemester(){
         String ZL = "";
