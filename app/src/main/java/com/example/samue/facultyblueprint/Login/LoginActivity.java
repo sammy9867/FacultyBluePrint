@@ -94,7 +94,7 @@ public class LoginActivity extends AppCompatActivity {
 
         GetAllGrades();
 
-        GetUserPhoto();
+//        GetUserPhoto();
 
         ((TextView) view).setText("Hello "+ User.Name+" !");
         super.onBackPressed();
@@ -273,7 +273,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     JSONArray user_groups = subject.getJSONArray("user_groups");
                     for(int j=0; j < user_groups.length(); j++) {
-                        JSONObject user_group = (JSONObject) user_groups.get(i);
+                        JSONObject user_group = (JSONObject) user_groups.get(j);
 
                         String class_type_id = user_group.getString("class_type_id");
                         if(! class_type_id.equalsIgnoreCase("CWI") &&
@@ -296,7 +296,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         JSONArray lecturers = user_group.getJSONArray("lecturers");
                         for(int l=0; l<lecturers.length(); l++){
-                            JSONObject lecturer = (JSONObject) lecturers.get(i);
+                            JSONObject lecturer = (JSONObject) lecturers.get(l);
                             String name = lecturer.getString("first_name");
                             String sname = lecturer.getString("last_name");
                             String teacher_id = lecturer.getString("id");
