@@ -40,10 +40,8 @@
             android:theme="@style/AppTheme.PopMe" />
         <activity android:name=".SubjectsLists.SubjectsListActivity"/>
 
-        <activity android:name=".Settings.GradesActivity">
-
-
-        </activity>
+        <activity android:name=".Settings.GradesActivity"/>
+        <activity android:name=".Settings.ScheduleActivity"/>
     </application>
 
 </manifest>

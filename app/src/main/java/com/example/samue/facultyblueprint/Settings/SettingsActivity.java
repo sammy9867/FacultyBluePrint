@@ -39,7 +39,7 @@ public class SettingsActivity extends AppCompatActivity  {
 
     ListView list;
     String[] itemname ={
-            "Stats",
+            "Weeks Schedule",
             "Grades",
             "Log Out"
     };
@@ -85,9 +85,10 @@ public class SettingsActivity extends AppCompatActivity  {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                // TODO Auto-generated method stub
-                String Slecteditem= itemname[+position];
-             //   Toast.makeText(getApplicationContext(), Slecteditem, Toast.LENGTH_SHORT).show();
+                if(position == 0){
+                    checkSchedule();
+                }
+
                 if(position == 1){
                     checkGrades();
                 }
@@ -129,6 +130,11 @@ public class SettingsActivity extends AppCompatActivity  {
 
     private void checkGrades(){
         Intent intent = new Intent(mContext, GradesActivity.class);
+        startActivity(intent);
+    }
+
+    private void checkSchedule(){
+        Intent intent = new Intent(mContext, ScheduleActivity.class);
         startActivity(intent);
     }
 }
