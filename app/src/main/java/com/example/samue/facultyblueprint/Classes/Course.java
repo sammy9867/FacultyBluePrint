@@ -5,6 +5,8 @@ import java.util.Date;
 
 public class Course {
 
+    private static int id_counter = 1;
+    public int object_id;
 
     public String name         = "";
     public String ID           = "";
@@ -13,25 +15,15 @@ public class Course {
     public String type         = "";
     public int room_number     = -1;
 
-    public String teacher_ID   = "";
     public String description  = "";
     public ArrayList<Teacher> teachers = new ArrayList<>();
 
     public Date date = null;
 
-    public Course(String name){ this.name = name; }
-
-
-
-    public Course(String _ID, String _type){
-        this.ID=_ID;
-        this.type=_type;
-        this.name="";
-        this.room_number=-1;
-        this.teacher_ID="";
+    public Course(){
+        object_id = id_counter;
+        id_counter++;
     }
-
-    public Course(){}
 
     public String getName() {
         return name;

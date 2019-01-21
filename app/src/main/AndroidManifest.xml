@@ -42,6 +42,7 @@
 
         <activity android:name=".Settings.GradesActivity"/>
         <activity android:name=".Settings.ScheduleActivity"/>
+        <activity android:name=".SubjectsLists.SubjectDetailsActivity"/>
     </application>
 
 </manifest>
