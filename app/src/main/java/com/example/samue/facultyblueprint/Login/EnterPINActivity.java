@@ -33,9 +33,8 @@ public class EnterPINActivity  extends AppCompatActivity {
 
     public static Button loginBtn;
     public static TextView refreshTextView;
-    public static TextView noteTextView;
     public static EditText etPIN;
-    public  WebViewClient webViewClient;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +51,6 @@ public class EnterPINActivity  extends AppCompatActivity {
     }
     public void loadUrlWithWebView(String url) {
         WebView webView = findViewById(R.id.webview1);
-//        webView.setWebViewClient(webViewClient);
         webView.loadUrl(url);
     }
 
@@ -94,7 +92,7 @@ public class EnterPINActivity  extends AppCompatActivity {
 //        GetUserPhoto();
 
         ((TextView) view).setText("Hello "+ User.Name+" !");
-       // super.onBackPressed();
+
 
         Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
         startActivity(intent);
@@ -174,7 +172,6 @@ public class EnterPINActivity  extends AppCompatActivity {
                     String grade_value = course_grades_1.getString("value_symbol");
                     Grade grade = new Grade(key, grade_value);
                     User.Grades.add(grade);
-//                    User.Grades.put(key,grade_value);
 
                     k=1;
                     Log.i(semester +"" +key,grade_value);
@@ -406,113 +403,5 @@ public class EnterPINActivity  extends AppCompatActivity {
 
 
 
-    }
-
-
-
-
-    /**
-     * Download ICalendar
-     * Gets schedule for a few weeks
-     * Saves data in the file ICAL_FILE_NAME
-     */
-    private void GetUserICal(){
-        VolleyOAuthRequest volleyOAuthRequest =
-                new VolleyOAuthRequest(0,User.requestUrl+"services/tt/upcoming_ical",
-                        null);
-
-        //   volleyOAuthRequest.addParameter("user_id", User.Usos_Id);
-        //   Log.i("\n\nUSER_ID >>>>>", User.Usos_Id+"\n\n\n");
-        //    volleyOAuthRequest.addParameter("lang", "en");
-
-        String volleyURL = volleyOAuthRequest.getUrl()+"&user_id="+User.Usos_Id+"&lang=en";
-        //   String volleyURL = volleyOAuthRequest.getUrl();
-        Log.i("VOLLEY URL [ICal]>>> ", volleyURL);
-
-        FDataLogin fDataLogin = new FDataLogin(volleyURL, true);
-
-        try {
-            fDataLogin.execute().get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
-        String response = fDataLogin.getResponse();
-
-        /* Catch Error Message*/
-        if(!response.startsWith("BEGIN") ) {
-            Log.i("ICAL_ERR >> ", response);
-            return ;
-        }
-
-        ParseICal(response);
-    }
-
-    private void ParseICal(String ical) {
-        String[] lines = ical.split("!NL");
-        for(int i=0; i<lines.length; i++) {
-            Log.i("Parsing >> ", lines[i]);
-            if(lines[i].equalsIgnoreCase("BEGIN:VEVENT"))
-                createSubject(lines, i);
-        }
-    }
-
-    private void createSubject(String[] lines, int index) {
-        int i=index+1;
-        Course course = new Course();
-
-        while(! lines[i].equalsIgnoreCase("END:VEVENT") && i<lines.length){
-            String line = lines[i];
-            line = line.replace("\\n","");
-            line = line.replace("\\","");
-
-            if(line.startsWith("SUMMARY:")){
-                String s = line.substring("SUMMARY:".length());
-                course.name = s;
-            }
-
-            if(line.startsWith("DESCRIPTION:")) {
-                String s = line.substring("DESCRIPTION:".length());
-
-                if(s.startsWith("Room: ")) {
-//                    String[] room = s.split(" ");
-                    String room = s.substring("Room: ".length(), "Room: ".length()+3);
-                    try {
-                        course.room_number = Integer.parseInt(room);
-                        Log.i("\n\n\n Room  >> ", course.room_number+"");
-
-                    }
-                    catch (Exception e){
-                        course.room_number = -1;
-                        Log.i("\n\n\n Room unparsable >> ", room);
-                    }
-                    Log.i(course.name+" > ", ""+course.room_number);
-                }
-                course.description = s;
-            }
-
-            if(line.startsWith("DTSTART;VALUE=DATE-TIME:")) {
-                //    json += ("\"dt_start\":" + '"' + line.substring("DTSTART;VALUE=DATE-TIME:".length()) + '"' + ',');
-                course.date = null;  // TODO: make date time from YYYYMMDDThhmmss
-            }
-
-//            if(line.startsWith("DTEND;VALUE=DATE-TIME:"))
-//                json += ("\"dt_end\":"+'"'+ line.substring("DTEND;VALUE=DATE-TIME:".length()) + '"' + ',');
-
-//            if(line.startsWith("DTSTAMP;VALUE=DATE-TIME:"))
-//                json += ("\"dt_stamp\":"+'"'+ line.substring("DTSTAMP;VALUE=DATE-TIME:".length()) + '"' + ',');
-
-
-            if(line.startsWith("LOCATION:")) {
-                //    json += ("\"location\":" + '"' + line.substring("LOCATION:".length()) + '"');
-                course.description += "\n"+line.substring("LOCATION:".length());
-            }
-
-            i++;
-        }
-
-        User.Courses.add(course);
     }
 }

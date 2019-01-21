@@ -55,9 +55,6 @@ public class SettingsActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-      //((ImageView)findViewById(R.id.UsosUserProfileImage))
-         //       .setImageBitmap(User.Profile_Pic);
-
         setupSettingsList();
         setupBottomNavigationView();
 

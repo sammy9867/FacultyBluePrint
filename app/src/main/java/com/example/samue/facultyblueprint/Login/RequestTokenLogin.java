@@ -5,9 +5,6 @@ import android.util.Log;
 
 import org.scribe.builder.ServiceBuilder;
 
-/**
- * Created by michael on 13.12.18.
- */
 
 public class RequestTokenLogin extends AsyncTask<String, String, String> {
 

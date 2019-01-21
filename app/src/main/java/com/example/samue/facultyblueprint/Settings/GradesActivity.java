@@ -2,33 +2,21 @@ package com.example.samue.facultyblueprint.Settings;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.samue.facultyblueprint.Classes.Course;
 import com.example.samue.facultyblueprint.Classes.Grade;
 import com.example.samue.facultyblueprint.Login.User;
-import com.example.samue.facultyblueprint.Maps.MapsActivity;
 import com.example.samue.facultyblueprint.R;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
-import com.razerdp.widget.animatedpieview.AnimatedPieView;
-import com.razerdp.widget.animatedpieview.AnimatedPieViewConfig;
-import com.razerdp.widget.animatedpieview.data.SimplePieInfo;
 
-import java.sql.ResultSetMetaData;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 public class GradesActivity extends AppCompatActivity {
 
@@ -58,7 +46,7 @@ public class GradesActivity extends AppCompatActivity {
         // TODO: Prev Semester might NOT exist
         String semester = User.Semesters.get(index); // previous semester !!!
 
-        setupPieChart(semester);
+        setBarChart(semester);
 
     }
 
@@ -68,8 +56,7 @@ public class GradesActivity extends AppCompatActivity {
         int currentIdx = User.Semesters.indexOf(text);
         if(currentIdx == User.Semesters.size()-1)
             return; // Mo Next Semester
-        // Set pie chart for the next semester
-        setupPieChart(User.Semesters.get(currentIdx+1));
+        setBarChart(User.Semesters.get(currentIdx+1));
 
     }
 
@@ -80,12 +67,10 @@ public class GradesActivity extends AppCompatActivity {
         if(currentIdx == 0)
             return; // Mo Prev Semester
         // Set pie chart for the previous semester
-        setupPieChart(User.Semesters.get(currentIdx-1));
+        setBarChart(User.Semesters.get(currentIdx-1));
     }
 
-    private void setupPieChart(String semester){
-      //  AnimatedPieView mAnimatedPieView = findViewById(R.id.gradesDistribution);
-    //    AnimatedPieViewConfig config = new AnimatedPieViewConfig();
+    private void setBarChart(String semester){
         BarChart barChart = findViewById(R.id.gradesDistribution);
         barChart.getDescription().setEnabled(false);
 
@@ -128,15 +113,7 @@ public class GradesActivity extends AppCompatActivity {
         barChart.setData(barData);
         barChart.invalidate();
         barChart.animateY(500);
-       /* config.startAngle(-90)
-                .addData(new SimplePieInfo(val, getColor(R.color.colorPrimaryDark), grade.course_name))
-                .duration(2000)
-                .drawText(true)
-                .splitAngle(0.2f);// draw pie animation duration*/
 
-// The following two sentences can be replace directly 'mAnimatedPieView.start (config); '
-      //  mAnimatedPieView.applyConfig(config);
-       // mAnimatedPieView.start();
     }
 
 

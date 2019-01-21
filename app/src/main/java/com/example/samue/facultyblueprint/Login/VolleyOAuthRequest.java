@@ -24,7 +24,7 @@ public class VolleyOAuthRequest<T> extends Request<T> {
 
     public VolleyOAuthRequest(int method, String path, Response.ErrorListener errorListener) {
         super(method, path, errorListener);
-        params = new HashMap<String, String>();
+        params = new HashMap<>();
     }
 
     public void addParameter(String key, String value) {

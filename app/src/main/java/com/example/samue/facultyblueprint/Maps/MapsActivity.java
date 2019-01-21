@@ -83,33 +83,11 @@ public class MapsActivity extends AppCompatActivity implements View.OnTouchListe
         return true;
     }
 
-    public void setCurrentViewById(int id)
-    {
+    public void setCurrentViewById(int id) {
         setContentView(id);
         currentViewId = id;
     }
 
-    public int getCurrentViewById()
-    {
-        return currentViewId;
-    }
-
-    //Demo on how to go to PopUpActivity for each button
- /*   public void buttonClick(){
-        int[] arr = {R.id.room101, R.id.room102};
-        for(int i : arr){
-            final Button room = (Button) findViewById(i);
-            room.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    Intent intent = new Intent(mContext, PopupDetails.class);
-                    // putExtra() is required to send the room number to the new activity
-                    intent.putExtra("roomNumber", room.getText()) ;
-                    // Start a new activity for the clicked room
-                    startActivity(intent);
-                }
-            });
-        }
-    }*/
 
 
     private void setupBottomNavigationView(){
@@ -140,26 +118,21 @@ public class MapsActivity extends AppCompatActivity implements View.OnTouchListe
                 return true;
 
             case MotionEvent.ACTION_UP :
-                //GETHOTSPOTCOLOR JUST DETECTS COLORS SO NO PROBS
+
                 int touchColor = -1;
                 if(floor_number == 1){
                     touchColor = getHotspotColor(v, R.id.floor_one_image_areas, evX, evY);
                     Log.i("floor one: ",String.valueOf(touchColor));
                 }else if(floor_number == 2 ){
-                    //   touchColor = getHotspotColor(BitmapFactory.decodeResource(getResources(),R.drawable.floor2_color),evX,evY);
                     touchColor = getHotspotColor(v, R.id.floor_two_image_areas, evX, evY);
                     Log.i("floor two: ",String.valueOf(touchColor));
                 }else if(floor_number == 3){
-                    //   touchColor = getHotspotColor(BitmapFactory.decodeResource(getResources(),R.drawable.floor2_color),evX,evY);
                     touchColor = getHotspotColor(v, R.id.floor_three_image_areas, evX, evY);
                     Log.i("floor two: ",String.valueOf(touchColor));
                 }
-                else {
-                    //TODO: Set for the rest of the floors
-                }
 
 
-                //FOR DETECTING AGAIN
+
                 ColorTool ct = new ColorTool ();
                 int tolerance = 1;
 
@@ -251,9 +224,6 @@ public class MapsActivity extends AppCompatActivity implements View.OnTouchListe
 
                 else if(floor_number == 3) {
                     //Floor 3 colors
-                    //    if (ct.closeMatch(Color.parseColor("#77F3F3F"), touchColor, tolerance))
-                    //     Toast.makeText(getApplicationContext(), "Room 310", Toast.LENGTH_SHORT).show();
-
                     if (ct.closeMatch(Color.parseColor("#7F593F"), touchColor, tolerance))
                         RoomClick("311");
 
@@ -318,10 +288,8 @@ public class MapsActivity extends AppCompatActivity implements View.OnTouchListe
                 return  false;
         }
 
-        /* DO NOT CHANGE */
+
         int currentResource = -1 ;
-//        TouchImageView touchImageView = (TouchImageView) v.findViewById (R.id.floor_shown);
-        //Switching the floor based on the floor_number
         if(floor_number == 1){
             currentResource = R.drawable.floor1;
         }else if(floor_number == 2){
@@ -426,44 +394,5 @@ public class MapsActivity extends AppCompatActivity implements View.OnTouchListe
         }
     }
 
-//  public static int[] getBitmapPositionInsideImageView(ImageView imageView) {
-//        int[] ret = new int[4];
-//
-//        if (imageView == null || imageView.getDrawable() == null)
-//            return ret;
-//
-//        // Get image dimensions
-//        // Get image matrix values and place them in an array
-//        float[] f = new float[9];
-//        imageView.getImageMatrix().getValues(f);
-//
-//        // Extract the scale values using the constants (if aspect ratio maintained, scaleX == scaleY)
-//        final float scaleX = f[Matrix.MSCALE_X];
-//        final float scaleY = f[Matrix.MSCALE_Y];
-//
-//        // Get the drawable (could also get the bitmap behind the drawable and getWidth/getHeight)
-//        final Drawable d = imageView.getDrawable();
-//        final int origW = d.getIntrinsicWidth();
-//        final int origH = d.getIntrinsicHeight();
-//
-//        // Calculate the actual dimensions
-//        final int actW = Math.round(origW * scaleX);
-//        final int actH = Math.round(origH * scaleY);
-//
-//        ret[2] = actW;
-//        ret[3] = actH;
-//
-//        // Get image position
-//        // We assume that the image is centered into ImageView
-//        int imgViewW = imageView.getWidth();
-//        int imgViewH = imageView.getHeight();
-//
-//        int top = (int) (imgViewH - actH)/2;
-//        int left = (int) (imgViewW - actW)/2;
-//
-//        ret[0] = left;
-//        ret[1] = top;
-//
-//        return ret;
-//    }
+
 }

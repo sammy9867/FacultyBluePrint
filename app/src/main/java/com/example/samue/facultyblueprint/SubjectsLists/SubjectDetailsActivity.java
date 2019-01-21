@@ -31,8 +31,6 @@ public class SubjectDetailsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subject_details);
 
-
-
         final ImageView profileMenu = (ImageView) findViewById(R.id.backArrowSubjectDetails);
         profileMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,8 +40,6 @@ public class SubjectDetailsActivity extends Activity {
             }
         });
 
-
-//        intent.putExtra("SELECTED_COURSE_ID", selected_course.object_id);
         int selected_object_id = (int) getIntent().getSerializableExtra("SELECTED_COURSE_ID");
 
         for(Course c : User.Courses)
@@ -51,7 +47,6 @@ public class SubjectDetailsActivity extends Activity {
                 selected_course = c;
                 break;
         }
-
         if(null == selected_course)
             finish();
 

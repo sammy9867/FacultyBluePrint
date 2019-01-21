@@ -3,9 +3,6 @@ package com.example.samue.facultyblueprint.Login;
 import org.scribe.builder.api.DefaultApi10a;
 import org.scribe.model.Token;
 
-/**
- * Created by michael on 13.12.18.
- */
 
 public class oAuthProvider extends DefaultApi10a {
 

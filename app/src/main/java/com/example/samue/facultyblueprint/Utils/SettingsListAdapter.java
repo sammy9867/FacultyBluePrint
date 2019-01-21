@@ -18,8 +18,6 @@ public class SettingsListAdapter extends ArrayAdapter<String> {
 
     public SettingsListAdapter(Activity context, String[] itemname, Integer[] imgid) {
         super(context, R.layout.settings_list, itemname);
-        // TODO Auto-generated constructor stub
-
         this.context=context;
         this.itemname=itemname;
         this.imgid=imgid;

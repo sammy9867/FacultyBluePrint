@@ -47,13 +47,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_pin);
 
-
-
         getPinBtn       = (Button)   findViewById(R.id.getPinButton);
         result = "";
-
-
-
     }
 
 
@@ -61,7 +56,6 @@ public class LoginActivity extends AppCompatActivity {
     public void getPinButton_Click(View view) {
         RequestTokenLogin requestTokenLogin = new RequestTokenLogin();
         requestTokenLogin.execute();
-
 
         Intent intent = new Intent(getApplicationContext(),EnterPINActivity.class);
         startActivity(intent);

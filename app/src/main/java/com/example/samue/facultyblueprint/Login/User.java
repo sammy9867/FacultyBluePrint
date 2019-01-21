@@ -20,13 +20,6 @@ import java.util.List;
 import java.util.Map;
 
 
-/**
- * Created by michael on 13.12.18.
- *
- * User class
- * Current version supports one user per app
- */
-
 public final class User {
 
     public static final String APPLICATION_NAME  = "FacultyStaff12";
@@ -45,17 +38,13 @@ public final class User {
     public static String Name     = "";
     public static String Surname  = "";
     public static String Usos_Id  = "";
-    public static String Email_Id = "";
 
     public static Bitmap Profile_Pic;
-    public static String Profile_Pic_Url;
 
     public static ArrayList<Course> Courses =
                                 new ArrayList<Course>();
 
     /**For getting grades from different semester**/
-//    public static List<Map<String, String>> ListOfGrades = new ArrayList<>();
-//    public static Map<String, String> Grades = new HashMap<>();
     public static ArrayList<Grade> Grades = new ArrayList<>();
 
     public static ArrayList<String> Semesters = new ArrayList<>();
