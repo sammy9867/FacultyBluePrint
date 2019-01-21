@@ -45,9 +45,9 @@ public class SettingsActivity extends AppCompatActivity  {
     };
 
     Integer[] imgid={
-            R.drawable.ic_maps,
-            R.drawable.ic_maps,
-            R.drawable.ic_maps
+            R.drawable.ic_calendar,
+            R.drawable.ic_grades,
+            R.drawable.ic_logout
     };
 
     @Override

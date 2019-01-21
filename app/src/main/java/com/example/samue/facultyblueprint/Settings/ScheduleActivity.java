@@ -42,12 +42,9 @@ public class ScheduleActivity extends AppCompatActivity {
 
     private void setSchedule(){
 
-
-        String[] subject_name, start_time;
-
         List<String> list  = new ArrayList<>();
         for(Schedule s : User.Schedule) {
-            list.add(s.subject_name);
+            list.add(s.subject_name +"\n" + s.start_time);
 
         }
 
