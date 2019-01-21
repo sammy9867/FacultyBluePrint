@@ -93,7 +93,7 @@ public class LoginActivity extends AppCompatActivity {
 
         GetAllGrades();
 
-    //    GetUserPhoto();
+        GetUserPhoto();
 
         ((TextView) view).setText("Hello "+ User.Name+" !");
         super.onBackPressed();
@@ -194,7 +194,7 @@ public class LoginActivity extends AppCompatActivity {
         String volleyURL = volleyOAuthRequest.getUrl();
         Log.i("VOLLEY URL >>> ", volleyURL);
 
-        DownloadImageTask dit = new DownloadImageTask(User.Profile_Pic);
+       DownloadImageTask dit = new DownloadImageTask(User.Profile_Pic);
         try {
             dit.execute(volleyURL).get();
         } catch (InterruptedException e) {
@@ -202,16 +202,33 @@ public class LoginActivity extends AppCompatActivity {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+/*
+        FDataLogin fDataLogin = new FDataLogin(volleyURL);
 
-//        FDataLogin fDataLogin = new FDataLogin(volleyURL);
-//        try {
-//            fDataLogin.execute().get();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        } catch (ExecutionException e) {
-//            e.printStackTrace();
-//        }
-//        String response = fDataLogin.getResponse();
+        try {
+            fDataLogin.execute().get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        String response = fDataLogin.getResponse();
+
+
+        try {
+            JSONObject object = new JSONObject(response);
+            boolean isMessage = object.has("message");
+            if(isMessage == true){
+                // Something wrong [90%]
+                Log.i("MESSAGE ", object.getString("message"));
+                return;
+            }
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }*/
 
     }
 

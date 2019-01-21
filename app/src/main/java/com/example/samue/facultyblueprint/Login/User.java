@@ -47,6 +47,7 @@ public final class User {
     public static String Email_Id = "";
 
     public static Bitmap Profile_Pic;
+    public static String Profile_Pic_Url;
 
     public static ArrayList<Course> Courses =
                                 new ArrayList<Course>();

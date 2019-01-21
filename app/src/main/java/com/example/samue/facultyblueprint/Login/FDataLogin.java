@@ -29,7 +29,7 @@ public class FDataLogin extends AsyncTask<Void, Void, Void> {
 
     private String response = "";
     private String url;
-    private boolean newLineLabel = true;
+    private boolean newLineLabel = false;
 
     public FDataLogin(String url){
         this.url = url;

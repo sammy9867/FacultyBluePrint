@@ -71,9 +71,9 @@ public class SettingsActivity extends AppCompatActivity  {
 
 
 
-//        Picasso.with(getBaseContext()).load(User.Profile_Pic)
-//                .resize(80,80)
-//                .into((CircleImageView)findViewById(R.id.UsosUserProfileImage));
+       /* Picasso.with(getBaseContext()).load(User.Profile_Pic_Url)
+                .resize(80,80)
+                .into((CircleImageView)findViewById(R.id.UsosUserProfileImage));*/
 
 
         SettingsListAdapter adapter=new SettingsListAdapter(this, itemname, imgid);
