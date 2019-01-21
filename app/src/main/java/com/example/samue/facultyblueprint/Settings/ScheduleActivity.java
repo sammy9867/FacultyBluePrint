@@ -19,6 +19,9 @@ public class ScheduleActivity extends AppCompatActivity {
     public ListView listView;
     ArrayAdapter<String> arrayAdapter;
 
+
+
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
@@ -39,14 +42,19 @@ public class ScheduleActivity extends AppCompatActivity {
 
     private void setSchedule(){
 
-        List<String> list  = new ArrayList<>();
 
-        for(Schedule s : User.Schedule){
-            list.add(s.toString());
+        String[] subject_name, start_time;
+
+        List<String> list  = new ArrayList<>();
+        for(Schedule s : User.Schedule) {
+            list.add(s.subject_name);
+
         }
 
-        arrayAdapter =
-                    new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
+            arrayAdapter =
+                    new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
+
+
         listView.setAdapter(arrayAdapter);
         arrayAdapter.notifyDataSetChanged();
     }
