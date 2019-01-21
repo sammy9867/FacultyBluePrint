@@ -11,6 +11,8 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.example.samue.facultyblueprint.Classes.Course;
 import com.example.samue.facultyblueprint.Classes.Grade;
@@ -18,6 +20,7 @@ import com.example.samue.facultyblueprint.Classes.Schedule;
 import com.example.samue.facultyblueprint.Classes.Teacher;
 import com.example.samue.facultyblueprint.Maps.MapsActivity;
 import com.example.samue.facultyblueprint.R;
+import com.shashank.sony.fancytoastlib.FancyToast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -49,7 +52,7 @@ public class EnterPINActivity  extends AppCompatActivity {
     }
     public void loadUrlWithWebView(String url) {
         WebView webView = findViewById(R.id.webview1);
-        webView.setWebViewClient(webViewClient);
+//        webView.setWebViewClient(webViewClient);
         webView.loadUrl(url);
     }
 
@@ -96,6 +99,8 @@ public class EnterPINActivity  extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
         startActivity(intent);
         finish();
+
+        FancyToast.makeText(getApplicationContext(),"Success!",FancyToast.LENGTH_SHORT,FancyToast.SUCCESS,false).show();
     }
 
     private void GetAllGrades() {

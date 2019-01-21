@@ -63,7 +63,7 @@ public class PopupDetails extends Activity {
 //                ((TextView)findViewById(R.id.course_name)).setText(c.toString());
 //                ((TextView)findViewById(R.id.teacher_name)).setText("Teachers:\n"+c.listTeachers());
                 courses_on_list.add(c);
-                subjects.add(roomText + "\n" + c.toString() + "\n" + "Teachers:\n" + c.listTeachers());
+                subjects.add(roomText + "\n" + c.toString());
             }
         }
 

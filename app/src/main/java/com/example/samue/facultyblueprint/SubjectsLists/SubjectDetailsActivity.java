@@ -82,11 +82,10 @@ public class SubjectDetailsActivity extends Activity {
             try{
                 room = Integer.parseInt(sRoom);
                 if(room >= 400) throw new Exception();
-                if(room <= 0 )  throw new Exception();
+                if(room <= 100 )  throw new Exception();
                 selected_course.room_number = room;
             }catch (Exception e){
-                FancyToast.makeText(getApplicationContext(), "Invalid room number",
-                        FancyToast.ERROR, Toast.LENGTH_SHORT,false);
+                FancyToast.makeText(this,"Invalid room number!",FancyToast.LENGTH_SHORT,FancyToast.ERROR,false).show();
                 return;
             }
         }
