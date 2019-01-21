@@ -240,7 +240,7 @@ public class LoginActivity extends AppCompatActivity {
     private void GetUserCourses() {
         VolleyOAuthRequest volleyOAuthRequest =
                 new VolleyOAuthRequest(0,User.requestUrl+"services/courses/user",
-                null);
+                        null);
 
         String volleyURL = volleyOAuthRequest.getUrl();
         Log.i("GetUserCourses URL >>> ", volleyURL);
@@ -288,8 +288,8 @@ public class LoginActivity extends AppCompatActivity {
 
                         course.name    = en_course_name;
                         course.type    = class_type_id
-                                            .replace("CWI","TUT")
-                                            .replace("WYK","LEC");
+                                .replace("CWI","TUT")
+                                .replace("WYK","LEC");
                         course.Unit_ID = user_group.getString("course_unit_id");
                         course.ID      = user_group.getString("course_id");
                         course.Term_ID = user_group.getString("term_id");
