@@ -113,12 +113,13 @@ public class LoginActivity extends AppCompatActivity {
         for(Grade grade : User.Grades){
             grade.grade = grade.grade.replace(",", ".");
 
-            for(Course course : User.Courses)
-                if(grade.course_id.equalsIgnoreCase(course.ID)){
+            for(Course course : User.Courses){
+                if (grade.course_id.equalsIgnoreCase(course.ID)){
                     grade.course_name = course.name;
                     grade.term_id = course.Term_ID;
                     break;
                 }
+            }
         }
 
     }
