@@ -1,10 +1,13 @@
 package com.example.samue.facultyblueprint.Login;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -29,6 +32,7 @@ public class EnterPINActivity  extends AppCompatActivity {
     public static TextView refreshTextView;
     public static TextView noteTextView;
     public static EditText etPIN;
+    public  WebViewClient webViewClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +42,16 @@ public class EnterPINActivity  extends AppCompatActivity {
         loginBtn        = (Button)   findViewById(R.id.loginButton);
         refreshTextView = (TextView) findViewById(R.id.refreshTextView);
         etPIN           = (EditText) findViewById(R.id.pinEditText);
-    }
 
+        loadUrlWithWebView(User.authorizationUrl);
+
+
+    }
+    public void loadUrlWithWebView(String url) {
+        WebView webView = findViewById(R.id.webview1);
+        webView.setWebViewClient(webViewClient);
+        webView.loadUrl(url);
+    }
 
     /**
      * Method to be called on click Login

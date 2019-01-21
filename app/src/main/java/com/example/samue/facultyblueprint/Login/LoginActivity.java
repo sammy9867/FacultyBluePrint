@@ -1,10 +1,13 @@
 package com.example.samue.facultyblueprint.Login;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -38,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
     public String result;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,9 +50,10 @@ public class LoginActivity extends AppCompatActivity {
 
 
         getPinBtn       = (Button)   findViewById(R.id.getPinButton);
-
-//        noteTextView    = (TextView) findViewById(R.id._noteTextView);
         result = "";
+
+
+
     }
 
 
@@ -57,10 +62,12 @@ public class LoginActivity extends AppCompatActivity {
         RequestTokenLogin requestTokenLogin = new RequestTokenLogin();
         requestTokenLogin.execute();
 
+
         Intent intent = new Intent(getApplicationContext(),EnterPINActivity.class);
         startActivity(intent);
         finish();
     }
+
 
 
 }

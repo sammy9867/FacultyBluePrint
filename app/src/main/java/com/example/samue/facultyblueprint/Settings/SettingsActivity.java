@@ -55,8 +55,8 @@ public class SettingsActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        ((ImageView)findViewById(R.id.UsosUserProfileImage))
-                .setImageBitmap(User.Profile_Pic);
+      //((ImageView)findViewById(R.id.UsosUserProfileImage))
+         //       .setImageBitmap(User.Profile_Pic);
 
         setupSettingsList();
         setupBottomNavigationView();
@@ -71,9 +71,9 @@ public class SettingsActivity extends AppCompatActivity  {
 
 
 
-       /* Picasso.with(getBaseContext()).load(User.Profile_Pic_Url)
+        Picasso.with(getBaseContext()).load(R.drawable.default_profile_image)
                 .resize(80,80)
-                .into((CircleImageView)findViewById(R.id.UsosUserProfileImage));*/
+                .into((CircleImageView)findViewById(R.id.UsosUserProfileImage));
 
 
         SettingsListAdapter adapter=new SettingsListAdapter(this, itemname, imgid);
