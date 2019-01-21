@@ -3,30 +3,20 @@ package com.example.samue.facultyblueprint.Classes;
 import java.util.ArrayList;
 
 public class Teacher {
-    String name;
-    String surname;
-    String id;
-    String email;
-    String website;
-    int room;
-    ArrayList<Course> courses = new ArrayList<Course>();
+    public String name;
+    public String surname;
+    public String id;
 
-    public Teacher(String _name, String _surname, String _id, String _email, String _website,
-                   int _room, ArrayList<Course> _courses){
-
-        this.name=_name;
-        this.surname=_surname;
-        this.id=_id;
-        this.email=_email;
-        this.website=_website;
-        this.room=_room;
-        courses.addAll(_courses);
-    }
+    public String email;
+    public String website;
+    public int room;
 
 
-    public Teacher(String name, String surname){
+
+    public Teacher(String name, String surname, String id){
         this.name = name;
         this.surname = surname;
+        this.id = id;
     }
 
     /**

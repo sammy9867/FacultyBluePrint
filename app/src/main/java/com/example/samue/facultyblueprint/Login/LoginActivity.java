@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.samue.facultyblueprint.Classes.Course;
 import com.example.samue.facultyblueprint.Classes.Grade;
+import com.example.samue.facultyblueprint.Classes.Teacher;
 import com.example.samue.facultyblueprint.R;
 
 import org.json.JSONArray;
@@ -270,15 +271,40 @@ public class LoginActivity extends AppCompatActivity {
                 for(int i=0; i<semester_json_array.length(); i++){
                     JSONObject subject = (JSONObject) semester_json_array.get(i);
 
-                    JSONObject course_name = subject.getJSONObject("course_name");
-                    String en_course_name = course_name.getString("en");
+                    JSONArray user_groups = subject.getJSONArray("user_groups");
+                    for(int j=0; j < user_groups.length(); j++) {
+                        JSONObject user_group = (JSONObject) user_groups.get(i);
 
-                    Course course = new Course(en_course_name);
-                    course.ID = subject.getString("course_id");
-                    course.Term_ID = subject.getString("term_id");
+                        String class_type_id = user_group.getString("class_type_id");
+                        if(! class_type_id.equalsIgnoreCase("CWI") &&
+                                ! class_type_id.equalsIgnoreCase("WYK") &&
+                                ! class_type_id.equalsIgnoreCase("LAB"))
+                            continue;
 
-                    User.Courses.add(course);
+                        Course course  = new Course();
 
+                        JSONObject course_name = user_group.getJSONObject("course_name");
+                        String en_course_name = course_name.getString("en");
+
+                        course.name    = en_course_name;
+                        course.type    = class_type_id
+                                            .replace("CWI","TUT")
+                                            .replace("WYK","LEC");
+                        course.Unit_ID = user_group.getString("course_unit_id");
+                        course.ID      = user_group.getString("course_id");
+                        course.Term_ID = user_group.getString("term_id");
+
+                        JSONArray lecturers = user_group.getJSONArray("lecturers");
+                        for(int l=0; l<lecturers.length(); l++){
+                            JSONObject lecturer = (JSONObject) lecturers.get(i);
+                            String name = lecturer.getString("first_name");
+                            String sname = lecturer.getString("last_name");
+                            String teacher_id = lecturer.getString("id");
+                            Teacher teacher = new Teacher(name, sname, teacher_id);
+                            course.teachers.add(teacher);
+                        }
+                        User.Courses.add(course);
+                    }
                 }
             }
         } catch (JSONException e) {

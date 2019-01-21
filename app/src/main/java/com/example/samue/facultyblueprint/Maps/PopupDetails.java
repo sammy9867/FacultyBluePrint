@@ -60,7 +60,7 @@ public class PopupDetails extends Activity {
            if(c.room_number  == rm){
                ((TextView)findViewById(R.id.course_name)).setText(c.name);
                ((TextView)findViewById(R.id.course_type)).setText(c.type);
-               ((TextView)findViewById(R.id.teacher_name)).setText(""+c.teacher);
+//               ((TextView)findViewById(R.id.teacher_name)).setText(""+c.teacher);
                break;
            }
        }

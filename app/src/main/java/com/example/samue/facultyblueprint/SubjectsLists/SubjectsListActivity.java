@@ -37,7 +37,7 @@ public class SubjectsListActivity extends AppCompatActivity { //implements Async
         for(Course c : User.Courses){
             // List subjects only from Current Semester
             if(c.Term_ID.equalsIgnoreCase(currentSemester))
-                subjects.add(c.getName());
+                subjects.add(c.toString());
         }
 
         arrayAdapter =
