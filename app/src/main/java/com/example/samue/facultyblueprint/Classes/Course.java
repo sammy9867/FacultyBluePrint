@@ -33,4 +33,29 @@ public class Course {
         return type+" - "+name;
     }
 
+    public String getDescriptions(){
+        String result = "";
+        if(type.equalsIgnoreCase("LEC")) result += "Lecture\n";
+        if(type.equalsIgnoreCase("TUT")) result += "Tutorials\n";
+        if(type.equalsIgnoreCase("LAB")) result += "Laboratories\n";
+        if(room_number != -1 && room_number != 1051)
+            result += "Room: "+room_number+"\n";
+        if(1051 == room_number)
+            result += "Room: 105A\n";
+
+        if(teachers.size() > 0){
+            result += "Lecturer(s):\n";
+            for(Teacher t : teachers)
+                result += ""+t+"\n";
+        }
+
+        return result;
+    }
+
+    public String listTeachers(){
+        String result = "";
+        for(int i=0; i<teachers.size(); i++)
+            result += (i+1 == teachers.size()) ? ""+teachers.get(i) : ""+teachers.get(i)+"\n";
+        return result;
+    }
 }

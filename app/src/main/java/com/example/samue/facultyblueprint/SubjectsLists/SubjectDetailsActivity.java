@@ -9,10 +9,12 @@ import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.samue.facultyblueprint.Classes.Course;
 import com.example.samue.facultyblueprint.Login.User;
 import com.example.samue.facultyblueprint.R;
+import com.shashank.sony.fancytoastlib.FancyToast;
 
 import org.w3c.dom.Text;
 
@@ -65,7 +67,7 @@ public class SubjectDetailsActivity extends Activity {
         TextView tvDesc = (TextView) findViewById(R.id.tvDescriptionOfSubject);
 
         tvName.setText(selected_course.toString());
-        tvDesc.setText(selected_course.Term_ID);
+        tvDesc.setText(selected_course.getDescriptions());
     }
 
     public void Apply_Click(View view) {
@@ -83,10 +85,13 @@ public class SubjectDetailsActivity extends Activity {
                 if(room <= 0 )  throw new Exception();
                 selected_course.room_number = room;
             }catch (Exception e){
-                //TODO: Toast to notify anout wrong input
+                FancyToast.makeText(getApplicationContext(), "Invalid room number",
+                        FancyToast.ERROR, Toast.LENGTH_SHORT,false);
+                return;
             }
         }
 
+        finish();
 
     }
 }
