@@ -2,7 +2,7 @@
 
 Faculty BluePrint is an android mobile application specifically designed for students from the Faculty of Mathematics and Information Science at Warsaw University of Technology. The main goal of the project was to map student’s events (i.e. lectures, tutorials and laboratories) acquired from USOS into a scheme of Faculty’s building.
 
-### Technologies used
+## Technologies used
 - USOS API is a simple REST-like protocol which allows developers to access academic database.
 - USOS API uses OAuth 1.0a protocol for authorization.
 - Coding language - Java.
